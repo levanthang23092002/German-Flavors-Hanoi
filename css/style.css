@@ -124,16 +124,23 @@ img {
   font-family: "Playfair Display", serif;
   font-size: 1.5rem;
   font-weight: 900;
-  color: var(--dark);
 }
-.bname span {
+.brand-german {
+  color: var(--secondary);
+}
+.bname > span:not(.brand-german) {
   color: var(--primary);
 }
-.bsub {
-  font-size: 0.62rem;
+.bsub,
+.fsub {
+  font-size: 0.68rem;
+  font-weight: 800;
   text-transform: uppercase;
-  letter-spacing: 2px;
-  color: #aaa;
+  letter-spacing: 2.5px;
+  color: var(--dark);
+}
+.fsub {
+  margin-top: 3px;
 }
 .navbar-nav .nav-link {
   font-size: 0.87rem;
@@ -187,16 +194,14 @@ img {
 }
 .lang-btn {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 2px;
+  justify-content: center;
   background: none;
   border: none;
   cursor: pointer;
-  padding: 4px 6px;
+  padding: 5px 7px;
   border-radius: 7px;
   transition: 0.25s;
-  min-width: 38px;
 }
 .lang-btn:hover {
   background: rgba(221, 0, 0, 0.08);
@@ -206,19 +211,13 @@ img {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 .lang-flag {
-  font-size: 1.1rem;
+  width: 22px;
+  height: 16px;
+  border-radius: 2px;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.08);
   line-height: 1;
   display: block;
-}
-.lang-code {
-  font-size: 0.58rem;
-  font-weight: 700;
-  color: #666;
-  letter-spacing: 0.3px;
-  line-height: 1;
-}
-.lang-btn.active .lang-code {
-  color: var(--primary);
+  background-size: cover;
 }
 
 /* ===================== SECTION COMMONS ===================== */
@@ -2031,14 +2030,36 @@ footer {
   background: var(--dark);
   padding: 68px 0 0;
 }
+.fbrand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 4px;
+}
+.fbrand-ico {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #000 33%, #dd0000 33% 66%, #ffcc00 66%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffcc00;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+}
 .fnm {
   font-family: "Playfair Display", serif;
   font-size: 1.9rem;
   font-weight: 900;
-  color: #fff;
+  line-height: 1.1;
 }
-.fnm span {
+.fnm > span:not(.brand-german) {
   color: var(--primary);
+}
+footer .fsub {
+  color: rgba(255, 255, 255, 0.88);
 }
 .fdesc {
   color: #777;
@@ -2786,11 +2807,11 @@ footer {
     padding: 22px 18px;
   }
   .lang-btn {
-    min-width: 34px;
-    padding: 3px 5px;
+    padding: 4px 6px;
   }
   .lang-flag {
-    font-size: 1rem;
+    width: 20px;
+    height: 14px;
   }
 }
 @media (max-width: 480px) {
