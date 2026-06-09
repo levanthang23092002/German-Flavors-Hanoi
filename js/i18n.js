@@ -18,8 +18,7 @@ var I18N_DATA = {
             badge: 'Authentic<br/>German Food', msgUs: 'Message Us',
             lbl: 'About Us', title: 'About <span>German Flavors Hanoi</span>',
             p1: 'German Flavors Hanoi was created to bring authentic German food and culinary traditions to Vietnam. We are passionate about preserving the original taste of Germany through carefully prepared meats, sausages, cold cuts, traditional recipes, and high-quality ingredients.',
-            p2: 'Our mission is simple: provide genuine German flavors for the German community, international residents, and local food lovers who appreciate authentic European cuisine. Whether you are purchasing German delicatessen products, ordering ready-made meals, or planning an event for hundreds of guests, we are committed to quality, consistency, and excellent service.',
-            p3: 'From traditional Leberkäse and Kasseler to handcrafted sausages, Leberwurst, smoked ham, salami, German mustard, and sauerkraut, German Flavors Hanoi delivers a true taste of Germany in the heart of Hanoi.',
+            p2: 'Our mission is simple: provide genuine German flavors for the German community, international residents, and local food lovers who appreciate authentic European cuisine. From traditional Leberkäse and Kasseler to handcrafted sausages, German mustard, and sauerkraut — we deliver a true taste of Germany in the heart of Hanoi.',
             btn: 'View Our Services'
         },
         menu: {
@@ -82,8 +81,9 @@ var I18N_DATA = {
         reservation: {
             lbl: 'Get In Touch', title: 'Catering & <span>Contact</span>',
             intro: 'Book catering for your event (10–300 guests) or send us a general inquiry about products, meals, and delivery.',
-            talk: 'Let\'s Talk', talkSub: 'Message us via phone, WhatsApp, or Zalo — we typically respond quickly.',
-            location: 'Location', catering: 'Catering', cateringVal: '10 – 300 guests', contactVia: 'Phone · Zalo · WhatsApp',
+            talk: 'Contact Us', talkSub: 'Scan the QR code to call or message us on WhatsApp / Zalo.',
+            location: 'Location', delivery: 'Delivery', deliveryVal: 'Available across Hanoi',
+            facebookLbl: 'Facebook', facebook: 'German Flavors Hanoi',
             inquiryType: 'Inquiry Type *', eventDate: 'Event Date *', fullName: 'Full Name *', phone: 'Phone Number *',
             email: 'Email Address *', guests: 'Number of Guests *', msgEvent: 'Event Details & Menu Requests',
             msgGeneral: 'Your Message *', placeholderName: 'Your name', placeholderPhone: '+84 ...',
@@ -103,9 +103,14 @@ var I18N_DATA = {
             cats: ['All Services', 'Sausages', 'Cold Cuts', 'Leberkäse', 'Specialties', 'Ready Meals', 'Catering']
         },
         footer: {
+            tagline: 'Authentic German Meats · Sausages · Catering',
             desc: 'Bringing the taste of Germany to Hanoi. Authentic German meats, sausages, cold cuts, delicatessen products, and catering services for private and corporate events.',
-            quickLinks: 'Quick Links', ourServices: 'Our Services', getInTouch: 'Get In Touch', location: 'Location', services: 'Services',
-            servicesVal: 'Events · Catering · Birthdays · Delivery', rights: 'All Rights Reserved.', privacy: 'Privacy Policy', terms: 'Terms',
+            quickLinks: 'Quick Links', ourServices: 'Our Services', getInTouch: 'Get In Touch',
+            scanQr: 'Scan QR code to call or message us',
+            location: 'Location', delivery: 'Delivery', deliveryVal: 'Available across Hanoi',
+            facebookLbl: 'Facebook', facebook: 'German Flavors Hanoi',
+            languages: 'Languages', langVal: 'German · Vietnamese · English',
+            rights: 'All Rights Reserved.',
             links: { home: 'Home', about: 'About Us', services: 'Our Services', products: 'Products', reviews: 'Reviews', contact: 'Contact' },
             svc: { sausages: 'German Sausages', coldcuts: 'Cold Cuts', classics: 'Leberkäse & Kasseler', meals: 'Ready-to-Eat Meals', specialties: 'German Specialties', catering: 'Catering' }
         }
@@ -127,8 +132,7 @@ var I18N_DATA = {
             badge: 'Ẩm thực<br/>Đức chính gốc', msgUs: 'Nhắn tin cho chúng tôi',
             lbl: 'Giới thiệu', title: 'Về <span>German Flavors Hanoi</span>',
             p1: 'German Flavors Hanoi được tạo ra để mang ẩm thực và truyền thống ẩm thực Đức chính gốc đến Việt Nam. Chúng tôi đam mê bảo tồn hương vị Đức gốc qua thịt, xúc xích, giò lạnh, công thức truyền thống và nguyên liệu chất lượng cao.',
-            p2: 'Sứ mệnh của chúng tôi rất đơn giản: mang hương vị Đức chân thực đến cộng đồng người Đức, cư dân quốc tế và những người yêu ẩm thực châu Âu chính gốc. Dù bạn mua đồ deli, đặt món ăn sẵn hay tổ chức sự kiện hàng trăm khách, chúng tôi cam kết chất lượng, ổn định và dịch vụ xuất sắc.',
-            p3: 'Từ Leberkäse và Kasseler truyền thống đến xúc xích thủ công, Leberwurst, giăm bông hun khói, salami, mù tạt và dưa cải Đức — German Flavors Hanoi mang hương vị Đức thực sự đến trung tâm Hà Nội.',
+            p2: 'Sứ mệnh của chúng tôi rất đơn giản: mang hương vị Đức chân thực đến cộng đồng người Đức, cư dân quốc tế và những người yêu ẩm thực châu Âu. Từ Leberkäse, Kasseler đến xúc xích thủ công, mù tạt và dưa cải Đức — chúng tôi mang hương vị Đức thực sự đến trung tâm Hà Nội.',
             btn: 'Xem dịch vụ'
         },
         menu: {
@@ -191,8 +195,9 @@ var I18N_DATA = {
         reservation: {
             lbl: 'Liên hệ', title: 'Catering & <span>Liên hệ</span>',
             intro: 'Đặt catering cho sự kiện (10–300 khách) hoặc gửi yêu cầu về sản phẩm, món ăn và giao hàng.',
-            talk: 'Hãy trò chuyện', talkSub: 'Nhắn tin qua điện thoại, WhatsApp hoặc Zalo — chúng tôi thường phản hồi nhanh.',
-            location: 'Địa điểm', catering: 'Catering', cateringVal: '10 – 300 khách', contactVia: 'Điện thoại · Zalo · WhatsApp',
+            talk: 'Liên hệ', talkSub: 'Quét mã QR để gọi hoặc nhắn tin qua WhatsApp / Zalo.',
+            location: 'Địa điểm', delivery: 'Giao hàng', deliveryVal: 'Giao hàng toàn Hà Nội',
+            facebookLbl: 'Facebook', facebook: 'German Flavors Hanoi',
             inquiryType: 'Loại yêu cầu *', eventDate: 'Ngày sự kiện *', fullName: 'Họ và tên *', phone: 'Số điện thoại *',
             email: 'Email *', guests: 'Số khách *', msgEvent: 'Chi tiết sự kiện & yêu cầu thực đơn',
             msgGeneral: 'Tin nhắn của bạn *', placeholderName: 'Họ và tên', placeholderPhone: '+84 ...',
@@ -212,9 +217,14 @@ var I18N_DATA = {
             cats: ['Tất cả dịch vụ', 'Xúc xích', 'Giò lạnh', 'Leberkäse', 'Đặc sản', 'Món sẵn', 'Catering']
         },
         footer: {
+            tagline: 'Thịt Đức · Xúc xích · Catering chính gốc',
             desc: 'Mang hương vị Đức đến Hà Nội. Thịt, xúc xích, giò lạnh, đồ deli và dịch vụ catering cho sự kiện riêng và doanh nghiệp.',
-            quickLinks: 'Liên kết nhanh', ourServices: 'Dịch vụ của chúng tôi', getInTouch: 'Liên hệ', location: 'Địa điểm', services: 'Dịch vụ',
-            servicesVal: 'Sự kiện · Catering · Sinh nhật · Giao hàng', rights: 'Bảo lưu mọi quyền.', privacy: 'Chính sách bảo mật', terms: 'Điều khoản',
+            quickLinks: 'Liên kết nhanh', ourServices: 'Dịch vụ của chúng tôi', getInTouch: 'Liên hệ',
+            scanQr: 'Quét mã QR để gọi hoặc nhắn tin',
+            location: 'Địa điểm', delivery: 'Giao hàng', deliveryVal: 'Giao hàng toàn Hà Nội',
+            facebookLbl: 'Facebook', facebook: 'German Flavors Hanoi',
+            languages: 'Ngôn ngữ', langVal: 'Tiếng Đức · Tiếng Việt · Tiếng Anh',
+            rights: 'Bảo lưu mọi quyền.',
             links: { home: 'Trang chủ', about: 'Giới thiệu', services: 'Dịch vụ', products: 'Sản phẩm', reviews: 'Đánh giá', contact: 'Liên hệ' },
             svc: { sausages: 'Xúc xích Đức', coldcuts: 'Giò lạnh', classics: 'Leberkäse & Kasseler', meals: 'Món ăn sẵn', specialties: 'Đặc sản Đức', catering: 'Catering' }
         }
@@ -236,8 +246,7 @@ var I18N_DATA = {
             badge: 'Authentische<br/>deutsche Küche', msgUs: 'Schreiben Sie uns',
             lbl: 'Über uns', title: 'Über <span>German Flavors Hanoi</span>',
             p1: 'German Flavors Hanoi wurde gegründet, um authentische deutsche Küche und kulinarische Traditionen nach Vietnam zu bringen. Wir bewahren den originalen Geschmack Deutschlands durch sorgfältig zubereitetes Fleisch, Wurst, Aufschnitt, traditionelle Rezepte und hochwertige Zutaten.',
-            p2: 'Unsere Mission ist einfach: echten deutschen Geschmack für die deutsche Community, internationale Bewohner und Liebhaber authentischer europäischer Küche. Ob Feinkost, Fertiggerichte oder Events mit Hunderten von Gästen — wir stehen für Qualität, Beständigkeit und exzellenten Service.',
-            p3: 'Von traditionellem Leberkäse und Kasseler bis zu handgemachten Würsten, Leberwurst, Schinken, Salami, deutschem Senf und Sauerkraut — German Flavors Hanoi bringt echten deutschen Geschmack ins Herz von Hanoi.',
+            p2: 'Unsere Mission ist einfach: echten deutschen Geschmack für die deutsche Community, internationale Bewohner und Liebhaber authentischer europäischer Küche. Von Leberkäse und Kasseler bis zu handgemachten Würsten, deutschem Senf und Sauerkraut — wir bringen echten deutschen Geschmack ins Herz von Hanoi.',
             btn: 'Leistungen ansehen'
         },
         menu: {
@@ -300,8 +309,9 @@ var I18N_DATA = {
         reservation: {
             lbl: 'Kontakt', title: 'Catering & <span>Kontakt</span>',
             intro: 'Buchen Sie Catering für Ihr Event (10–300 Gäste) oder senden Sie eine allgemeine Anfrage zu Produkten, Gerichten und Lieferung.',
-            talk: 'Lassen Sie uns reden', talkSub: 'Schreiben Sie uns per Telefon, WhatsApp oder Zalo — wir antworten in der Regel schnell.',
-            location: 'Standort', catering: 'Catering', cateringVal: '10 – 300 Gäste', contactVia: 'Telefon · Zalo · WhatsApp',
+            talk: 'Kontakt', talkSub: 'QR-Code scannen, um anzurufen oder per WhatsApp / Zalo zu schreiben.',
+            location: 'Standort', delivery: 'Lieferung', deliveryVal: 'Lieferung in ganz Hanoi',
+            facebookLbl: 'Facebook', facebook: 'German Flavors Hanoi',
             inquiryType: 'Anfrageart *', eventDate: 'Veranstaltungsdatum *', fullName: 'Vollständiger Name *', phone: 'Telefonnummer *',
             email: 'E-Mail-Adresse *', guests: 'Anzahl der Gäste *', msgEvent: 'Veranstaltungsdetails & Menüwünsche',
             msgGeneral: 'Ihre Nachricht *', placeholderName: 'Ihr Name', placeholderPhone: '+84 ...',
@@ -321,11 +331,16 @@ var I18N_DATA = {
             cats: ['Alle Leistungen', 'Würste', 'Aufschnitt', 'Leberkäse', 'Spezialitäten', 'Fertiggerichte', 'Catering']
         },
         footer: {
+            tagline: 'Authentisches Fleisch · Würste · Catering',
             desc: 'Deutschen Geschmack nach Hanoi bringen. Authentische Fleisch-, Wurst- und Feinkostprodukte sowie Catering für private und Firmenveranstaltungen.',
-            quickLinks: 'Schnelllinks', ourServices: 'Unsere Leistungen', getInTouch: 'Kontakt', location: 'Standort', services: 'Leistungen',
-            servicesVal: 'Events · Catering · Geburtstage · Lieferung', rights: 'Alle Rechte vorbehalten.', privacy: 'Datenschutz', terms: 'AGB',
+            quickLinks: 'Schnelllinks', ourServices: 'Unsere Leistungen', getInTouch: 'Kontakt',
+            scanQr: 'QR-Code scannen zum Anrufen oder Schreiben',
+            location: 'Standort', delivery: 'Lieferung', deliveryVal: 'Lieferung in ganz Hanoi',
+            facebookLbl: 'Facebook', facebook: 'German Flavors Hanoi',
+            languages: 'Sprachen', langVal: 'Deutsch · Vietnamesisch · Englisch',
+            rights: 'Alle Rechte vorbehalten.',
             links: { home: 'Start', about: 'Über uns', services: 'Leistungen', products: 'Produkte', reviews: 'Bewertungen', contact: 'Kontakt' },
-            svc: { sausages: 'Deutsche Würste', coldcuts: 'Aufschnitt', classics: 'Leberkäse & Kasseler', meals: 'Fertiggerichte', specialties: 'Deutsche Spezialitäten', catering: 'Catering' }
+            svc: { sausages: 'Deutsche Würste', coldcuts: 'Aufschnitt', classics: 'Leberkäse & Kasseler', meals: 'Fertigerichte', specialties: 'Deutsche Spezialitäten', catering: 'Catering' }
         }
     }
 };
