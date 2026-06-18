@@ -46,9 +46,12 @@ var I18N_DATA = {
             items: [
                 { title: 'German Sausages', desc: 'Bratwurst, Frankfurters, Knacker and other traditional regional specialties — prepared with genuine German recipes.' },
                 { title: 'Cold Cuts & Delicatessen', desc: 'Leberwurst, smoked ham, salami, Knacker and other German favorites — perfect for platters and sandwiches.' },
-                { title: 'Leberkäse & Kasseler', desc: 'Authentic German classics prepared using traditional methods — ideal for family meals and special occasions.' },
-                { title: 'German Specialties', desc: 'Authentic German mustard, sauerkraut, and other traditional products that bring the true taste of Germany to Vietnam.' },
-                { title: 'Event Catering', desc: 'Customized German menus for corporate functions, Oktoberfest celebrations, birthdays, weddings, and community gatherings.' }
+                { title: 'Leberkäse & Kasseler', desc: 'Grilled platters, roasted potatoes, and authentic German classics — ideal for family meals and special occasions.' },
+                { title: 'German Specialties', desc: 'Freshly baked Brezeln, German mustard, sauerkraut, and other traditional products that bring the true taste of Germany to Vietnam.' },
+                { title: 'Event Catering', desc: 'Customized German menus for corporate functions, Oktoberfest celebrations, birthdays, weddings, and community gatherings.' },
+                { title: 'Ready-to-Eat Meals', desc: 'Freshly prepared sandwiches and German comfort food — perfect for busy professionals and families.' },
+                { title: 'Handcrafted Tradition', desc: 'Every recipe passed down with care — authentic German flavors made with passion and dedication.' },
+                { title: 'Artisan German Bread', desc: 'Freshly baked rustic loaves — the perfect companion for sausages, cold cuts, and traditional German meals.' }
             ]
         },
         history: {
@@ -160,9 +163,12 @@ var I18N_DATA = {
             items: [
                 { title: 'Xúc xích Đức', desc: 'Bratwurst, Frankfurter, Knacker và đặc sản vùng miền — chế biến theo công thức Đức gốc.' },
                 { title: 'Giò lạnh & Deli', desc: 'Leberwurst, giăm bông hun khói, salami, Knacker và món Đức yêu thích — hoàn hảo cho đĩa gỏi và bánh mì.' },
-                { title: 'Leberkäse & Kasseler', desc: 'Món Đức chính gốc theo phương pháp truyền thống — lý tưởng cho bữa ăn gia đình và dịp đặc biệt.' },
-                { title: 'Đặc sản Đức', desc: 'Mù tạt, dưa cải và sản phẩm truyền thống Đức chính gốc mang hương vị Đức đến Việt Nam.' },
-                { title: 'Catering sự kiện', desc: 'Thực đơn Đức tùy chỉnh cho tiệc công ty, Oktoberfest, sinh nhật, đám cưới và tụ họp cộng đồng.' }
+                { title: 'Leberkäse & Kasseler', desc: 'Đĩa nướng, khoai tây nướng và món Đức cổ điển — lý tưởng cho bữa ăn gia đình và dịp đặc biệt.' },
+                { title: 'Đặc sản Đức', desc: 'Bánh pretzel Brezeln tươi, mù tạt, dưa cải và sản phẩm truyền thống Đức chính gốc.' },
+                { title: 'Catering sự kiện', desc: 'Thực đơn Đức tùy chỉnh cho tiệc công ty, Oktoberfest, sinh nhật, đám cưới và tụ họp cộng đồng.' },
+                { title: 'Món ăn sẵn', desc: 'Bánh mì kẹp và món Đức tiện lợi — phù hợp cho người bận rộn và gia đình.' },
+                { title: 'Truyền thống thủ công', desc: 'Mỗi công thức được gìn giữ cẩn thận — hương vị Đức chính gốc làm bằng đam mê và tâm huyết.' },
+                { title: 'Bánh mì thủ công', desc: 'Ổ bánh mì rustic tươi nướng — hoàn hảo đi kèm xúc xích, giò lạnh và món Đức truyền thống.' }
             ]
         },
         history: {
@@ -274,9 +280,12 @@ var I18N_DATA = {
             items: [
                 { title: 'Deutsche Würste', desc: 'Bratwurst, Frankfurter, Knacker und andere regionale Spezialitäten — nach original deutschen Rezepten.' },
                 { title: 'Aufschnitt & Feinkost', desc: 'Leberwurst, Schinken, Salami, Knacker und andere deutsche Favoriten — perfekt für Platten und Sandwiches.' },
-                { title: 'Leberkäse & Kasseler', desc: 'Authentische deutsche Klassiker nach traditionellen Methoden — ideal für Familienmahlzeiten und besondere Anlässe.' },
-                { title: 'Deutsche Spezialitäten', desc: 'Authentischer deutscher Senf, Sauerkraut und andere traditionelle Produkte für den echten Geschmack Deutschlands.' },
-                { title: 'Event-Catering', desc: 'Individuelle deutsche Menüs für Firmenfeiern, Oktoberfest, Geburtstage, Hochzeiten und Gemeinschaftsveranstaltungen.' }
+                { title: 'Leberkäse & Kasseler', desc: 'Gegrillte Platten, Bratkartoffeln und authentische deutsche Klassiker — ideal für Familienmahlzeiten und Feste.' },
+                { title: 'Deutsche Spezialitäten', desc: 'Frisch gebackene Brezeln, deutscher Senf, Sauerkraut und andere traditionelle Produkte für echten deutschen Geschmack.' },
+                { title: 'Event-Catering', desc: 'Individuelle deutsche Menüs für Firmenfeiern, Oktoberfest, Geburtstage, Hochzeiten und Gemeinschaftsveranstaltungen.' },
+                { title: 'Fertiggerichte', desc: 'Frisch zubereitete Sandwiches und deutsche Hausmannskost — perfekt für Berufstätige und Familien.' },
+                { title: 'Handwerkliche Tradition', desc: 'Jedes Rezept mit Sorgfalt weitergegeben — authentische deutsche Aromen mit Leidenschaft zubereitet.' },
+                { title: 'Handwerkliches Brot', desc: 'Frisch gebackene rustikale Brote — die perfekte Begleitung zu Würsten, Aufschnitt und traditionellen deutschen Gerichten.' }
             ]
         },
         history: {

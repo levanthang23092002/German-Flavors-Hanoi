@@ -788,11 +788,23 @@ section[id] {
   box-shadow: var(--shadow-lg);
   z-index: 2;
 }
+.about-subimg--chef {
+  top: auto;
+  bottom: 24px;
+  left: -16px;
+  width: 34%;
+  aspect-ratio: 3 / 4;
+}
 .about-subimg img {
   width: 100%;
   height: 130px;
   object-fit: cover;
   display: block;
+}
+.about-subimg--chef img {
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
 }
 .about-contact {
   position: absolute;
@@ -852,6 +864,7 @@ section[id] {
   text-align: center;
   box-shadow: var(--shadow);
   border: 1px solid rgba(184, 149, 106, 0.3);
+  z-index: 3;
 }
 .aexp .anum {
   font-family: "Source Sans 3", sans-serif;
@@ -1312,7 +1325,7 @@ section[id] {
 .ggrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(2, 215px);
+  grid-template-rows: repeat(3, 215px);
   gap: 13px;
 }
 .gitem {
