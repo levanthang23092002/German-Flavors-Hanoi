@@ -75,7 +75,7 @@ var I18N_DATA = {
             lbl: 'What People Say', title: 'Customer <span>Testimonials</span>',
             intro: 'Hear from our customers — testimonials will be updated soon.',
             items: [
-                { text: 'Finally found authentic Bratwurst and Leberkäse in Hanoi! The taste reminds me of home in Germany. Quality is outstanding and delivery was fast.', name: 'Customer Review', role: 'German Expat — Hanoi' },
+                { text: 'Incredible butcher and friend in Hanoi with fantastic sausages, meats and breads. He is super friendly and helpful, Bjoern is awesome. I love ordering from them to stock up for the coming week, especially when I\'m cooking something slowly and at a low temperature and want to use only the best ingredients. His dishes also add a special touch to celebrations.', name: 'Sven Burgis', role: 'Hanoi' },
                 { text: 'We ordered catering for our company\'s Oktoberfest event — 80 guests and everything was perfect. Authentic German food, beautifully presented, and on time.', name: 'Customer Review', role: 'Corporate Client — Hanoi' },
                 { text: 'The cold cuts platter was incredible — perfect for our family gathering. Sauerkraut and German mustard tasted exactly like what we had in Berlin.', name: 'Customer Review', role: 'International Resident' },
                 { text: 'German Flavors catered our embassy event with professionalism and authentic cuisine. Highly recommended for any organization looking for genuine German food.', name: 'Customer Review', role: 'Embassy Event — Hanoi' }
@@ -192,7 +192,7 @@ var I18N_DATA = {
             lbl: 'Khách hàng nói gì', title: 'Đánh giá <span>khách hàng</span>',
             intro: 'Lắng nghe từ khách hàng — đánh giá sẽ được cập nhật sớm.',
             items: [
-                { text: 'Cuối cùng cũng tìm được Bratwurst và Leberkäse chính gốc ở Hà Nội! Hương vị như ở nhà ở Đức. Chất lượng tuyệt vời và giao hàng nhanh.', name: 'Đánh giá khách hàng', role: 'Người Đức tại Hà Nội' },
+                { text: 'Một người thợ bán thịt và người bạn tuyệt vời ở Hà Nội với xúc xích, thịt và bánh mì tuyệt vời. Anh ấy rất thân thiện và hữu ích, Bjoern thật tuyệt vời. Tôi thích đặt hàng từ họ để dự trữ cho tuần tới, đặc biệt khi nấu món chậm ở nhiệt độ thấp và chỉ muốn dùng nguyên liệu tốt nhất. Món ăn của anh ấy còn mang đến dấu ấn đặc biệt cho các dịp lễ.', name: 'Sven Burgis', role: 'Hà Nội' },
                 { text: 'Chúng tôi đặt catering cho sự kiện Oktoberfest công ty — 80 khách và mọi thứ hoàn hảo. Món Đức chính gốc, trình bày đẹp và đúng giờ.', name: 'Đánh giá khách hàng', role: 'Khách hàng doanh nghiệp — Hà Nội' },
                 { text: 'Đĩa giò lạnh thật tuyệt vời — hoàn hảo cho buổi tụ họp gia đình. Dưa cải và mù tạt Đức đúng vị như ở Berlin.', name: 'Đánh giá khách hàng', role: 'Cư dân quốc tế' },
                 { text: 'German Flavors catering sự kiện đại sứ quán với sự chuyên nghiệp và ẩm thực chính gốc. Rất đáng khuyên dùng cho mọi tổ chức.', name: 'Đánh giá khách hàng', role: 'Sự kiện Đại sứ quán — Hà Nội' }
@@ -309,7 +309,7 @@ var I18N_DATA = {
             lbl: 'Was Kunden sagen', title: 'Kunden-<span>Bewertungen</span>',
             intro: 'Hören Sie von unseren Kunden — Bewertungen werden bald aktualisiert.',
             items: [
-                { text: 'Endlich authentische Bratwurst und Leberkäse in Hanoi! Der Geschmack erinnert mich an zu Hause in Deutschland. Hervorragende Qualität und schnelle Lieferung.', name: 'Kundenbewertung', role: 'Deutscher Expat — Hanoi' },
+                { text: 'Unglaublicher Metzger und Freund in Hanoi mit fantastischen Würsten, Fleisch und Broten. Er ist super freundlich und hilfsbereit, Bjoern ist großartig. Ich bestelle gerne bei ihm, um für die kommende Woche vorzusorgen, besonders wenn ich etwas langsam und bei niedriger Temperatur koche und nur die besten Zutaten verwenden möchte. Seine Gerichte verleihen Feiern auch eine besondere Note.', name: 'Sven Burgis', role: 'Hanoi' },
                 { text: 'Wir haben Catering für unser Firmen-Oktoberfest bestellt — 80 Gäste und alles war perfekt. Authentisches deutsches Essen, schön präsentiert und pünktlich.', name: 'Kundenbewertung', role: 'Firmenkunde — Hanoi' },
                 { text: 'Die Aufschnittplatte war unglaublich — perfekt für unser Familientreffen. Sauerkraut und deutscher Senf schmeckten genau wie in Berlin.', name: 'Kundenbewertung', role: 'Internationaler Bewohner' },
                 { text: 'German Flavors hat unser Botschafts-Event mit Professionalität und authentischer Küche gecatert. Sehr empfehlenswert für jede Organisation.', name: 'Kundenbewertung', role: 'Botschafts-Event — Hanoi' }
