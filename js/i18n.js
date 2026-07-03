@@ -18,7 +18,8 @@ var I18N_DATA = {
             badge: 'Authentic<br/>German Food', msgUs: 'Message Us',
             lbl: 'About Us', title: 'About <span>German Flavors Hanoi</span>',
             p1: 'German Flavors Hanoi was created to bring authentic German food and culinary traditions to Vietnam. We are passionate about preserving the original taste of Germany through carefully prepared meats, sausages, cold cuts, traditional recipes, and high-quality ingredients.',
-            p2: 'Our mission is simple: provide genuine German flavors for the German community, international residents, and local food lovers who appreciate authentic European cuisine. From traditional Leberkäse and Kasseler to handcrafted sausages, German mustard, and sauerkraut — we deliver a true taste of Germany in the heart of Hanoi.',
+            p2: 'Our mission is simple: provide genuine German flavors for the German community, international residents, and local food lovers who appreciate authentic European cuisine. Whether you are purchasing German delicatessen products, ordering ready-made meals, or planning an event for hundreds of guests, we are committed to quality, consistency, and excellent service.',
+            p3: 'From traditional Leberkäse and Kasseler to handcrafted sausages, Leberwurst, smoked ham, salami, German mustard, and sauerkraut, German Flavors Hanoi delivers a true taste of Germany in the heart of Hanoi.',
             btn: 'View Our Services'
         },
         menu: {
@@ -76,10 +77,10 @@ var I18N_DATA = {
             lbl: 'What People Say', title: 'Customer <span>Testimonials</span>',
             intro: 'Hear from our customers — testimonials will be updated soon.',
             items: [
-                { text: 'Incredible butcher and friend in Hanoi with fantastic sausages, meats and breads. He is super friendly and helpful, Bjoern is awesome. I love ordering from them to stock up for the coming week, especially when I\'m cooking something slowly and at a low temperature and want to use only the best ingredients. His dishes also add a special touch to celebrations.', name: 'Sven Burgis', role: 'Hanoi' },
                 { text: 'At German Flavors Hanoi, the name says it all: with his delicious, fresh food, Björn truly brings a piece of Germany to Vietnam. All dishes are prepared according to authentic recipes and Björn uses very high-quality ingredients. The menu selection is always varied, individual, and tailored to the occasion. Besides the delicious food, Björn also knows how to entertain guests with his warm and personable manner.', name: 'Steffen Kaupp', role: 'Deputy Director, Goethe-Institut Hanoi' },
                 { text: 'I highly recommend German Flavors Hanoi and their catering services. Many places claim to serve authentic German food but GFH is the real deal. Our guests have always been impressed by the delicious, high-quality food that Björn and team serve. Especially his meat dishes are excellent but also all of the other German dishes like his potato salad are highly recommended. Do yourself a favor and have Björn cater your next event.', name: 'Elissa Kaupp', role: 'Hanoi' },
-                { text: 'German Flavors catered our embassy event with professionalism and authentic cuisine. Highly recommended for any organization looking for genuine German food.', name: 'Customer Review', role: 'Embassy Event — Hanoi' }
+                { text: 'We are from Switzerland and have been living in Hanoi for over four years. Every now and then, we miss the flavors of home, including sausages. We were delighted to discover German Flavors Hanoi, which offers German-style sausages and other meat products of great quality. What sets them apart for us is that most of their sausages are pasteurized and fresh, not frozen, and made without artificial additives. It is an original quality that you can taste.', name: 'Max Backmann & Family', role: 'Swiss family · Hanoi' },
+                { text: 'Incredible butcher and friend in Hanoi with fantastic sausages, meats and breads. He is super friendly and helpful, Bjoern is awesome. I love ordering from them to stock up for the coming week, especially when I\'m cooking something slowly and at a low temperature and want to use only the best ingredients. His dishes also add a special touch to celebrations.', name: 'Sven Burgis', role: 'Hanoi' }
             ]
         },
         reservation: {
@@ -136,7 +137,8 @@ var I18N_DATA = {
             badge: 'Ẩm thực<br/>Đức chính gốc', msgUs: 'Nhắn tin cho chúng tôi',
             lbl: 'Giới thiệu', title: 'Về <span>German Flavors Hanoi</span>',
             p1: 'German Flavors Hanoi được tạo ra để mang ẩm thực và truyền thống ẩm thực Đức chính gốc đến Việt Nam. Chúng tôi đam mê bảo tồn hương vị Đức gốc qua thịt, xúc xích, giò lạnh, công thức truyền thống và nguyên liệu chất lượng cao.',
-            p2: 'Sứ mệnh của chúng tôi rất đơn giản: mang hương vị Đức chân thực đến cộng đồng người Đức, cư dân quốc tế và những người yêu ẩm thực châu Âu. Từ Leberkäse, Kasseler đến xúc xích thủ công, mù tạt và dưa cải Đức — chúng tôi mang hương vị Đức thực sự đến trung tâm Hà Nội.',
+            p2: 'Sứ mệnh của chúng tôi rất đơn giản: mang hương vị Đức chân thực đến cộng đồng người Đức, cư dân quốc tế và những người yêu ẩm thực châu Âu chính gốc. Dù bạn mua sản phẩm deli Đức, đặt món ăn sẵn hay lên kế hoạch sự kiện với hàng trăm khách, chúng tôi cam kết về chất lượng, sự ổn định và dịch vụ xuất sắc.',
+            p3: 'Từ Leberkäse và Kasseler truyền thống đến xúc xích thủ công, Leberwurst, giăm bông hun khói, salami, mù tạt và dưa cải Đức, German Flavors Hanoi mang hương vị Đức thực sự đến trung tâm Hà Nội.',
             btn: 'Xem dịch vụ'
         },
         menu: {
@@ -194,10 +196,10 @@ var I18N_DATA = {
             lbl: 'Khách hàng nói gì', title: 'Đánh giá <span>khách hàng</span>',
             intro: 'Lắng nghe từ khách hàng — đánh giá sẽ được cập nhật sớm.',
             items: [
-                { text: 'Một người thợ bán thịt và người bạn tuyệt vời ở Hà Nội với xúc xích, thịt và bánh mì tuyệt vời. Anh ấy rất thân thiện và hữu ích, Bjoern thật tuyệt vời. Tôi thích đặt hàng từ họ để dự trữ cho tuần tới, đặc biệt khi nấu món chậm ở nhiệt độ thấp và chỉ muốn dùng nguyên liệu tốt nhất. Món ăn của anh ấy còn mang đến dấu ấn đặc biệt cho các dịp lễ.', name: 'Sven Burgis', role: 'Hà Nội' },
                 { text: 'Tại German Flavors Hanoi, tên gọi nói lên tất cả: với món ăn ngon và tươi, Björn thực sự mang một phần nước Đức đến Việt Nam. Các món đều được chế biến theo công thức chính gốc và Björn sử dụng nguyên liệu rất chất lượng. Thực đơn luôn đa dạng, cá nhân hóa và phù hợp với từng dịp. Bên cạnh món ăn ngon, Björn còn biết cách làm hài lòng khách bằng sự thân thiện và ấm áp.', name: 'Steffen Kaupp', role: 'Phó Giám đốc, Viện Goethe Hà Nội' },
                 { text: 'Tôi rất khuyên dùng German Flavors Hanoi và dịch vụ catering của họ. Nhiều nơi tự nhận phục vụ món Đức chính gốc nhưng GFH mới là hàng thật. Khách của chúng tôi luôn ấn tượng với món ăn ngon, chất lượng cao mà Björn và đội ngũ phục vụ. Đặc biệt các món thịt rất xuất sắc, cùng các món Đức khác như salad khoai tây cũng rất đáng thử. Hãy để Björn catering cho sự kiện tiếp theo của bạn.', name: 'Elissa Kaupp', role: 'Hà Nội' },
-                { text: 'German Flavors catering sự kiện đại sứ quán với sự chuyên nghiệp và ẩm thực chính gốc. Rất đáng khuyên dùng cho mọi tổ chức.', name: 'Đánh giá khách hàng', role: 'Sự kiện Đại sứ quán — Hà Nội' }
+                { text: 'Chúng tôi đến từ Thụy Sĩ và đã sống ở Hà Nội hơn bốn năm. Thỉnh thoảng chúng tôi nhớ hương vị quê nhà, đặc biệt là xúc xích. Chúng tôi rất vui khi khám phá German Flavors Hanoi — nơi cung cấp xúc xích kiểu Đức và các sản phẩm thịt chất lượng cao. Điều khiến họ khác biệt với chúng tôi là hầu hết xúc xích được tiệt trùng và tươi, không đông lạnh, và làm không có phụ gia nhân tạo. Đó là chất lượng chính gốc mà bạn có thể cảm nhận được qua hương vị.', name: 'Max Backmann & Gia đình', role: 'Gia đình Thụy Sĩ · Hà Nội' },
+                { text: 'Một người thợ bán thịt và người bạn tuyệt vời ở Hà Nội với xúc xích, thịt và bánh mì tuyệt vời. Anh ấy rất thân thiện và hữu ích, Bjoern thật tuyệt vời. Tôi thích đặt hàng từ họ để dự trữ cho tuần tới, đặc biệt khi nấu món chậm ở nhiệt độ thấp và chỉ muốn dùng nguyên liệu tốt nhất. Món ăn của anh ấy còn mang đến dấu ấn đặc biệt cho các dịp lễ.', name: 'Sven Burgis', role: 'Hà Nội' }
             ]
         },
         reservation: {
@@ -254,7 +256,8 @@ var I18N_DATA = {
             badge: 'Authentische<br/>deutsche Küche', msgUs: 'Schreiben Sie uns',
             lbl: 'Über uns', title: 'Über <span>German Flavors Hanoi</span>',
             p1: 'German Flavors Hanoi wurde gegründet, um authentische deutsche Küche und kulinarische Traditionen nach Vietnam zu bringen. Wir bewahren den originalen Geschmack Deutschlands durch sorgfältig zubereitetes Fleisch, Wurst, Aufschnitt, traditionelle Rezepte und hochwertige Zutaten.',
-            p2: 'Unsere Mission ist einfach: echten deutschen Geschmack für die deutsche Community, internationale Bewohner und Liebhaber authentischer europäischer Küche. Von Leberkäse und Kasseler bis zu handgemachten Würsten, deutschem Senf und Sauerkraut — wir bringen echten deutschen Geschmack ins Herz von Hanoi.',
+            p2: 'Unsere Mission ist einfach: echten deutschen Geschmack für die deutsche Community, internationale Bewohner und Liebhaber authentischer europäischer Küche zu bieten. Ob Sie deutsche Feinkostprodukte kaufen, Fertiggerichte bestellen oder eine Veranstaltung mit Hunderten von Gästen planen — wir stehen für Qualität, Beständigkeit und exzellenten Service.',
+            p3: 'Von traditionellem Leberkäse und Kasseler bis zu handgemachten Würsten, Leberwurst, Schinken, Salami, deutschem Senf und Sauerkraut bringt German Flavors Hanoi echten deutschen Geschmack ins Herz von Hanoi.',
             btn: 'Leistungen ansehen'
         },
         menu: {
@@ -312,10 +315,10 @@ var I18N_DATA = {
             lbl: 'Was Kunden sagen', title: 'Kunden-<span>Bewertungen</span>',
             intro: 'Hören Sie von unseren Kunden — Bewertungen werden bald aktualisiert.',
             items: [
-                { text: 'Unglaublicher Metzger und Freund in Hanoi mit fantastischen Würsten, Fleisch und Broten. Er ist super freundlich und hilfsbereit, Bjoern ist großartig. Ich bestelle gerne bei ihm, um für die kommende Woche vorzusorgen, besonders wenn ich etwas langsam und bei niedriger Temperatur koche und nur die besten Zutaten verwenden möchte. Seine Gerichte verleihen Feiern auch eine besondere Note.', name: 'Sven Burgis', role: 'Hanoi' },
                 { text: 'Bei German Flavors Hanoi ist der Name Programm: Björn bringt mit seinem leckeren, frischen Essen wirklich ein Stück Deutschland nach Vietnam. Die Speisen sind alle nach authentischen Rezepten zubereitet und Björn verwendet sehr hochwertige Zutaten. Die Menüauswahl ist immer vielfältig, individuell und dem jeweiligen Anlass angepasst. Neben dem leckeren Essen versteht Björn es auch immer, die anwesenden Gäste mit seiner herzlichen Art gut zu unterhalten.', name: 'Steffen Kaupp', role: 'Stellvertretender Leiter Goethe-Institut Hanoi' },
                 { text: 'Ich kann German Flavors Hanoi und ihren Catering-Service sehr empfehlen. Viele Orte behaupten, authentisches deutsches Essen anzubieten, aber GFH ist das echte Ding. Unsere Gäste waren immer beeindruckt von dem köstlichen, hochwertigen Essen, das Björn und sein Team servieren. Besonders seine Fleischgerichte sind ausgezeichnet, aber auch alle anderen deutschen Gerichte wie sein Kartoffelsalat sind sehr zu empfehlen. Gönnen Sie sich etwas und lassen Sie Björn Ihr nächstes Event catern.', name: 'Elissa Kaupp', role: 'Hanoi' },
-                { text: 'German Flavors hat unser Botschafts-Event mit Professionalität und authentischer Küche gecatert. Sehr empfehlenswert für jede Organisation.', name: 'Kundenbewertung', role: 'Botschafts-Event — Hanoi' }
+                { text: 'Wir kommen aus der Schweiz und leben seit über vier Jahren in Hanoi. Hin und wieder vermissen wir die Aromen der Heimat, einschließlich Würste. Wir waren begeistert, German Flavors Hanoi zu entdecken, das deutsche Würste und andere Fleischprodukte von großer Qualität anbietet. Was sie für uns auszeichnet, ist, dass die meisten ihrer Würste pasteurisiert und frisch sind, nicht tiefgefroren, und ohne künstliche Zusatzstoffe hergestellt werden. Das ist Originalqualität, die man schmecken kann.', name: 'Max Backmann & Familie', role: 'Schweizer Familie · Hanoi' },
+                { text: 'Unglaublicher Metzger und Freund in Hanoi mit fantastischen Würsten, Fleisch und Broten. Er ist super freundlich und hilfsbereit, Bjoern ist großartig. Ich bestelle gerne bei ihm, um für die kommende Woche vorzusorgen, besonders wenn ich etwas langsam und bei niedriger Temperatur koche und nur die besten Zutaten verwenden möchte. Seine Gerichte verleihen Feiern auch eine besondere Note.', name: 'Sven Burgis', role: 'Hanoi' }
             ]
         },
         reservation: {
@@ -434,19 +437,6 @@ function applyI18n() {
         if (madd) madd.title = lang.menu.viewDetails;
     });
 
-    document.querySelectorAll('.gitem').forEach(function(item, i) {
-        if (!lang.gallery.items[i]) return;
-        var g = lang.gallery.items[i];
-        item.setAttribute('data-gtitle', g.title);
-        item.setAttribute('data-gdesc', g.desc);
-        var gover = item.querySelector('.gover span');
-        if (gover) gover.innerHTML = '<i class="fas fa-expand-alt"></i> ' + g.title;
-        if (window.galData && window.galData[i]) {
-            window.galData[i].title = g.title;
-            window.galData[i].desc = g.desc;
-        }
-    });
-
     document.querySelectorAll('.tli').forEach(function(tli, i) {
         if (!lang.history.items[i]) return;
         var h = lang.history.items[i];
@@ -496,13 +486,53 @@ function applyI18n() {
         btn.classList.toggle('active', btn.getAttribute('data-lang') === I18N_LANG);
     });
 
+    updateLangDropdown();
+
     if (typeof window.onI18nApplied === 'function') window.onI18nApplied();
+}
+
+var LANG_FLAGS = { en: 'fi-gb', vi: 'fi-vn', de: 'fi-de' };
+
+function updateLangDropdown() {
+    var currentFlag = document.getElementById('langCurrentFlag');
+    if (currentFlag && LANG_FLAGS[I18N_LANG]) {
+        currentFlag.className = 'lang-flag fi ' + LANG_FLAGS[I18N_LANG];
+    }
+    document.querySelectorAll('.lang-dropdown-item').forEach(function(item) {
+        item.classList.toggle('is-active', item.getAttribute('data-lang') === I18N_LANG);
+    });
+}
+
+function closeLangDropdown() {
+    var dropdown = document.getElementById('langDropdown');
+    var menu = document.getElementById('langDropdownMenu');
+    var toggle = document.getElementById('langDropdownToggle');
+    if (!dropdown || !menu) return;
+    dropdown.classList.remove('open');
+    menu.hidden = true;
+    if (toggle) toggle.setAttribute('aria-expanded', 'false');
+}
+
+function toggleLangDropdown() {
+    var dropdown = document.getElementById('langDropdown');
+    var menu = document.getElementById('langDropdownMenu');
+    var toggle = document.getElementById('langDropdownToggle');
+    if (!dropdown || !menu) return;
+    var isOpen = !menu.hidden;
+    if (isOpen) {
+        closeLangDropdown();
+    } else {
+        dropdown.classList.add('open');
+        menu.hidden = false;
+        if (toggle) toggle.setAttribute('aria-expanded', 'true');
+    }
 }
 
 function setLang(lang) {
     if (!I18N_DATA[lang]) return;
     I18N_LANG = lang;
     localStorage.setItem('gf-lang', lang);
+    closeLangDropdown();
     applyI18n();
 }
 
@@ -512,6 +542,20 @@ function initI18n() {
             setLang(this.getAttribute('data-lang'));
         });
     });
+
+    var langToggle = document.getElementById('langDropdownToggle');
+    if (langToggle) {
+        langToggle.addEventListener('click', function(e) {
+            e.stopPropagation();
+            toggleLangDropdown();
+        });
+    }
+
+    document.addEventListener('click', function(e) {
+        var dropdown = document.getElementById('langDropdown');
+        if (dropdown && !dropdown.contains(e.target)) closeLangDropdown();
+    });
+
     applyI18n();
 }
 

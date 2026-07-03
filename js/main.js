@@ -4,7 +4,7 @@ AOS.init({
     offset: 55
 });
 
-var NAV_SECTIONS = ['hero', 'about', 'menu', 'gallery', 'testimonials', 'reservation'];
+var NAV_SECTIONS = ['hero', 'about', 'menu', 'testimonials', 'reservation'];
 
 function getNavOffset() {
     var nav = document.getElementById('nav');
@@ -493,55 +493,11 @@ if (contactForm) {
 }
 
 
-var galPop = document.getElementById('galPop');
-var galData = [];
-window.galData = galData;
-var galIdx = 0;
-
-document.querySelectorAll('.gitem').forEach(function(item) {
-    galData.push({
-        img: item.getAttribute('data-gimg'),
-        title: item.getAttribute('data-gtitle'),
-        desc: item.getAttribute('data-gdesc')
-    });
-    item.addEventListener('click', function() {
-        openGal(parseInt(this.getAttribute('data-gi')));
-    });
-});
-
-function openGal(i) {
-    galIdx = i;
-    var g = galData[i];
-    document.getElementById('gpImg').setAttribute('src', g.img);
-    document.getElementById('gpTitle').textContent = g.title;
-    document.getElementById('gpDesc').innerHTML = g.desc;
-    galPop.classList.add('open');
-    document.body.style.overflow = 'hidden';
-}
-
-document.getElementById('gpClose').addEventListener('click', closeGal);
-galPop.addEventListener('click', function(e) {
-    if (e.target === this) closeGal();
-});
-
-function closeGal() {
-    galPop.classList.remove('open');
-    document.body.style.overflow = '';
-}
-
-document.getElementById('gpPrev').addEventListener('click', function() {
-    openGal((galIdx - 1 + galData.length) % galData.length);
-});
-document.getElementById('gpNext').addEventListener('click', function() {
-    openGal((galIdx + 1) % galData.length);
-});
-
 /*  ESC key closes everything */
 document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') {
         closeSearch();
         if (menuPop) closeMenuPop();
-        closeGal();
         if (typeof $.magnificPopup !== 'undefined') $.magnificPopup.close();
     }
 });

@@ -238,6 +238,84 @@ img {
   background-size: cover;
 }
 
+/* Mobile language dropdown */
+.lang-dropdown {
+  position: relative;
+}
+.lang-dropdown-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 13px;
+  background: #f5f5f5;
+  border: 1px solid #eee;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: 0.25s;
+}
+.lang-dropdown-toggle .lang-flag {
+  width: 28px;
+  height: 20px;
+  border-radius: 3px;
+}
+.lang-dropdown-toggle:hover,
+.lang-dropdown.open .lang-dropdown-toggle {
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+.lang-dropdown-chevron {
+  font-size: 0.78rem;
+  color: #888;
+  transition: transform 0.25s;
+}
+.lang-dropdown.open .lang-dropdown-chevron {
+  transform: rotate(180deg);
+}
+.lang-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  min-width: 172px;
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  padding: 8px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.lang-dropdown-menu[hidden] {
+  display: none !important;
+}
+.lang-dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 11px 12px;
+  background: none;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.92rem;
+  color: var(--text);
+  text-align: left;
+  transition: 0.2s;
+}
+.lang-dropdown-item .lang-flag {
+  width: 26px;
+  height: 18px;
+  border-radius: 3px;
+}
+.lang-dropdown-item:hover {
+  background: var(--primary-soft);
+}
+.lang-dropdown-item.is-active {
+  display: none;
+}
+
 /* ===================== SECTION COMMONS ===================== */
 section {
   padding: 60px 0;
@@ -1678,9 +1756,12 @@ section[id] {
   line-height: 1;
 }
 .tess {
-  color: var(--accent-gold);
+  color: #f5b301;
   font-size: 0.83rem;
   margin-bottom: 12px;
+}
+.tess i {
+  color: #f5b301;
 }
 .testxt {
   font-size: 0.88rem;
@@ -1689,16 +1770,7 @@ section[id] {
   margin-bottom: 18px;
 }
 .tesauth {
-  display: flex;
-  align-items: center;
-  gap: 11px;
-}
-.tesauth img {
-  width: 46px;
-  height: 46px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 2px solid var(--accent-gold);
+  margin-top: 4px;
 }
 .tesnm {
   font-weight: 700;
