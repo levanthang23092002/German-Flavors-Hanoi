@@ -839,6 +839,17 @@ section[id] {
 #about {
   background: var(--cream);
 }
+.about-quote {
+  margin: 0;
+  padding: 14px 18px;
+  border-left: 3px solid var(--accent-gold);
+  font-size: 0.93rem;
+  font-style: italic;
+  color: var(--dark);
+  line-height: 1.7;
+  background: rgba(184, 149, 106, 0.08);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
 .astack {
   position: relative;
   margin-bottom: 28px;

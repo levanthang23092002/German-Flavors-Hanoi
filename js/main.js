@@ -302,21 +302,24 @@ var resErr = document.getElementById('resErr');
 
 function toggleInquiryFields() {
     if (!inquiryType) return;
-    var isCatering = inquiryType.options[inquiryType.selectedIndex].value === 'catering';
+    var type = inquiryType.options[inquiryType.selectedIndex].value;
+    var isCatering = type === 'catering';
     if (inquiryTypeCol) inquiryTypeCol.className = isCatering ? 'col-sm-6' : 'col-12';
     if (cateringGuests) cateringGuests.style.display = isCatering ? '' : 'none';
     if (cateringDate) cateringDate.style.display = isCatering ? '' : 'none';
     if (eventDate) eventDate.required = isCatering;
     if (guestCount) guestCount.required = isCatering;
     if (msgLabel && window.I18N) {
-        msgLabel.textContent = isCatering
-            ? I18N.t('reservation.msgEvent')
-            : I18N.t('reservation.msgGeneral');
+        var msgKey = type === 'catering' ? 'reservation.msgEvent'
+            : type === 'products' ? 'reservation.msgProducts'
+            : 'reservation.msgDelivery';
+        msgLabel.textContent = I18N.t(msgKey);
     }
     if (msgField && window.I18N) {
-        msgField.placeholder = isCatering
-            ? I18N.t('reservation.placeholderEvent')
-            : I18N.t('reservation.placeholderGeneral');
+        var phKey = type === 'catering' ? 'reservation.placeholderEvent'
+            : type === 'products' ? 'reservation.placeholderProducts'
+            : 'reservation.placeholderDelivery';
+        msgField.placeholder = I18N.t(phKey);
     }
 }
 
@@ -376,8 +379,7 @@ function formatEmailDate(dateStr) {
 }
 
 function buildEmailSubject(data) {
-    var prefix = data.isCatering ? 'Catering' : 'Contact';
-    var subject = prefix + ' · ' + data.inquiryType + ' · ' + data.name;
+    var subject = data.inquiryType + ' · ' + data.name;
     if (data.isCatering && data.eventDate) {
         subject += ' · ' + formatEmailDate(data.eventDate);
     }
@@ -385,6 +387,10 @@ function buildEmailSubject(data) {
 }
 
 function buildWeb3FormsBody(accessKey, data) {
+    var messageKey = data.isCatering ? 'Event Details & Menu Requests'
+        : data.inquiryValue === 'products' ? 'Product Request'
+        : 'Delivery Details';
+
     var body = {
         access_key: accessKey,
         subject: buildEmailSubject(data),
@@ -392,8 +398,7 @@ function buildWeb3FormsBody(accessKey, data) {
         replyto: data.email,
         email: data.email,
 
-        'Category': data.isCatering ? 'Catering & Events' : 'General Contact',
-        'Inquiry Type': data.inquiryType
+        'Service': data.inquiryType
     };
 
     if (data.isCatering) {
@@ -404,7 +409,7 @@ function buildWeb3FormsBody(accessKey, data) {
     body['Full Name'] = data.name;
     body['Phone'] = data.phone;
 
-    body[data.isCatering ? 'Event Details & Menu Requests' : 'Message'] = data.message;
+    body[messageKey] = data.message;
 
     return body;
 }
@@ -432,7 +437,8 @@ if (contactForm) {
             return;
         }
 
-        var isCatering = inquiryType.options[inquiryType.selectedIndex].value === 'catering';
+        var inquiryValue = inquiryType.options[inquiryType.selectedIndex].value;
+        var isCatering = inquiryValue === 'catering';
         var inquiryLabel = inquiryType.options[inquiryType.selectedIndex].textContent.trim();
         var nameVal = fullName.value.trim();
         var emailVal = email.value.trim();
@@ -444,6 +450,7 @@ if (contactForm) {
 
         var emailData = {
             inquiryType: inquiryLabel,
+            inquiryValue: inquiryValue,
             name: nameVal,
             email: emailVal,
             phone: phoneVal,

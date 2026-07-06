@@ -17,24 +17,23 @@ var I18N_DATA = {
         about: {
             badge: 'Authentic<br/>German Food', msgUs: 'Message Us',
             lbl: 'About Us', title: 'About <span>German Flavors Hanoi</span>',
-            p1: 'German Flavors Hanoi was created to bring authentic German food and culinary traditions to Vietnam. We are passionate about preserving the original taste of Germany through carefully prepared meats, sausages, cold cuts, traditional recipes, and high-quality ingredients.',
-            p2: 'Our mission is simple: provide genuine German flavors for the German community, international residents, and local food lovers who appreciate authentic European cuisine. Whether you are purchasing German delicatessen products, ordering ready-made meals, or planning an event for hundreds of guests, we are committed to quality, consistency, and excellent service.',
-            p3: 'From traditional Leberkäse and Kasseler to handcrafted sausages, Leberwurst, smoked ham, salami, German mustard, and sauerkraut, German Flavors Hanoi delivers a true taste of Germany in the heart of Hanoi.',
+            p1: 'German Flavors Hanoi was created by chance from Thuy and Bjoern.',
+            quote: '"I always had a passion for good and home made food, so I brought my passion to my profession"',
+            p2: 'The idea was to bring authentic German food and culinary traditions to Vietnam. We are passionate about preserving the original taste of Germany through carefully prepared meats, sausages, cold cuts, traditional recipes, and high-quality ingredients.',
+            p3: 'Our mission is simple: provide genuine German flavors for the people in and around Hanoi and all food lovers who appreciate authentic German and Western cuisine.',
+            p4: 'Whether you are purchasing German delicatessen products, ordering ready-made meals, or planning an event for hundreds of guests, we are committed to quality, consistency, and excellent service.',
+            p5: 'From traditional Leberkäse and Kasseler to handcrafted sausages, several cold cuts, German mustard and sauerkraut, German Flavors Hanoi delivers a true taste of Germany in the heart of Hanoi.',
             btn: 'View Our Services'
         },
         menu: {
             lbl: 'Our Services', title: 'What We <span>Offer</span>', btn: 'Get in Touch',
-            intro: 'Catering and authentic German sausage sales are at the heart of what we do — original German products, delivered to your home across Hanoi.',
+            intro: 'Catering for events, authentic German products, and home delivery across Hanoi.',
             enquire: 'Enquire', viewDetails: 'View Details', enquireNow: 'Enquire Now', inquiry: 'inquiry', thankYou: 'Thank you!'
         },
         cards: {
-            sausages: { cat: 'Sausages', title: 'German Sausage Sales', desc: 'Handcrafted Bratwurst, Frankfurters & regional specialties — order for home', badge: 'Main Service', tag: 'Original German', dataDesc: 'Sausage sales are one of our core services. Björn handcrafts authentic German sausages using original recipes and premium ingredients — Bratwurst, Frankfurters, Knacker, and regional specialties. Perfect for stocking up at home, slow cooking, or your next celebration. Home delivery available across Hanoi.' },
-            coldcuts: { cat: 'Cold Cuts', title: 'Cold Cuts & Delicatessen', desc: 'Leberwurst, smoked ham, salami & premium German deli meats', badge: 'Original German', tag: 'Premium Meats', dataDesc: 'Traditional German cold cuts and delicatessen prepared with original recipes and high-quality ingredients. Leberwurst, smoked ham, salami, Knacker, and more — ideal for platters, sandwiches, and home enjoyment. Order for delivery across Hanoi.' },
-            classics: { cat: 'Classics', title: 'Leberkäse & Kasseler', desc: 'Slow-cooked German classics — premium meats for family meals', badge: 'Classic', tag: 'Traditional', dataDesc: 'Authentic Leberkäse and Kasseler prepared using traditional German methods. Ideal for family meals, gatherings, and slow cooking at low temperature — when only the best original German ingredients will do. Available for home delivery.' },
-            specialties: { cat: 'Specialties', title: 'German Specialties', desc: 'Artisan breads, mustard, sauerkraut & original German staples', badge: 'Original German', tag: 'Authentic', dataDesc: 'Original German products that complete every meal — freshly baked artisan breads, authentic mustard, sauerkraut, Brezeln, and traditional specialties. Genuine German taste, made with care and delivered to your home in Hanoi.' },
-            readymeals: { cat: 'Ready Meals', title: 'Ready-to-Eat Meals', desc: 'Freshly prepared German dishes — order for home enjoyment', badge: 'Fresh', tag: 'Home Delivery', dataDesc: 'Björn\'s freshly prepared German dishes — from potato salad to comforting classics — ready to enjoy at home. A convenient way to experience authentic German food without the effort. Order for delivery across Hanoi.' },
-            catering: { cat: 'Catering', title: 'Catering Services', desc: 'Full German catering for celebrations & gatherings, 10–300 guests', badge: 'Main Service', tag: '10–300 guests', dataDesc: 'Catering is at the heart of German Flavors Hanoi. We create varied, individualized menus tailored to every occasion — private parties, birthdays, Oktoberfest, weddings, and community gatherings. Björn brings authentic German cuisine and warm hospitality to your event, for 10 to 300 guests.' },
-            corporate: { cat: 'Catering', title: 'Corporate & Event Catering', desc: 'Trusted catering for embassies, institutes & organizations', badge: 'Professional', tag: 'Corporate', dataDesc: 'Professional German catering for companies, embassies, institutes, schools, and organizations. Trusted by clients including the Goethe-Institut Hanoi — authentic recipes, high-quality ingredients, and service that impresses every guest.' }
+            catering: { cat: 'Catering', title: 'Catering & Events', desc: 'Full German catering for celebrations, Oktoberfest & gatherings — 10–300 guests', badge: 'Main Service', tag: '10–300 guests', dataDesc: 'Catering is at the heart of German Flavors Hanoi. We create varied, individualized menus tailored to every occasion — private parties, birthdays, Oktoberfest, weddings, corporate functions, and community gatherings. Björn brings authentic German cuisine and warm hospitality to your event, for 10 to 300 guests.' },
+            products: { cat: 'Products', title: 'Authentic German Products', desc: 'Sausages, cold cuts, Leberkäse, mustard, sauerkraut & traditional specialties', badge: 'Original German', tag: 'Original German', dataDesc: 'Authentic German meats, sausages, cold cuts, Leberkäse, Kasseler, mustard, sauerkraut, artisan breads, and traditional specialties — all prepared with original recipes and high-quality ingredients. Genuine German taste, made with care in Hanoi.' },
+            delivery: { cat: 'Delivery', title: 'Home Delivery', desc: 'German delicatessen & ready-made meals — delivered across Hanoi', badge: 'Delivery', tag: 'Across Hanoi', dataDesc: 'Order German delicatessen products and ready-made meals for delivery across Hanoi. From sausages and cold cuts to freshly prepared dishes — enjoy authentic German food at home with convenient home delivery.' }
         },
         special: {
             tag: 'Events · Catering · Birthdays · Delivery',
@@ -84,28 +83,30 @@ var I18N_DATA = {
             ]
         },
         reservation: {
-            lbl: 'Get In Touch', title: 'Catering & <span>Contact</span>',
-            intro: 'Book catering for your event (10–300 guests) or send us a general inquiry about products, meals, and delivery.',
+            lbl: 'Get In Touch', title: 'Catering, Orders & <span>Delivery</span>',
+            intro: 'Book catering for your event (10–300 guests), order authentic German products, or arrange home delivery across Hanoi.',
             talk: 'Contact Us', talkSub: 'Scan the QR code to call or message us on WhatsApp / Zalo.',
             location: 'Location', delivery: 'Delivery', deliveryVal: 'Available across Hanoi',
             facebookLbl: 'Facebook', facebook: 'German Flavors Hanoi',
-            inquiryType: 'Inquiry Type *', eventDate: 'Event Date *', fullName: 'Full Name *', phone: 'Phone Number *',
+            inquiryType: 'Service *', eventDate: 'Event Date *', fullName: 'Full Name *', phone: 'Phone Number *',
             email: 'Email Address *', guests: 'Number of Guests *', msgEvent: 'Event Details & Menu Requests',
+            msgProducts: 'Product Request *', msgDelivery: 'Delivery Details *',
             msgGeneral: 'Your Message *', placeholderName: 'Your name', placeholderPhone: '+84 ...',
             placeholderEmail: 'you@email.com', placeholderEvent: 'Tell us about your event, dietary needs, preferred dishes...',
+            placeholderProducts: 'Which products would you like? Sausages, cold cuts, quantities...',
+            placeholderDelivery: 'What would you like delivered? Your area in Hanoi, preferred date/time...',
             placeholderGeneral: 'Write your message here...', submit: 'Submit Request', submitting: 'Submitting...',
             success: 'Request received! We\'ll get back to you as soon as possible.',
             error: 'Something went wrong. Please try again or contact us by phone.',
             errorFile: 'Please open this site through a web server (http://localhost), not as a local file, to submit the form.',
             errorSetup: 'Email is not set up yet. Get a free Access Key at web3forms.com (use levanthang230902@gmail.com) and paste it into js/form-config.js.',
-            optCatering: 'Catering & Events', optContact: 'General Contact',
-            opts: { corp: 'Corporate Function', party: 'Private Party', okto: 'Oktoberfest Celebration', bday: 'Birthday', wedding: 'Wedding', community: 'Community Gathering', other: 'Other Event', product: 'Product Inquiry', meals: 'Ready-to-Eat Meals', delivery: 'Delivery Order', partnership: 'Corporate Partnership', general: 'General Inquiry' },
+            opts: { catering: 'Catering & Events', products: 'Authentic German Products', delivery: 'Home Delivery' },
             guestOpts: ['10 – 20 guests', '21 – 50 guests', '51 – 100 guests', '101 – 200 guests', '201 – 300 guests', '300+ guests']
         },
         search: {
             title: 'What are you looking for?', placeholder: 'Search sausages, cold cuts, catering...',
             popular: 'Popular Searches',
-            cats: ['All Services', 'Sausages', 'Cold Cuts', 'Leberkäse', 'Specialties', 'Ready Meals', 'Catering']
+            cats: ['All Services', 'Catering & Events', 'German Products', 'Home Delivery']
         },
         footer: {
             tagline: 'Authentic German Meats · Sausages · Catering',
@@ -117,7 +118,7 @@ var I18N_DATA = {
             languages: 'Languages', langVal: 'German · Vietnamese · English',
             rights: 'All Rights Reserved.',
             links: { home: 'Home', about: 'About Us', services: 'Our Services', products: 'Products', reviews: 'Reviews', contact: 'Contact' },
-            svc: { sausages: 'German Sausages', coldcuts: 'Cold Cuts', classics: 'Leberkäse & Kasseler', meals: 'Ready-to-Eat Meals', specialties: 'German Specialties', catering: 'Catering' }
+            svc: { catering: 'Catering & Events', products: 'Authentic German Products', delivery: 'Home Delivery' }
         }
     },
     vi: {
@@ -136,24 +137,23 @@ var I18N_DATA = {
         about: {
             badge: 'Ẩm thực<br/>Đức chính gốc', msgUs: 'Nhắn tin cho chúng tôi',
             lbl: 'Giới thiệu', title: 'Về <span>German Flavors Hanoi</span>',
-            p1: 'German Flavors Hanoi được tạo ra để mang ẩm thực và truyền thống ẩm thực Đức chính gốc đến Việt Nam. Chúng tôi đam mê bảo tồn hương vị Đức gốc qua thịt, xúc xích, giò lạnh, công thức truyền thống và nguyên liệu chất lượng cao.',
-            p2: 'Sứ mệnh của chúng tôi rất đơn giản: mang hương vị Đức chân thực đến cộng đồng người Đức, cư dân quốc tế và những người yêu ẩm thực châu Âu chính gốc. Dù bạn mua sản phẩm deli Đức, đặt món ăn sẵn hay lên kế hoạch sự kiện với hàng trăm khách, chúng tôi cam kết về chất lượng, sự ổn định và dịch vụ xuất sắc.',
-            p3: 'Từ Leberkäse và Kasseler truyền thống đến xúc xích thủ công, Leberwurst, giăm bông hun khói, salami, mù tạt và dưa cải Đức, German Flavors Hanoi mang hương vị Đức thực sự đến trung tâm Hà Nội.',
+            p1: 'German Flavors Hanoi ra đời một cách tình cờ từ Thuy và Björn.',
+            quote: '"Tôi luôn đam mê thức ăn ngon và tự làm, nên tôi đã biến đam mê đó thành nghề nghiệp của mình"',
+            p2: 'Ý tưởng là mang ẩm thực và truyền thống ẩm thực Đức chính gốc đến Việt Nam. Chúng tôi đam mê bảo tồn hương vị Đức gốc qua thịt, xúc xích, giò lạnh, công thức truyền thống và nguyên liệu chất lượng cao.',
+            p3: 'Sứ mệnh của chúng tôi rất đơn giản: mang hương vị Đức chân thực đến người dân ở Hà Nội và vùng lân cận cùng tất cả những người yêu ẩm thực Đức và phương Tây chính gốc.',
+            p4: 'Dù bạn mua sản phẩm deli Đức, đặt món ăn sẵn hay lên kế hoạch sự kiện với hàng trăm khách, chúng tôi cam kết về chất lượng, sự ổn định và dịch vụ xuất sắc.',
+            p5: 'Từ Leberkäse và Kasseler truyền thống đến xúc xích thủ công, nhiều loại giò lạnh, mù tạt và dưa cải Đức, German Flavors Hanoi mang hương vị Đức thực sự đến trung tâm Hà Nội.',
             btn: 'Xem dịch vụ'
         },
         menu: {
             lbl: 'Dịch vụ của chúng tôi', title: 'Chúng tôi <span>Cung cấp</span>', btn: 'Liên hệ ngay',
-            intro: 'Catering và bán xúc xích Đức chính gốc là trọng tâm của chúng tôi — sản phẩm Đức nguyên bản, giao tận nhà trên toàn Hà Nội.',
+            intro: 'Catering sự kiện, sản phẩm Đức chính gốc và giao hàng tận nhà trên toàn Hà Nội.',
             enquire: 'Liên hệ', viewDetails: 'Xem chi tiết', enquireNow: 'Liên hệ ngay', inquiry: 'yêu cầu', thankYou: 'Cảm ơn!'
         },
         cards: {
-            sausages: { cat: 'Xúc xích', title: 'Bán xúc xích Đức', desc: 'Bratwurst, Frankfurter thủ công & đặc sản vùng miền — đặt về nhà', badge: 'Dịch vụ chính', tag: 'Đức chính gốc', dataDesc: 'Bán xúc xích là một trong những dịch vụ cốt lõi của chúng tôi. Björn chế biến xúc xích Đức thủ công theo công thức gốc và nguyên liệu cao cấp — Bratwurst, Frankfurter, Knacker và đặc sản vùng miền. Hoàn hảo để dự trữ tại nhà, nấu chậm hoặc dịp lễ. Giao hàng tận nhà trên toàn Hà Nội.' },
-            coldcuts: { cat: 'Giò lạnh', title: 'Giò lạnh & Deli', desc: 'Leberwurst, giăm bông hun khói, salami & thịt deli Đức cao cấp', badge: 'Đức chính gốc', tag: 'Thịt cao cấp', dataDesc: 'Giò lạnh và đồ deli Đức truyền thống theo công thức gốc và nguyên liệu chất lượng cao. Leberwurst, giăm bông hun khói, salami, Knacker và nhiều hơn nữa — lý tưởng cho đĩa gỏi, bánh mì và thưởng thức tại nhà. Đặt giao hàng trên toàn Hà Nội.' },
-            classics: { cat: 'Món cổ điển', title: 'Leberkäse & Kasseler', desc: 'Món Đức nấu chậm — thịt cao cấp cho bữa ăn gia đình', badge: 'Cổ điển', tag: 'Truyền thống', dataDesc: 'Leberkäse và Kasseler chính gốc theo phương pháp truyền thống Đức. Lý tưởng cho bữa ăn gia đình, tụ họp và nấu chậm ở nhiệt độ thấp — khi bạn chỉ muốn dùng nguyên liệu Đức tốt nhất. Có giao hàng tận nhà.' },
-            specialties: { cat: 'Đặc sản', title: 'Đặc sản Đức', desc: 'Bánh mì thủ công, mù tạt, dưa cải & sản phẩm Đức chính gốc', badge: 'Đức chính gốc', tag: 'Chính gốc', dataDesc: 'Sản phẩm Đức chính gốc hoàn thiện mọi bữa ăn — bánh mì thủ công tươi nướng, mù tạt chính gốc, dưa cải, Brezeln và đặc sản truyền thống. Hương vị Đức thực sự, giao tận nhà tại Hà Nội.' },
-            readymeals: { cat: 'Món sẵn', title: 'Món ăn sẵn', desc: 'Món Đức tươi chế biến — đặt về nhà thưởng thức', badge: 'Tươi', tag: 'Giao tận nhà', dataDesc: 'Món Đức tươi chế biến của Björn — từ salad khoai tây đến các món cổ điển — sẵn sàng thưởng thức tại nhà. Cách tiện lợi để trải nghiệm ẩm thực Đức chính gốc. Đặt giao hàng trên toàn Hà Nội.' },
-            catering: { cat: 'Catering', title: 'Dịch vụ Catering', desc: 'Catering Đức trọn gói cho lễ hội & tụ họp, 10–300 khách', badge: 'Dịch vụ chính', tag: '10–300 khách', dataDesc: 'Catering là trọng tâm của German Flavors Hanoi. Chúng tôi tạo thực đơn đa dạng, cá nhân hóa cho từng dịp — tiệc riêng, sinh nhật, Oktoberfest, đám cưới và tụ họp cộng đồng. Björn mang ẩm thực Đức chính gốc và sự hiếu khách ấm áp đến sự kiện của bạn, từ 10 đến 300 khách.' },
-            corporate: { cat: 'Catering', title: 'Catering Doanh nghiệp & Sự kiện', desc: 'Catering uy tín cho đại sứ quán, viện & tổ chức', badge: 'Chuyên nghiệp', tag: 'Doanh nghiệp', dataDesc: 'Catering Đức chuyên nghiệp cho công ty, đại sứ quán, viện, trường học và tổ chức. Được tin tưởng bởi các khách hàng như Viện Goethe Hà Nội — công thức chính gốc, nguyên liệu cao cấp và dịch vụ khiến mọi khách hài lòng.' }
+            catering: { cat: 'Catering', title: 'Catering & Sự kiện', desc: 'Catering Đức trọn gói cho lễ hội, Oktoberfest & tụ họp — 10–300 khách', badge: 'Dịch vụ chính', tag: '10–300 khách', dataDesc: 'Catering là trọng tâm của German Flavors Hanoi. Chúng tôi tạo thực đơn đa dạng, cá nhân hóa cho từng dịp — tiệc riêng, sinh nhật, Oktoberfest, đám cưới, tiệc công ty và tụ họp cộng đồng. Björn mang ẩm thực Đức chính gốc và sự hiếu khách ấm áp đến sự kiện của bạn, từ 10 đến 300 khách.' },
+            products: { cat: 'Sản phẩm', title: 'Sản phẩm Đức chính gốc', desc: 'Xúc xích, giò lạnh, Leberkäse, mù tạt, dưa cải & đặc sản truyền thống', badge: 'Đức chính gốc', tag: 'Đức chính gốc', dataDesc: 'Thịt, xúc xích, giò lạnh, Leberkäse, Kasseler, mù tạt, dưa cải, bánh mì thủ công và đặc sản truyền thống Đức — tất cả chế biến theo công thức gốc và nguyên liệu chất lượng cao. Hương vị Đức chân thực, làm bằng tâm huyết tại Hà Nội.' },
+            delivery: { cat: 'Giao hàng', title: 'Giao hàng tận nhà', desc: 'Đồ deli Đức & món ăn sẵn — giao trên toàn Hà Nội', badge: 'Giao hàng', tag: 'Toàn Hà Nội', dataDesc: 'Đặt sản phẩm deli Đức và món ăn sẵn giao tận nhà trên toàn Hà Nội. Từ xúc xích và giò lạnh đến món tươi chế biến — thưởng thức ẩm thực Đức chính gốc tại nhà với dịch vụ giao hàng tiện lợi.' }
         },
         special: {
             tag: 'Sự kiện · Catering · Sinh nhật · Giao hàng',
@@ -203,28 +203,30 @@ var I18N_DATA = {
             ]
         },
         reservation: {
-            lbl: 'Liên hệ', title: 'Catering & <span>Liên hệ</span>',
-            intro: 'Đặt catering cho sự kiện (10–300 khách) hoặc gửi yêu cầu về sản phẩm, món ăn và giao hàng.',
+            lbl: 'Liên hệ', title: 'Catering, đặt hàng & <span>giao tận nhà</span>',
+            intro: 'Đặt catering cho sự kiện (10–300 khách), đặt sản phẩm Đức chính gốc hoặc sắp xếp giao hàng tận nhà trên toàn Hà Nội.',
             talk: 'Liên hệ', talkSub: 'Quét mã QR để gọi hoặc nhắn tin qua WhatsApp / Zalo.',
             location: 'Địa điểm', delivery: 'Giao hàng', deliveryVal: 'Giao hàng toàn Hà Nội',
             facebookLbl: 'Facebook', facebook: 'German Flavors Hanoi',
-            inquiryType: 'Loại yêu cầu *', eventDate: 'Ngày sự kiện *', fullName: 'Họ và tên *', phone: 'Số điện thoại *',
+            inquiryType: 'Dịch vụ *', eventDate: 'Ngày sự kiện *', fullName: 'Họ và tên *', phone: 'Số điện thoại *',
             email: 'Email *', guests: 'Số khách *', msgEvent: 'Chi tiết sự kiện & yêu cầu thực đơn',
+            msgProducts: 'Yêu cầu sản phẩm *', msgDelivery: 'Chi tiết giao hàng *',
             msgGeneral: 'Tin nhắn của bạn *', placeholderName: 'Họ và tên', placeholderPhone: '+84 ...',
             placeholderEmail: 'email@example.com', placeholderEvent: 'Cho chúng tôi biết về sự kiện, nhu cầu ăn kiêng, món ưa thích...',
+            placeholderProducts: 'Bạn muốn sản phẩm gì? Xúc xích, giò lạnh, số lượng...',
+            placeholderDelivery: 'Bạn muốn giao gì? Khu vực tại Hà Nội, ngày/giờ mong muốn...',
             placeholderGeneral: 'Viết tin nhắn của bạn...', submit: 'Gửi yêu cầu', submitting: 'Đang gửi...',
             success: 'Đã nhận yêu cầu! Chúng tôi sẽ liên hệ lại sớm nhất.',
             error: 'Có lỗi xảy ra. Vui lòng thử lại hoặc liên hệ qua điện thoại.',
             errorFile: 'Vui lòng mở trang qua web server (http://localhost), không mở trực tiếp file HTML, để gửi form.',
             errorSetup: 'Chưa cấu hình email. Vào web3forms.com (dùng levanthang230902@gmail.com) lấy Access Key và dán vào js/form-config.js.',
-            optCatering: 'Catering & Sự kiện', optContact: 'Liên hệ chung',
-            opts: { corp: 'Tiệc công ty', party: 'Tiệc riêng', okto: 'Lễ hội Oktoberfest', bday: 'Sinh nhật', wedding: 'Đám cưới', community: 'Tụ họp cộng đồng', other: 'Sự kiện khác', product: 'Hỏi về sản phẩm', meals: 'Món ăn sẵn', delivery: 'Đặt giao hàng', partnership: 'Hợp tác doanh nghiệp', general: 'Yêu cầu chung' },
+            opts: { catering: 'Catering & Sự kiện', products: 'Sản phẩm Đức chính gốc', delivery: 'Giao hàng tận nhà' },
             guestOpts: ['10 – 20 khách', '21 – 50 khách', '51 – 100 khách', '101 – 200 khách', '201 – 300 khách', '300+ khách']
         },
         search: {
             title: 'Bạn đang tìm gì?', placeholder: 'Tìm xúc xích, giò lạnh, catering...',
             popular: 'Tìm kiếm phổ biến',
-            cats: ['Tất cả dịch vụ', 'Xúc xích', 'Giò lạnh', 'Leberkäse', 'Đặc sản', 'Món sẵn', 'Catering']
+            cats: ['Tất cả dịch vụ', 'Catering & Sự kiện', 'Sản phẩm Đức', 'Giao tận nhà']
         },
         footer: {
             tagline: 'Thịt Đức · Xúc xích · Catering chính gốc',
@@ -236,7 +238,7 @@ var I18N_DATA = {
             languages: 'Ngôn ngữ', langVal: 'Tiếng Đức · Tiếng Việt · Tiếng Anh',
             rights: 'Bảo lưu mọi quyền.',
             links: { home: 'Trang chủ', about: 'Giới thiệu', services: 'Dịch vụ', products: 'Sản phẩm', reviews: 'Đánh giá', contact: 'Liên hệ' },
-            svc: { sausages: 'Xúc xích Đức', coldcuts: 'Giò lạnh', classics: 'Leberkäse & Kasseler', meals: 'Món ăn sẵn', specialties: 'Đặc sản Đức', catering: 'Catering' }
+            svc: { catering: 'Catering & Sự kiện', products: 'Sản phẩm Đức chính gốc', delivery: 'Giao hàng tận nhà' }
         }
     },
     de: {
@@ -255,24 +257,23 @@ var I18N_DATA = {
         about: {
             badge: 'Authentische<br/>deutsche Küche', msgUs: 'Schreiben Sie uns',
             lbl: 'Über uns', title: 'Über <span>German Flavors Hanoi</span>',
-            p1: 'German Flavors Hanoi wurde gegründet, um authentische deutsche Küche und kulinarische Traditionen nach Vietnam zu bringen. Wir bewahren den originalen Geschmack Deutschlands durch sorgfältig zubereitetes Fleisch, Wurst, Aufschnitt, traditionelle Rezepte und hochwertige Zutaten.',
-            p2: 'Unsere Mission ist einfach: echten deutschen Geschmack für die deutsche Community, internationale Bewohner und Liebhaber authentischer europäischer Küche zu bieten. Ob Sie deutsche Feinkostprodukte kaufen, Fertiggerichte bestellen oder eine Veranstaltung mit Hunderten von Gästen planen — wir stehen für Qualität, Beständigkeit und exzellenten Service.',
-            p3: 'Von traditionellem Leberkäse und Kasseler bis zu handgemachten Würsten, Leberwurst, Schinken, Salami, deutschem Senf und Sauerkraut bringt German Flavors Hanoi echten deutschen Geschmack ins Herz von Hanoi.',
+            p1: 'German Flavors Hanoi entstand zufällig aus Thuy und Björn.',
+            quote: '„Ich hatte schon immer eine Leidenschaft für gutes und hausgemachtes Essen, also habe ich meine Leidenschaft zu meinem Beruf gemacht.“',
+            p2: 'Die Idee war, authentische deutsche Küche und kulinarische Traditionen nach Vietnam zu bringen. Wir sind leidenschaftlich daran interessiert, den originalen Geschmack Deutschlands durch sorgfältig zubereitetes Fleisch, Wurst, Aufschnitt, traditionelle Rezepte und hochwertige Zutaten zu bewahren.',
+            p3: 'Unsere Mission ist einfach: echten deutschen Geschmack für die Menschen in und um Hanoi sowie alle Feinschmecker zu bieten, die authentische deutsche und westliche Küche schätzen.',
+            p4: 'Ob Sie deutsche Feinkostprodukte kaufen, Fertiggerichte bestellen oder eine Veranstaltung mit Hunderten von Gästen planen — wir stehen für Qualität, Beständigkeit und exzellenten Service.',
+            p5: 'Von traditionellem Leberkäse und Kasseler bis zu handgemachten Würsten, verschiedenen Aufschnitten, deutschem Senf und Sauerkraut bringt German Flavors Hanoi echten deutschen Geschmack ins Herz von Hanoi.',
             btn: 'Leistungen ansehen'
         },
         menu: {
             lbl: 'Unsere Leistungen', title: 'Was wir <span>anbieten</span>', btn: 'Kontakt aufnehmen',
-            intro: 'Catering und authentischer Wurstverkauf stehen bei uns im Mittelpunkt — original deutsche Produkte, geliefert nach Hause in ganz Hanoi.',
+            intro: 'Catering für Veranstaltungen, authentische deutsche Produkte und Lieferung nach Hause in ganz Hanoi.',
             enquire: 'Anfragen', viewDetails: 'Details ansehen', enquireNow: 'Jetzt anfragen', inquiry: 'Anfrage', thankYou: 'Danke!'
         },
         cards: {
-            sausages: { cat: 'Würste', title: 'Deutscher Wurstverkauf', desc: 'Handgemachte Bratwurst, Frankfurter & regionale Spezialitäten — Bestellung nach Hause', badge: 'Hauptleistung', tag: 'Original Deutsch', dataDesc: 'Wurstverkauf gehört zu unseren Kernleistungen. Björn stellt authentische deutsche Würste von Hand nach originalen Rezepten und mit hochwertigen Zutaten her — Bratwurst, Frankfurter, Knacker und regionale Spezialitäten. Perfekt zum Vorrat für die Woche, zum langsamen Garen oder für Feiern. Lieferung nach Hause in ganz Hanoi.' },
-            coldcuts: { cat: 'Aufschnitt', title: 'Aufschnitt & Feinkost', desc: 'Leberwurst, Schinken, Salami & premium deutsche Delikatessen', badge: 'Original Deutsch', tag: 'Premium Fleisch', dataDesc: 'Traditioneller deutscher Aufschnitt und Feinkost nach originalen Rezepten und mit hochwertigen Zutaten. Leberwurst, Schinken, Salami, Knacker und mehr — ideal für Platten, Sandwiches und zu Hause. Bestellung mit Lieferung in ganz Hanoi.' },
-            classics: { cat: 'Klassiker', title: 'Leberkäse & Kasseler', desc: 'Langsam gegarte deutsche Klassiker — Premium-Fleisch für die Familie', badge: 'Klassiker', tag: 'Traditionell', dataDesc: 'Authentischer Leberkäse und Kasseler nach traditionellen deutschen Methoden. Ideal für Familienmahlzeiten, Feste und langsames Garen bei niedriger Temperatur — wenn nur die besten original deutschen Zutaten zählen. Lieferung nach Hause möglich.' },
-            specialties: { cat: 'Spezialitäten', title: 'Deutsche Spezialitäten', desc: 'Handwerkliche Brote, Senf, Sauerkraut & original deutsche Produkte', badge: 'Original Deutsch', tag: 'Authentisch', dataDesc: 'Original deutsche Produkte, die jede Mahlzeit vervollständigen — frisch gebackene handwerkliche Brote, authentischer Senf, Sauerkraut, Brezeln und traditionelle Spezialitäten. Echter deutscher Geschmack, geliefert nach Hause in Hanoi.' },
-            readymeals: { cat: 'Fertiggerichte', title: 'Fertiggerichte', desc: 'Frisch zubereitete deutsche Gerichte — Bestellung für zu Hause', badge: 'Frisch', tag: 'Lieferung', dataDesc: 'Björns frisch zubereitete deutsche Gerichte — vom Kartoffelsalat bis zu deutschen Klassikern — fertig zum Genießen zu Hause. Eine bequeme Möglichkeit, authentische deutsche Küche zu erleben. Bestellung mit Lieferung in ganz Hanoi.' },
-            catering: { cat: 'Catering', title: 'Catering-Services', desc: 'Deutsches Full-Service-Catering für Feiern & Veranstaltungen, 10–300 Gäste', badge: 'Hauptleistung', tag: '10–300 Gäste', dataDesc: 'Catering steht im Mittelpunkt von German Flavors Hanoi. Wir erstellen vielfältige, individuelle Menüs für jeden Anlass — private Feiern, Geburtstage, Oktoberfest, Hochzeiten und Gemeinschaftsveranstaltungen. Björn bringt authentische deutsche Küche und herzliche Gastfreundschaft zu Ihrer Veranstaltung, für 10 bis 300 Gäste.' },
-            corporate: { cat: 'Catering', title: 'Firmen- & Event-Catering', desc: 'Vertrauenswürdiges Catering für Botschaften, Institute & Organisationen', badge: 'Professionell', tag: 'Firmen', dataDesc: 'Professionelles deutsches Catering für Unternehmen, Botschaften, Institute, Schulen und Organisationen. Vertraut von Kunden wie dem Goethe-Institut Hanoi — authentische Rezepte, hochwertige Zutaten und Service, der jeden Gast beeindruckt.' }
+            catering: { cat: 'Catering', title: 'Catering & Events', desc: 'Deutsches Full-Service-Catering für Feiern, Oktoberfest & Veranstaltungen — 10–300 Gäste', badge: 'Hauptleistung', tag: '10–300 Gäste', dataDesc: 'Catering steht im Mittelpunkt von German Flavors Hanoi. Wir erstellen vielfältige, individuelle Menüs für jeden Anlass — private Feiern, Geburtstage, Oktoberfest, Hochzeiten, Firmenveranstaltungen und Gemeinschaftsveranstaltungen. Björn bringt authentische deutsche Küche und herzliche Gastfreundschaft zu Ihrer Veranstaltung, für 10 bis 300 Gäste.' },
+            products: { cat: 'Produkte', title: 'Authentische deutsche Produkte', desc: 'Würste, Aufschnitt, Leberkäse, Senf, Sauerkraut & traditionelle Spezialitäten', badge: 'Original Deutsch', tag: 'Original Deutsch', dataDesc: 'Authentisches deutsches Fleisch, Würste, Aufschnitt, Leberkäse, Kasseler, Senf, Sauerkraut, handwerkliche Brote und traditionelle Spezialitäten — alle nach originalen Rezepten und mit hochwertigen Zutaten zubereitet. Echter deutscher Geschmack, mit Sorgfalt in Hanoi hergestellt.' },
+            delivery: { cat: 'Lieferung', title: 'Lieferung nach Hause', desc: 'Deutsche Feinkost & Fertiggerichte — geliefert in ganz Hanoi', badge: 'Lieferung', tag: 'Ganz Hanoi', dataDesc: 'Bestellen Sie deutsche Feinkostprodukte und Fertiggerichte zur Lieferung in ganz Hanoi. Von Würsten und Aufschnitt bis zu frisch zubereiteten Gerichten — genießen Sie authentische deutsche Küche zu Hause mit bequemer Lieferung.' }
         },
         special: {
             tag: 'Events · Catering · Geburtstage · Lieferung',
@@ -322,28 +323,30 @@ var I18N_DATA = {
             ]
         },
         reservation: {
-            lbl: 'Kontakt', title: 'Catering & <span>Kontakt</span>',
-            intro: 'Buchen Sie Catering für Ihr Event (10–300 Gäste) oder senden Sie eine allgemeine Anfrage zu Produkten, Gerichten und Lieferung.',
+            lbl: 'Kontakt', title: 'Catering, Bestellung & <span>Lieferung</span>',
+            intro: 'Buchen Sie Catering für Ihr Event (10–300 Gäste), bestellen Sie authentische deutsche Produkte oder vereinbaren Sie die Lieferung nach Hause in ganz Hanoi.',
             talk: 'Kontakt', talkSub: 'QR-Code scannen, um anzurufen oder per WhatsApp / Zalo zu schreiben.',
             location: 'Standort', delivery: 'Lieferung', deliveryVal: 'Lieferung in ganz Hanoi',
             facebookLbl: 'Facebook', facebook: 'German Flavors Hanoi',
-            inquiryType: 'Anfrageart *', eventDate: 'Veranstaltungsdatum *', fullName: 'Vollständiger Name *', phone: 'Telefonnummer *',
+            inquiryType: 'Leistung *', eventDate: 'Veranstaltungsdatum *', fullName: 'Vollständiger Name *', phone: 'Telefonnummer *',
             email: 'E-Mail-Adresse *', guests: 'Anzahl der Gäste *', msgEvent: 'Veranstaltungsdetails & Menüwünsche',
+            msgProducts: 'Produktanfrage *', msgDelivery: 'Lieferdetails *',
             msgGeneral: 'Ihre Nachricht *', placeholderName: 'Ihr Name', placeholderPhone: '+84 ...',
             placeholderEmail: 'ihre@email.de', placeholderEvent: 'Erzählen Sie uns von Ihrer Veranstaltung, Ernährungswünschen, bevorzugten Gerichten...',
+            placeholderProducts: 'Welche Produkte wünschen Sie? Würste, Aufschnitt, Mengen...',
+            placeholderDelivery: 'Was soll geliefert werden? Ihr Stadtteil in Hanoi, gewünschtes Datum/Uhrzeit...',
             placeholderGeneral: 'Schreiben Sie Ihre Nachricht...', submit: 'Anfrage senden', submitting: 'Wird gesendet...',
             success: 'Anfrage erhalten! Wir melden uns so schnell wie möglich.',
             error: 'Etwas ist schiefgelaufen. Bitte versuchen Sie es erneut oder rufen Sie uns an.',
             errorFile: 'Bitte öffnen Sie die Seite über einen Webserver (http://localhost), nicht als lokale Datei.',
             errorSetup: 'E-Mail noch nicht eingerichtet. Holen Sie einen Access Key bei web3forms.com und tragen Sie ihn in js/form-config.js ein.',
-            optCatering: 'Catering & Events', optContact: 'Allgemeine Anfrage',
-            opts: { corp: 'Firmenveranstaltung', party: 'Private Feier', okto: 'Oktoberfest-Feier', bday: 'Geburtstag', wedding: 'Hochzeit', community: 'Gemeinschaftsveranstaltung', other: 'Sonstiges Event', product: 'Produktanfrage', meals: 'Fertiggerichte', delivery: 'Lieferbestellung', partnership: 'Firmenpartnerschaft', general: 'Allgemeine Anfrage' },
+            opts: { catering: 'Catering & Events', products: 'Authentische deutsche Produkte', delivery: 'Lieferung nach Hause' },
             guestOpts: ['10 – 20 Gäste', '21 – 50 Gäste', '51 – 100 Gäste', '101 – 200 Gäste', '201 – 300 Gäste', '300+ Gäste']
         },
         search: {
             title: 'Wonach suchen Sie?', placeholder: 'Würste, Aufschnitt, Catering suchen...',
             popular: 'Beliebte Suchen',
-            cats: ['Alle Leistungen', 'Würste', 'Aufschnitt', 'Leberkäse', 'Spezialitäten', 'Fertiggerichte', 'Catering']
+            cats: ['Alle Leistungen', 'Catering & Events', 'Deutsche Produkte', 'Lieferung nach Hause']
         },
         footer: {
             tagline: 'Authentisches Fleisch · Würste · Catering',
@@ -355,7 +358,7 @@ var I18N_DATA = {
             languages: 'Sprachen', langVal: 'Deutsch · Vietnamesisch · Englisch',
             rights: 'Alle Rechte vorbehalten.',
             links: { home: 'Start', about: 'Über uns', services: 'Leistungen', products: 'Produkte', reviews: 'Bewertungen', contact: 'Kontakt' },
-            svc: { sausages: 'Deutsche Würste', coldcuts: 'Aufschnitt', classics: 'Leberkäse & Kasseler', meals: 'Fertigerichte', specialties: 'Deutsche Spezialitäten', catering: 'Catering' }
+            svc: { catering: 'Catering & Events', products: 'Authentische deutsche Produkte', delivery: 'Lieferung nach Hause' }
         }
     }
 };
@@ -409,7 +412,7 @@ function applyI18n() {
         el.appendChild(document.createTextNode(' ' + lang.marquee[idx]));
     });
 
-    var cardKeys = ['sausages', 'coldcuts', 'classics', 'specialties', 'readymeals', 'catering', 'corporate'];
+    var cardKeys = ['catering', 'products', 'delivery'];
     document.querySelectorAll('.mwrap').forEach(function(wrap, i) {
         var ck = cardKeys[i];
         if (!ck || !lang.cards[ck]) return;
@@ -431,7 +434,10 @@ function applyI18n() {
         if (mdesc) mdesc.textContent = c.desc;
         if (mprice) mprice.textContent = lang.menu.enquire;
         if (mtag) mtag.textContent = c.tag;
-        if (badge && c.badge) badge.innerHTML = '<i class="fas fa-star"></i> ' + c.badge;
+        if (badge && c.badge) {
+            var badgeIcon = ck === 'delivery' ? 'fa-truck' : 'fa-star';
+            badge.innerHTML = '<i class="fas ' + badgeIcon + '"></i> ' + c.badge;
+        }
         else if (badge && !c.badge) badge.textContent = c.tag || '';
         var madd = wrap.querySelector('.madd');
         if (madd) madd.title = lang.menu.viewDetails;
@@ -458,10 +464,7 @@ function applyI18n() {
     var inquiryType = document.getElementById('inquiryType');
     if (inquiryType) {
         var r = lang.reservation;
-        var groups = inquiryType.querySelectorAll('optgroup');
-        if (groups[0]) groups[0].label = r.optCatering;
-        if (groups[1]) groups[1].label = r.optContact;
-        var optKeys = ['corp', 'party', 'okto', 'bday', 'wedding', 'community', 'other', 'product', 'meals', 'delivery', 'partnership', 'general'];
+        var optKeys = ['catering', 'products', 'delivery'];
         inquiryType.querySelectorAll('option').forEach(function(opt, i) {
             if (r.opts[optKeys[i]]) opt.textContent = r.opts[optKeys[i]];
         });
