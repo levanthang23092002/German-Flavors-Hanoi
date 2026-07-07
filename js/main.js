@@ -356,9 +356,8 @@ function showFormFeedback(type) {
 function showFormErrorMessage(key, fallback) {
     var errP = document.getElementById('resErrText');
     var errLocal = document.getElementById('resErrLocal');
-    if (errP) {
-        errP.textContent = window.I18N ? I18N.t(key) : fallback;
-    }
+    var msg = fallback || (window.I18N ? I18N.t(key) : 'Something went wrong.');
+    if (errP) errP.textContent = msg;
     if (errLocal) errLocal.style.display = key === 'reservation.errorFile' ? 'block' : 'none';
     showFormFeedback('err');
 }
@@ -386,30 +385,43 @@ function buildEmailSubject(data) {
     return subject;
 }
 
-function buildWeb3FormsBody(accessKey, data) {
-    var messageKey = data.isCatering ? 'Event Details & Menu Requests'
-        : data.inquiryValue === 'products' ? 'Product Request'
-        : 'Delivery Details';
+function buildMessageBody(data) {
+    var lines = ['Service: ' + data.inquiryType];
+    if (data.isCatering) {
+        lines.push('Event Date: ' + formatEmailDate(data.eventDate));
+        lines.push('Guests: ' + data.guests);
+    }
+    lines.push('Phone: ' + data.phone);
+    lines.push('');
+    lines.push(data.message);
+    return lines.join('\n');
+}
 
+function getWeb3FormsError(data) {
+    if (!data) return '';
+    if (data.body && data.body.message) return data.body.message;
+    if (data.message) return data.message;
+    return '';
+}
+
+function buildWeb3FormsBody(accessKey, data) {
     var body = {
         access_key: accessKey,
         subject: buildEmailSubject(data),
         from_name: 'German Flavors Hanoi',
-        replyto: data.email,
+        name: data.name,
         email: data.email,
-
-        'Service': data.inquiryType
+        replyto: data.email,
+        botcheck: '',
+        message: buildMessageBody(data),
+        Service: data.inquiryType,
+        Phone: data.phone
     };
 
     if (data.isCatering) {
         body['Event Date'] = formatEmailDate(data.eventDate);
         body['Number of Guests'] = data.guests;
     }
-
-    body['Full Name'] = data.name;
-    body['Phone'] = data.phone;
-
-    body[messageKey] = data.message;
 
     return body;
 }
@@ -474,23 +486,32 @@ if (contactForm) {
             },
             body: JSON.stringify(body)
         })
-        .then(function(res) { return res.json(); })
-        .then(function(data) {
-            if (data.success) {
+        .then(function(res) {
+            return res.json().then(function(data) {
+                return { ok: res.ok, status: res.status, data: data };
+            }).catch(function() {
+                return { ok: false, status: res.status, data: null };
+            });
+        })
+        .then(function(result) {
+            var data = result.data;
+            if (result.ok && data && data.success) {
                 contactForm.reset();
                 toggleInquiryFields();
                 showFormFeedback('ok');
-            } else {
-                showFormErrorMessage(
-                    'reservation.error',
-                    data.message || 'Something went wrong. Please try again or contact us by phone.'
-                );
+                return;
             }
+            var apiMsg = getWeb3FormsError(data);
+            var fallback = apiMsg || (window.I18N ? I18N.t('reservation.error') : 'Something went wrong. Please try again or contact us by phone.');
+            if (result.status === 403) {
+                fallback = apiMsg || 'Request blocked. Please submit from the live website (not server-side).';
+            }
+            showFormErrorMessage('reservation.error', fallback);
         })
         .catch(function() {
             showFormErrorMessage(
                 'reservation.error',
-                'Something went wrong. Please try again or contact us by phone.'
+                window.I18N ? I18N.t('reservation.error') : 'Something went wrong. Please try again or contact us by phone.'
             );
         })
         .finally(function() {

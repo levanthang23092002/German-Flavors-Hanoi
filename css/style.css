@@ -1843,6 +1843,9 @@ section[id] {
   border-color: var(--accent-gold);
   box-shadow: 0 0 0 3px rgba(var(--accent-gold-rgb), 0.15);
 }
+#reservation .botcheck {
+  display: none !important;
+}
 #reservation .fcard {
   position: relative;
   display: block;

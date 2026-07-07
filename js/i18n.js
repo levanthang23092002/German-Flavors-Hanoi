@@ -99,7 +99,7 @@ var I18N_DATA = {
             success: 'Request received! We\'ll get back to you as soon as possible.',
             error: 'Something went wrong. Please try again or contact us by phone.',
             errorFile: 'Please open this site through a web server (http://localhost), not as a local file, to submit the form.',
-            errorSetup: 'Email is not set up yet. Get a free Access Key at web3forms.com (use levanthang230902@gmail.com) and paste it into js/form-config.js.',
+            errorSetup: 'Email is not set up yet. Get a free Access Key at web3forms.com (use bjoern@germanflavorshanoi.com) and paste it into js/form-config.js.',
             opts: { catering: 'Catering & Events', products: 'Authentic German Products', delivery: 'Home Delivery' },
             guestOpts: ['10 – 20 guests', '21 – 50 guests', '51 – 100 guests', '101 – 200 guests', '201 – 300 guests', '300+ guests']
         },
@@ -219,7 +219,7 @@ var I18N_DATA = {
             success: 'Đã nhận yêu cầu! Chúng tôi sẽ liên hệ lại sớm nhất.',
             error: 'Có lỗi xảy ra. Vui lòng thử lại hoặc liên hệ qua điện thoại.',
             errorFile: 'Vui lòng mở trang qua web server (http://localhost), không mở trực tiếp file HTML, để gửi form.',
-            errorSetup: 'Chưa cấu hình email. Vào web3forms.com (dùng levanthang230902@gmail.com) lấy Access Key và dán vào js/form-config.js.',
+            errorSetup: 'Chưa cấu hình email. Vào web3forms.com (dùng bjoern@germanflavorshanoi.com) lấy Access Key và dán vào js/form-config.js.',
             opts: { catering: 'Catering & Sự kiện', products: 'Sản phẩm Đức chính gốc', delivery: 'Giao hàng tận nhà' },
             guestOpts: ['10 – 20 khách', '21 – 50 khách', '51 – 100 khách', '101 – 200 khách', '201 – 300 khách', '300+ khách']
         },
