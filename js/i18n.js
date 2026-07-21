@@ -117,6 +117,7 @@ var I18N_DATA = {
             facebookLbl: 'Facebook', facebook: 'German Flavors Hanoi',
             languages: 'Languages', langVal: 'German · Vietnamese · English',
             rights: 'All Rights Reserved.',
+            admin: 'Admin login',
             links: { home: 'Home', about: 'About Us', services: 'Our Services', products: 'Products', reviews: 'Reviews', contact: 'Contact' },
             svc: { catering: 'Catering & Events', products: 'Authentic German Products', delivery: 'Home Delivery' }
         }
@@ -237,6 +238,7 @@ var I18N_DATA = {
             facebookLbl: 'Facebook', facebook: 'German Flavors Hanoi',
             languages: 'Ngôn ngữ', langVal: 'Tiếng Đức · Tiếng Việt · Tiếng Anh',
             rights: 'Bảo lưu mọi quyền.',
+            admin: 'Đăng nhập admin',
             links: { home: 'Trang chủ', about: 'Giới thiệu', services: 'Dịch vụ', products: 'Sản phẩm', reviews: 'Đánh giá', contact: 'Liên hệ' },
             svc: { catering: 'Catering & Sự kiện', products: 'Sản phẩm Đức chính gốc', delivery: 'Giao hàng tận nhà' }
         }
@@ -357,6 +359,7 @@ var I18N_DATA = {
             facebookLbl: 'Facebook', facebook: 'German Flavors Hanoi',
             languages: 'Sprachen', langVal: 'Deutsch · Vietnamesisch · Englisch',
             rights: 'Alle Rechte vorbehalten.',
+            admin: 'Admin-Anmeldung',
             links: { home: 'Start', about: 'Über uns', services: 'Leistungen', products: 'Produkte', reviews: 'Bewertungen', contact: 'Kontakt' },
             svc: { catering: 'Catering & Events', products: 'Authentische deutsche Produkte', delivery: 'Lieferung nach Hause' }
         }
@@ -412,10 +415,9 @@ function applyI18n() {
         el.appendChild(document.createTextNode(' ' + lang.marquee[idx]));
     });
 
-    var cardKeys = ['catering', 'products', 'delivery'];
-    document.querySelectorAll('.mwrap').forEach(function(wrap, i) {
-        var ck = cardKeys[i];
-        if (!ck || !lang.cards[ck]) return;
+    document.querySelectorAll('.mwrap').forEach(function(wrap) {
+        var ck = wrap.getAttribute('data-c');
+        if (!ck || !lang.cards || !lang.cards[ck]) return;
         var c = lang.cards[ck];
         var card = wrap.querySelector('.mcard');
         if (!card) return;
@@ -435,8 +437,7 @@ function applyI18n() {
         if (mprice) mprice.textContent = lang.menu.enquire;
         if (mtag) mtag.textContent = c.tag;
         if (badge && c.badge) {
-            var badgeIcon = ck === 'delivery' ? 'fa-truck' : 'fa-star';
-            badge.innerHTML = '<i class="fas ' + badgeIcon + '"></i> ' + c.badge;
+            badge.textContent = c.badge;
         }
         else if (badge && !c.badge) badge.textContent = c.tag || '';
         var madd = wrap.querySelector('.madd');

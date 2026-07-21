@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="robots" content="noindex,nofollow"/>
+  <title>Đăng nhập Admin – German Flavors Hanoi</title>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css"/>
+  <link rel="stylesheet" href="css/admin.css"/>
+  <link rel="icon" href="../img/favicon.svg" type="image/svg+xml"/>
+</head>
+<body class="login-page">
+  <div class="login-card">
+    <div class="login-brand">
+      <img src="../img/favicon.png" alt=""/>
+      <div>
+        <h1>German Flavors</h1>
+        <p>Hanoi · Admin</p>
+      </div>
+    </div>
+    <h2>Đăng nhập</h2>
+    <p class="sub">Quản lý nội dung website (About, Services, Testimonials, thông tin liên hệ).</p>
+    <div id="loginAlert" class="alert alert-err"></div>
+    <div id="configWarn" class="alert alert-warn">
+      Chưa cấu hình Firebase. Mở <code>js/firebase-config.js</code> và làm theo <code>FIREBASE_SETUP.md</code>.
+    </div>
+    <form id="loginForm">
+      <div class="field">
+        <label for="email">Email</label>
+        <input id="email" type="email" required autocomplete="username" placeholder="admin@germanflavorshanoi.com"/>
+      </div>
+      <div class="field">
+        <label for="password">Mật khẩu</label>
+        <input id="password" type="password" required autocomplete="current-password" placeholder="••••••••"/>
+      </div>
+      <button class="btn btn-block" id="loginBtn" type="submit">
+        <i class="fas fa-sign-in-alt"></i> Đăng nhập
+      </button>
+    </form>
+  </div>
+
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
+  <script src="js/admin-password-toggle.js"></script>
+  <script src="../js/firebase-config.js"></script>
+  <script>
+    if (window.AdminPasswordToggle) AdminPasswordToggle.init(document);
+    (function () {
+      var alertEl = document.getElementById('loginAlert');
+      var warnEl = document.getElementById('configWarn');
+      var btn = document.getElementById('loginBtn');
+
+      function showErr(msg) {
+        alertEl.textContent = msg;
+        alertEl.classList.add('show');
+      }
+
+      if (!initFirebaseApp()) {
+        warnEl.classList.add('show');
+        btn.disabled = true;
+        return;
+      }
+      warnEl.classList.remove('show');
+
+      firebase.auth().onAuthStateChanged(function (user) {
+        if (user) location.replace('index.html');
+      });
+
+      document.getElementById('loginForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+        alertEl.classList.remove('show');
+        btn.disabled = true;
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Đang đăng nhập...';
+        var email = document.getElementById('email').value.trim();
+        var password = document.getElementById('password').value;
+        firebase.auth().signInWithEmailAndPassword(email, password)
+          .then(function () {
+            location.replace('index.html');
+          })
+          .catch(function (err) {
+            var map = {
+              'auth/invalid-email': 'Email không hợp lệ.',
+              'auth/user-disabled': 'Tài khoản đã bị khóa.',
+              'auth/user-not-found': 'Sai email hoặc mật khẩu.',
+              'auth/wrong-password': 'Sai email hoặc mật khẩu.',
+              'auth/invalid-credential': 'Sai email hoặc mật khẩu.',
+              'auth/too-many-requests': 'Thử quá nhiều lần. Vui lòng đợi rồi thử lại.'
+            };
+            showErr(map[err.code] || err.message || 'Đăng nhập thất bại.');
+            btn.disabled = false;
+            btn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Đăng nhập';
+          });
+      });
+    })();
+  </script>
+</body>
+</html>

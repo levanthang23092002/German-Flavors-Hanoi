@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="robots" content="noindex,nofollow"/>
+  <title>Admin – German Flavors Hanoi</title>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css"/>
+  <link rel="stylesheet" href="../css/style.css"/>
+  <link rel="stylesheet" href="css/admin.css"/>
+  <link rel="icon" href="../img/favicon.svg" type="image/svg+xml"/>
+</head>
+<body>
+  <div id="loading" class="loading-screen" data-i18n="loading">Loading...</div>
+  <button type="button" class="btn btn-ghost mobile-toggle" id="menuToggle" aria-label="Menu" aria-expanded="false" aria-controls="sidebar">
+    <i class="fas fa-bars"></i>
+  </button>
+  <div class="sidebar-backdrop" id="sidebarBackdrop" aria-hidden="true"></div>
+
+  <div class="admin-shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="side-brand">
+        <img src="../img/favicon.png" alt=""/>
+        <div>
+          <strong>German Flavors</strong>
+          <span data-i18n="brandSub">Content Manager</span>
+        </div>
+      </div>
+      <button type="button" class="nav-btn active" data-section="site"><i class="fas fa-globe"></i> <span data-i18n="navSite">Website info</span></button>
+      <button type="button" class="nav-btn" data-section="about"><i class="fas fa-info-circle"></i> <span data-i18n="navAbout">About Us</span></button>
+      <button type="button" class="nav-btn" data-section="special"><i class="fas fa-calendar-check"></i> <span data-i18n="navSpecial">Catering</span></button>
+      <button type="button" class="nav-btn" data-section="services"><i class="fas fa-concierge-bell"></i> <span data-i18n="navServices">Our Services</span></button>
+      <button type="button" class="nav-btn" data-section="testimonials"><i class="fas fa-comments"></i> <span data-i18n="navTestimonials">Testimonials</span></button>
+      <button type="button" class="nav-btn" data-section="accounts"><i class="fas fa-users-cog"></i> <span data-i18n="navAccounts">Accounts</span></button>
+      <div class="side-foot">
+        <a href="../index.html" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> <span data-i18n="viewSite">View website</span></a>
+        <button type="button" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> <span data-i18n="logout">Log out</span></button>
+      </div>
+    </aside>
+
+    <main class="main">
+      <div class="topbar">
+        <div class="topbar-intro">
+          <h2 id="pageTitle" data-i18n="titles.site">Website info</h2>
+          <p class="hint" id="userEmail"></p>
+        </div>
+        <div class="actions">
+          <div class="lang-switch-block">
+            <span class="lang-switch-label" data-i18n="langLabel">Language</span>
+            <div class="lang-tabs global-lang" id="globalLangTabs" role="tablist" data-i18n-aria="langAria" aria-label="Language"></div>
+          </div>
+          <div class="topbar-btn-row" id="defaultTopbarBtns">
+            <button type="button" class="btn btn-ghost btn-topbar" id="reloadBtn"><i class="fas fa-sync"></i> <span data-i18n="reload">Reload</span></button>
+            <button type="button" class="btn btn-topbar btn-topbar-save" id="saveBtn"><i class="fas fa-save"></i> <span data-i18n="save">Save changes</span></button>
+          </div>
+          <div class="topbar-btn-row" id="accountsTopbarBtns" hidden>
+            <button type="button" class="btn btn-topbar btn-topbar-save" id="accountsUpdatePwdBtn"><i class="fas fa-lock"></i> <span data-i18n="usersUpdatePwd">Update password</span></button>
+            <button type="button" class="btn btn-topbar btn-topbar-save" id="accountsAddAdminBtn"><i class="fas fa-user-plus"></i> <span data-i18n="usersAddAdmin">Add admin</span></button>
+          </div>
+        </div>
+      </div>
+
+      <div id="saveAlert" class="alert"></div>
+
+      <section class="section-pane active" id="sec-site">
+        <div class="panel panel-compact">
+          <h3 data-i18n="siteCommonTitle">Website info</h3>
+          <div class="grid-2">
+            <div class="field">
+              <label data-i18n="location">Location</label>
+              <input id="site-location" type="text"/>
+            </div>
+            <div class="field">
+              <label data-i18n="facebook">Facebook URL</label>
+              <input id="site-facebook" type="url"/>
+            </div>
+            <div class="field">
+              <label data-i18n="phoneBjoernSite">Bjoern (GER/ENG)</label>
+              <input id="site-phoneBjoern" type="text" placeholder="+84 93 888 6514"/>
+            </div>
+            <div class="field">
+              <label data-i18n="phoneThuySite">Thuy (VIE/ENG)</label>
+              <input id="site-phoneThuy" type="text"/>
+            </div>
+            <div class="field">
+              <label data-i18n="whatsapp">WhatsApp (number, no +)</label>
+              <input id="site-whatsapp" type="text" placeholder="84938886514"/>
+            </div>
+            <div class="field">
+              <label data-i18n="zalo">Zalo (number, no +)</label>
+              <input id="site-zalo" type="text" placeholder="84938886514"/>
+            </div>
+          </div>
+
+          <h4 class="panel-sub" data-i18n="heroBarTitle">Hero stats bar</h4>
+          <div class="hero-bar-admin">
+            <div class="hero-stat-block">
+              <div class="field">
+                <label data-i18n="heroBarValue">Value</label>
+                <input id="site-hero-0-value" type="text" placeholder="10–300"/>
+              </div>
+              <div class="field">
+                <label data-i18n="heroBarLabel">Label</label>
+                <input id="site-hero-0-label" type="text"/>
+              </div>
+            </div>
+            <div class="hero-stat-block">
+              <div class="field">
+                <label data-i18n="heroBarValue">Value</label>
+                <input id="site-hero-1-value" type="text" placeholder="100%"/>
+              </div>
+              <div class="field">
+                <label data-i18n="heroBarLabel">Label</label>
+                <input id="site-hero-1-label" type="text"/>
+              </div>
+            </div>
+            <div class="hero-stat-block">
+              <div class="field">
+                <label data-i18n="heroBarValue">Value</label>
+                <input id="site-hero-2-value" type="text" placeholder="7+"/>
+              </div>
+              <div class="field">
+                <label data-i18n="heroBarLabel">Label</label>
+                <input id="site-hero-2-label" type="text"/>
+              </div>
+            </div>
+            <div class="hero-stat-block">
+              <div class="field">
+                <label data-i18n="heroBarValue">Value</label>
+                <input id="site-hero-3-value" type="text" placeholder="GER · VIE · ENG"/>
+              </div>
+              <div class="field">
+                <label data-i18n="heroBarLabel">Label</label>
+                <input id="site-hero-3-label" type="text"/>
+              </div>
+            </div>
+          </div>
+
+          <h4 class="panel-sub" data-i18n="metaTitle">Meta SEO</h4>
+          <div class="field">
+            <label data-i18n="metaTitleLabel">Meta title</label>
+            <input id="site-meta-title" type="text"/>
+          </div>
+          <div class="field field-last">
+            <label data-i18n="metaDescLabel">Meta description</label>
+            <textarea id="site-meta-desc"></textarea>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-pane" id="sec-about">
+        <div class="panel">
+          <h3 data-i18n="aboutTitle">About Us content</h3>
+          <p class="hint" style="margin-bottom:12px;" data-i18n="aboutHint">Write once. English / Vietnamese / German on the website are auto-translated when you save.</p>
+          <div class="field image-field" style="margin-bottom:14px;">
+            <label data-i18n="aboutImage">About image</label>
+            <div class="image-field-row">
+              <input id="about-image" type="text" placeholder="https://res.cloudinary.com/..." data-preview="about-imagePreview"/>
+              <button type="button" class="btn btn-sm btn-ghost js-cloudinary-upload" data-input="about-image" data-preview="about-imagePreview">
+                <i class="fas fa-cloud-upload-alt"></i> <span data-i18n="cloudinaryUpload">Upload image</span>
+              </button>
+            </div>
+            <img id="about-imagePreview" class="preview-img" alt=""/>
+            <p class="hint" data-i18n="cloudinaryHint">Upload to Cloudinary or paste an image URL. Save to store the link in the database.</p>
+          </div>
+          <div id="about-fields"></div>
+        </div>
+      </section>
+
+      <section class="section-pane" id="sec-special">
+        <div class="panel">
+          <h3 data-i18n="specialTitle">Catering section</h3>
+          <p class="hint" style="margin-bottom:12px;" data-i18n="specialHint">Content shown in the dark catering banner on the homepage.</p>
+          <div class="field image-field" style="margin-bottom:14px;">
+            <label data-i18n="specialFields.image">Image</label>
+            <div class="image-field-row">
+              <input id="special-image" type="text" placeholder="https://res.cloudinary.com/..." data-preview="special-imagePreview"/>
+              <button type="button" class="btn btn-sm btn-ghost js-cloudinary-upload" data-input="special-image" data-preview="special-imagePreview">
+                <i class="fas fa-cloud-upload-alt"></i> <span data-i18n="cloudinaryUpload">Upload image</span>
+              </button>
+            </div>
+            <img id="special-imagePreview" class="preview-img" alt=""/>
+            <p class="hint" data-i18n="cloudinaryHint">Upload to Cloudinary or paste an image URL. Save to store the link in the database.</p>
+          </div>
+          <div class="field">
+            <label data-i18n="specialFields.tag">Tags line</label>
+            <input id="special-tag" type="text" placeholder="Events · Catering · Birthdays · Delivery"/>
+          </div>
+          <div class="field">
+            <label data-i18n="specialFields.title">Headline</label>
+            <textarea id="special-title" rows="3"></textarea>
+            <p class="hint" data-i18n="specialTitleHint">HTML allowed: use &lt;br/&gt; for line breaks and &lt;span&gt; for highlight.</p>
+          </div>
+          <div class="field">
+            <label data-i18n="specialFields.desc">Description</label>
+            <textarea id="special-desc" rows="4"></textarea>
+          </div>
+          <div class="field">
+            <label data-i18n="specialFields.btn">Button text</label>
+            <input id="special-btn" type="text"/>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-pane" id="sec-services">
+        <div class="panel">
+          <div class="item-card-head">
+            <h3 style="border:0;margin:0;padding:0;" data-i18n="servicesTitle">Services list</h3>
+            <button type="button" class="btn btn-sm" id="addServiceBtn"><i class="fas fa-plus"></i> <span data-i18n="addService">Add service</span></button>
+          </div>
+          <div id="services-list" class="site-preview row g-4 justify-content-center"></div>
+        </div>
+      </section>
+
+      <section class="section-pane" id="sec-testimonials">
+        <div class="panel">
+          <div class="item-card-head">
+            <h3 style="border:0;margin:0;padding:0;" data-i18n="testimonialsTitle">Customer reviews</h3>
+            <button type="button" class="btn btn-sm" id="addTestimonialBtn"><i class="fas fa-plus"></i> <span data-i18n="addTestimonial">Add review</span></button>
+          </div>
+          <div id="testimonials-list" class="site-preview site-preview-testimonials row g-4 justify-content-center"></div>
+        </div>
+      </section>
+
+      <section class="section-pane" id="sec-accounts">
+        <div id="accountsAlert" class="alert" style="display:none;"></div>
+
+        <div class="panel panel-accounts">
+          <h3 data-i18n="usersListTitle">Admin accounts</h3>
+          <p class="hint accounts-hint" data-i18n="usersListHint">All admin login accounts. You can reset another admin&apos;s password or remove their access.</p>
+          <div id="accountsList" class="admin-users-list"></div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div id="statusBar" class="status-bar"></div>
+
+  <div id="ownPwdModal" class="modal" hidden>
+    <div class="modal-backdrop" data-own-modal-close></div>
+    <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="ownPwdModalTitle">
+      <div class="modal-head">
+        <h3 id="ownPwdModalTitle" data-i18n="usersOwnPwdTitle">Change my password</h3>
+        <button type="button" class="modal-x" data-own-modal-close aria-label="Close"><i class="fas fa-times"></i></button>
+      </div>
+      <p class="hint" style="margin-bottom:12px;" data-i18n="usersOwnPwdHint">Enter your current password, then choose a new one (min. 6 characters).</p>
+      <div id="ownPwdModalAlert" class="alert alert-err" style="display:none;"></div>
+      <div class="modal-body" autocomplete="off">
+        <div class="field">
+          <label data-i18n="usersCurrentPwd">Current password</label>
+          <input id="ownCurrentPassword" class="js-no-autofill" type="password" autocomplete="off" readonly/>
+        </div>
+        <div class="field">
+          <label data-i18n="usersNewPwd">New password</label>
+          <input id="ownNewPassword" class="js-no-autofill" type="password" autocomplete="off" readonly/>
+        </div>
+        <div class="field field-last">
+          <label data-i18n="usersConfirmPwd">Confirm new password</label>
+          <input id="ownNewPasswordConfirm" class="js-no-autofill" type="password" autocomplete="off" readonly/>
+        </div>
+      </div>
+      <div class="modal-foot">
+        <button type="button" class="btn btn-ghost" data-own-modal-close data-i18n="modalCancel">Cancel</button>
+        <button type="button" class="btn" id="changeOwnPwdBtn"><i class="fas fa-lock"></i> <span data-i18n="usersUpdatePwd">Update password</span></button>
+      </div>
+    </div>
+  </div>
+
+  <div id="addAdminModal" class="modal" hidden>
+    <div class="modal-backdrop" data-add-admin-modal-close></div>
+    <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="addAdminModalTitle">
+      <div class="modal-head">
+        <h3 id="addAdminModalTitle" data-i18n="usersCreateTitle">Add admin account</h3>
+        <button type="button" class="modal-x" data-add-admin-modal-close aria-label="Close"><i class="fas fa-times"></i></button>
+      </div>
+      <p class="hint" style="margin-bottom:12px;" data-i18n="usersCreateHint">Create another admin login with email and password.</p>
+      <div id="addAdminModalAlert" class="alert alert-err" style="display:none;"></div>
+      <div class="modal-body" autocomplete="off">
+        <div class="field">
+          <label data-i18n="usersEmail">Email</label>
+          <input id="newAdminEmail" type="email" autocomplete="off"/>
+        </div>
+        <div class="field">
+          <label data-i18n="usersNewPwd">Password</label>
+          <input id="newAdminPassword" class="js-no-autofill" type="password" autocomplete="off" readonly/>
+        </div>
+        <div class="field field-last">
+          <label data-i18n="usersConfirmPwd">Confirm password</label>
+          <input id="newAdminPasswordConfirm" class="js-no-autofill" type="password" autocomplete="off" readonly/>
+        </div>
+      </div>
+      <div class="modal-foot">
+        <button type="button" class="btn btn-ghost" data-add-admin-modal-close data-i18n="modalCancel">Cancel</button>
+        <button type="button" class="btn" id="createAdminBtn"><i class="fas fa-user-plus"></i> <span data-i18n="usersCreateBtn">Create account</span></button>
+      </div>
+    </div>
+  </div>
+
+  <div id="userPwdModal" class="modal" hidden>
+    <div class="modal-backdrop" data-user-modal-close></div>
+    <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="userPwdModalTitle">
+      <div class="modal-head">
+        <h3 id="userPwdModalTitle">Change password</h3>
+        <button type="button" class="modal-x" data-user-modal-close aria-label="Close"><i class="fas fa-times"></i></button>
+      </div>
+      <div id="userPwdModalAlert" class="alert alert-err" style="display:none;"></div>
+      <div class="modal-body">
+        <div class="field">
+          <label data-i18n="usersNewPwd">New password</label>
+          <input id="userPwdNew" class="js-no-autofill" type="password" autocomplete="off" readonly/>
+        </div>
+        <div class="field field-last">
+          <label data-i18n="usersConfirmPwd">Confirm password</label>
+          <input id="userPwdConfirm" class="js-no-autofill" type="password" autocomplete="off" readonly/>
+        </div>
+      </div>
+      <div class="modal-foot">
+        <button type="button" class="btn btn-ghost" data-user-modal-close data-i18n="modalCancel">Cancel</button>
+        <button type="button" class="btn" id="userPwdSaveBtn"><i class="fas fa-save"></i> <span data-i18n="usersUpdatePwd">Update password</span></button>
+      </div>
+    </div>
+  </div>
+
+  <div id="itemModal" class="modal" hidden>
+    <div class="modal-backdrop" data-modal-close></div>
+    <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal-head">
+        <h3 id="modalTitle">Add</h3>
+        <button type="button" class="modal-x" data-modal-close aria-label="Close"><i class="fas fa-times"></i></button>
+      </div>
+      <p class="hint" id="modalHint" style="margin-bottom:12px;"></p>
+      <div id="modalAlert" class="alert alert-err"></div>
+      <div class="modal-body" id="modalBody"></div>
+      <div class="modal-foot">
+        <button type="button" class="btn btn-ghost" data-modal-close id="modalCancelBtn">Cancel</button>
+        <button type="button" class="btn" id="modalSaveBtn"><i class="fas fa-save"></i> <span id="modalSaveLabel">Save</span></button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-functions-compat.js"></script>
+  <script src="../js/firebase-config.js"></script>
+  <script src="../js/cloudinary-config.js"></script>
+  <script src="../js/cms-defaults.js"></script>
+  <script src="js/admin-i18n.js"></script>
+  <script src="js/admin-translate.js"></script>
+  <script src="js/admin-cloudinary.js"></script>
+  <script src="js/admin-password-toggle.js"></script>
+  <script src="js/admin-users.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

@@ -173,73 +173,16 @@ document.querySelectorAll('.catcard').forEach(function(card) {
 
 
 var menuPop = document.getElementById('menuPop');
-var mpQty = 1;
 
-if (menuPop) {
-
-function openMenuPop(card) {
-    var img = card.getAttribute('data-img');
-    var title = card.getAttribute('data-title');
-    var cat = card.getAttribute('data-cat');
-    var price = card.getAttribute('data-price');
-    var old = card.getAttribute('data-old');
-    var rating = parseFloat(card.getAttribute('data-rating'));
-    var reviews = card.getAttribute('data-reviews');
-    var cal = card.getAttribute('data-cal');
-    var time = card.getAttribute('data-time');
-    var desc = card.getAttribute('data-desc');
-    var tags = card.getAttribute('data-tags') || '';
-
-    document.getElementById('mpImg').setAttribute('src', img);
-    document.getElementById('mpCat').textContent = cat;
-    document.getElementById('mpTitle').textContent = title;
-
-    var full = Math.round(rating),
-        empty = 5 - full;
-    document.getElementById('mpStars').innerHTML =
-        '<i class="fas fa-star"></i>'.repeat(full) + 'â˜†'.repeat(empty) +
-        ' <span style="color:#bbb;font-size:.78rem;">' + rating + ' (' + reviews + ' reviews)</span>';
-
-    document.getElementById('mpDesc').textContent = desc;
-
-    document.getElementById('mpPrice').innerHTML =
-        price + (old ? '<small style="color:#ccc;text-decoration:line-through;margin-left:8px;font-size:1rem;">' + old + '</small>' : '');
-
-    document.getElementById('mpMeta').innerHTML =
-        '<div class="mpm"><div class="mpmv">Authentic</div><div class="mpml">Quality</div></div>' +
-        '<div class="mpm"><div class="mpmv">Hanoi</div><div class="mpml">Delivery</div></div>' +
-        '<div class="mpm"><div class="mpmv">' + (isNaN(rating) ? '5.0' : rating) + '/5</div><div class="mpml">Rating</div></div>';
-
-    document.getElementById('mpTags').innerHTML =
-        tags.split(',').filter(Boolean).map(function(t) {
-            return '<span class="mptag">' + t.trim() + '</span>';
-        }).join('');
-
-    mpQty = 1;
-    document.getElementById('mpQnum').textContent = 1;
-    document.getElementById('mpAddCart').innerHTML = '<i class="fas fa-envelope"></i> Enquire Now';
-    document.getElementById('mpAddCart').style.background = '';
-
-    menuPop.classList.add('open');
-    document.body.style.overflow = 'hidden';
+// Service detail popup disabled — cards are display-only
+function closeMenuPop() {
+    if (!menuPop) return;
+    menuPop.classList.remove('open');
+    document.body.style.overflow = '';
 }
+window.openMenuPop = function() { /* disabled */ };
+window.closeMenuPop = closeMenuPop;
 
-// Card click open popup
-document.querySelectorAll('.mcard').forEach(function(card) {
-    card.addEventListener('click', function() {
-        openMenuPop(this);
-    });
-});
-
-// + button  open popup (stop propagation to avoid double firing)
-document.querySelectorAll('.madd').forEach(function(btn) {
-    btn.addEventListener('click', function(e) {
-        e.stopPropagation();
-        openMenuPop(this.closest('.mcard'));
-    });
-});
-
-// Heart toggle (no popup)
 document.querySelectorAll('.mhrt').forEach(function(btn) {
     btn.addEventListener('click', function(e) {
         e.stopPropagation();
@@ -249,40 +192,6 @@ document.querySelectorAll('.mhrt').forEach(function(btn) {
         this.style.color = ico.classList.contains('fas') ? 'var(--primary)' : '#ccc';
     });
 });
-
-// Close popup
-document.getElementById('mpClose').addEventListener('click', closeMenuPop);
-menuPop.addEventListener('click', function(e) {
-    if (e.target === this) closeMenuPop();
-});
-
-function closeMenuPop() {
-    menuPop.classList.remove('open');
-    document.body.style.overflow = '';
-}
-
-// Qty +/-
-document.getElementById('mpPlus').addEventListener('click', function() {
-    document.getElementById('mpQnum').textContent = ++mpQty;
-});
-document.getElementById('mpMinus').addEventListener('click', function() {
-    if (mpQty > 1) document.getElementById('mpQnum').textContent = --mpQty;
-});
-
-// Enquire button
-document.getElementById('mpAddCart').addEventListener('click', function() {
-    this.innerHTML = '<i class="fas fa-check"></i> ' + (window.I18N ? I18N.t('menu.thankYou') : 'Thank you!');
-    this.style.background = 'linear-gradient(135deg,var(--green),#1a4a35)';
-    var self = this;
-    setTimeout(function() {
-        closeMenuPop();
-        self.innerHTML = '<i class="fas fa-envelope"></i><span data-i18n="menu.enquireNow">' + (window.I18N ? I18N.t('menu.enquireNow') : 'Enquire Now') + '</span>';
-        self.style.background = '';
-        scrollToSection(document.getElementById('reservation'));
-    }, 800);
-});
-
-}
 
 var contactForm = document.getElementById('contactForm');
 var inquiryType = document.getElementById('inquiryType');
@@ -531,7 +440,7 @@ document.addEventListener('keydown', function(e) {
 });
 
 
-new Swiper('.tesSwiper', {
+window.tesSwiperInstance = new Swiper('.tesSwiper', {
     slidesPerView: 1,
     spaceBetween: 22,
     loop: true,

@@ -1137,7 +1137,13 @@ section[id] {
   transition: 0.35s;
   box-shadow: none;
   border: 1px solid var(--border);
-  cursor: pointer;
+  cursor: default;
+}
+.madd {
+  display: none !important;
+}
+#menuPop {
+  display: none !important;
 }
 .mcard:hover {
   transform: translateY(-4px);
@@ -2308,6 +2314,22 @@ footer .fsub {
   font-size: 0.8rem;
   margin: 0;
   text-align: center;
+}
+.fbot-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+.fbot-admin {
+  color: rgba(255, 255, 255, 0.38);
+  font-size: 0.72rem;
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  transition: color 0.2s ease;
+}
+.fbot-admin:hover {
+  color: rgba(255, 255, 255, 0.72);
 }
 .fbot span {
   color: rgba(255, 255, 255, 0.85);
