@@ -31,9 +31,9 @@ var I18N_DATA = {
             enquire: 'Enquire', viewDetails: 'View Details', enquireNow: 'Enquire Now', inquiry: 'inquiry', thankYou: 'Thank you!'
         },
         cards: {
-            catering: { cat: 'Catering', title: 'Catering & Events', desc: 'Full German catering for celebrations, Oktoberfest & gatherings — 10–300 guests', badge: 'Main Service', tag: '10–300 guests', dataDesc: 'Catering is at the heart of German Flavors Hanoi. We create varied, individualized menus tailored to every occasion — private parties, birthdays, Oktoberfest, weddings, corporate functions, and community gatherings. Björn brings authentic German cuisine and warm hospitality to your event, for 10 to 300 guests.' },
-            products: { cat: 'Products', title: 'Authentic German Products', desc: 'Sausages, cold cuts, Leberkäse, mustard, sauerkraut & traditional specialties', badge: 'Original German', tag: 'Original German', dataDesc: 'Authentic German meats, sausages, cold cuts, Leberkäse, Kasseler, mustard, sauerkraut, artisan breads, and traditional specialties — all prepared with original recipes and high-quality ingredients. Genuine German taste, made with care in Hanoi.' },
-            delivery: { cat: 'Delivery', title: 'Home Delivery', desc: 'German delicatessen & ready-made meals — delivered across Hanoi', badge: 'Delivery', tag: 'Across Hanoi', dataDesc: 'Order German delicatessen products and ready-made meals for delivery across Hanoi. From sausages and cold cuts to freshly prepared dishes — enjoy authentic German food at home with convenient home delivery.' }
+            catering: { cat: 'Catering', title: 'Catering & Events', desc: 'Full German catering for celebrations, Oktoberfest & gatherings — 10–300 guests', badge: 'Main Service', tag: '10–300 guests' },
+            products: { cat: 'Products', title: 'Authentic German Products', desc: 'Sausages, cold cuts, Leberkäse, mustard, sauerkraut & traditional specialties', badge: 'Original German', tag: 'Original German' },
+            delivery: { cat: 'Delivery', title: 'Home Delivery', desc: 'German delicatessen & ready-made meals — delivered across Hanoi', badge: 'Delivery', tag: 'Across Hanoi' }
         },
         special: {
             tag: 'Events · Catering · Birthdays · Delivery',
@@ -152,9 +152,9 @@ var I18N_DATA = {
             enquire: 'Liên hệ', viewDetails: 'Xem chi tiết', enquireNow: 'Liên hệ ngay', inquiry: 'yêu cầu', thankYou: 'Cảm ơn!'
         },
         cards: {
-            catering: { cat: 'Catering', title: 'Catering & Sự kiện', desc: 'Catering Đức trọn gói cho lễ hội, Oktoberfest & tụ họp — 10–300 khách', badge: 'Dịch vụ chính', tag: '10–300 khách', dataDesc: 'Catering là trọng tâm của German Flavors Hanoi. Chúng tôi tạo thực đơn đa dạng, cá nhân hóa cho từng dịp — tiệc riêng, sinh nhật, Oktoberfest, đám cưới, tiệc công ty và tụ họp cộng đồng. Björn mang ẩm thực Đức chính gốc và sự hiếu khách ấm áp đến sự kiện của bạn, từ 10 đến 300 khách.' },
-            products: { cat: 'Sản phẩm', title: 'Sản phẩm Đức chính gốc', desc: 'Xúc xích, giò lạnh, Leberkäse, mù tạt, dưa cải & đặc sản truyền thống', badge: 'Đức chính gốc', tag: 'Đức chính gốc', dataDesc: 'Thịt, xúc xích, giò lạnh, Leberkäse, Kasseler, mù tạt, dưa cải, bánh mì thủ công và đặc sản truyền thống Đức — tất cả chế biến theo công thức gốc và nguyên liệu chất lượng cao. Hương vị Đức chân thực, làm bằng tâm huyết tại Hà Nội.' },
-            delivery: { cat: 'Giao hàng', title: 'Giao hàng tận nhà', desc: 'Đồ deli Đức & món ăn sẵn — giao trên toàn Hà Nội', badge: 'Giao hàng', tag: 'Toàn Hà Nội', dataDesc: 'Đặt sản phẩm deli Đức và món ăn sẵn giao tận nhà trên toàn Hà Nội. Từ xúc xích và giò lạnh đến món tươi chế biến — thưởng thức ẩm thực Đức chính gốc tại nhà với dịch vụ giao hàng tiện lợi.' }
+            catering: { cat: 'Catering', title: 'Catering & Sự kiện', desc: 'Catering Đức trọn gói cho lễ hội, Oktoberfest & tụ họp — 10–300 khách', badge: 'Dịch vụ chính', tag: '10–300 khách' },
+            products: { cat: 'Sản phẩm', title: 'Sản phẩm Đức chính gốc', desc: 'Xúc xích, giò lạnh, Leberkäse, mù tạt, dưa cải & đặc sản truyền thống', badge: 'Đức chính gốc', tag: 'Đức chính gốc' },
+            delivery: { cat: 'Giao hàng', title: 'Giao hàng tận nhà', desc: 'Đồ deli Đức & món ăn sẵn — giao trên toàn Hà Nội', badge: 'Giao hàng', tag: 'Toàn Hà Nội' }
         },
         special: {
             tag: 'Sự kiện · Catering · Sinh nhật · Giao hàng',
@@ -273,9 +273,9 @@ var I18N_DATA = {
             enquire: 'Anfragen', viewDetails: 'Details ansehen', enquireNow: 'Jetzt anfragen', inquiry: 'Anfrage', thankYou: 'Danke!'
         },
         cards: {
-            catering: { cat: 'Catering', title: 'Catering & Events', desc: 'Deutsches Full-Service-Catering für Feiern, Oktoberfest & Veranstaltungen — 10–300 Gäste', badge: 'Hauptleistung', tag: '10–300 Gäste', dataDesc: 'Catering steht im Mittelpunkt von German Flavors Hanoi. Wir erstellen vielfältige, individuelle Menüs für jeden Anlass — private Feiern, Geburtstage, Oktoberfest, Hochzeiten, Firmenveranstaltungen und Gemeinschaftsveranstaltungen. Björn bringt authentische deutsche Küche und herzliche Gastfreundschaft zu Ihrer Veranstaltung, für 10 bis 300 Gäste.' },
-            products: { cat: 'Produkte', title: 'Authentische deutsche Produkte', desc: 'Würste, Aufschnitt, Leberkäse, Senf, Sauerkraut & traditionelle Spezialitäten', badge: 'Original Deutsch', tag: 'Original Deutsch', dataDesc: 'Authentisches deutsches Fleisch, Würste, Aufschnitt, Leberkäse, Kasseler, Senf, Sauerkraut, handwerkliche Brote und traditionelle Spezialitäten — alle nach originalen Rezepten und mit hochwertigen Zutaten zubereitet. Echter deutscher Geschmack, mit Sorgfalt in Hanoi hergestellt.' },
-            delivery: { cat: 'Lieferung', title: 'Lieferung nach Hause', desc: 'Deutsche Feinkost & Fertiggerichte — geliefert in ganz Hanoi', badge: 'Lieferung', tag: 'Ganz Hanoi', dataDesc: 'Bestellen Sie deutsche Feinkostprodukte und Fertiggerichte zur Lieferung in ganz Hanoi. Von Würsten und Aufschnitt bis zu frisch zubereiteten Gerichten — genießen Sie authentische deutsche Küche zu Hause mit bequemer Lieferung.' }
+            catering: { cat: 'Catering', title: 'Catering & Events', desc: 'Deutsches Full-Service-Catering für Feiern, Oktoberfest & Veranstaltungen — 10–300 Gäste', badge: 'Hauptleistung', tag: '10–300 Gäste' },
+            products: { cat: 'Produkte', title: 'Authentische deutsche Produkte', desc: 'Würste, Aufschnitt, Leberkäse, Senf, Sauerkraut & traditionelle Spezialitäten', badge: 'Original Deutsch', tag: 'Original Deutsch' },
+            delivery: { cat: 'Lieferung', title: 'Lieferung nach Hause', desc: 'Deutsche Feinkost & Fertiggerichte — geliefert in ganz Hanoi', badge: 'Lieferung', tag: 'Ganz Hanoi' }
         },
         special: {
             tag: 'Events · Catering · Geburtstage · Lieferung',
@@ -423,18 +423,14 @@ function applyI18n() {
         if (!card) return;
         card.setAttribute('data-title', c.title);
         card.setAttribute('data-cat', c.cat);
-        card.setAttribute('data-desc', c.dataDesc);
-        card.setAttribute('data-price', lang.menu.enquire);
         var mcat = wrap.querySelector('.mcat');
         var mtit = wrap.querySelector('.mtit');
         var mdesc = wrap.querySelector('.mdesc');
-        var mprice = wrap.querySelector('.mprice');
-        var mtag = wrap.querySelector('.mstars span');
+        var mtag = wrap.querySelector('.mstars-tag');
         var badge = wrap.querySelector('.mbdg');
         if (mcat) mcat.textContent = c.cat;
         if (mtit) mtit.textContent = c.title;
         if (mdesc) mdesc.textContent = c.desc;
-        if (mprice) mprice.textContent = lang.menu.enquire;
         if (mtag) mtag.textContent = c.tag;
         if (badge && c.badge) {
             badge.textContent = c.badge;

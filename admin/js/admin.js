@@ -8,11 +8,11 @@
     var ABOUT_KEYS = ['p1', 'quote', 'p2', 'p3', 'p4', 'p5'];
     var SPECIAL_KEYS = ['tag', 'title', 'desc', 'btn'];
     var META_KEYS = ['title', 'desc'];
+    var HERO_KEYS = ['kicker', 'title', 'lead', 'ev', 'cat', 'bday', 'del', 'btnServices', 'btnCatering'];
     var HERO_BAR_COUNT = 4;
     var HERO_BAR_LABEL_KEYS = ['label'];
     // Chỉ field hiển thị trên card dịch vụ (popup chi tiết đã tắt)
     var SERVICE_TEXT_KEYS = ['badge', 'cat', 'title', 'desc', 'tag'];
-    var SERVICE_LEGACY_KEYS = ['dataDesc', 'tags'];
     var TESTIMONIAL_TEXT_KEYS = ['name', 'role', 'text'];
 
     var state = {
@@ -23,7 +23,7 @@
         testimonials: null,
         // One language for both admin UI + content you are typing
         lang: localStorage.getItem('gf-admin-lang') || localStorage.getItem('gf-content-lang') || 'vi',
-        currentSection: 'site',
+        currentSection: 'hero',
         modalType: null,
         modalMode: 'add',
         modalItemId: null
@@ -187,19 +187,8 @@
         return html;
     }
 
-    function mergeServiceLangPack(pack, prevItem) {
-        ['en', 'vi', 'de'].forEach(function (lang) {
-            pack[lang] = pack[lang] || {};
-            SERVICE_LEGACY_KEYS.forEach(function (key) {
-                var prev = prevItem && prevItem[lang] && prevItem[lang][key];
-                pack[lang][key] = prev != null ? prev : '';
-            });
-        });
-        return pack;
-    }
-
     /** Same markup as cms-content.js renderServices (visible card only) */
-    function buildPublicServiceCardHtml(item, lang, enquire) {
+    function buildPublicServiceCardHtml(item, lang) {
         var txt = pickLang(item, lang);
         return (
             '<div class="mcard"' +
@@ -216,11 +205,7 @@
             '<div class="mtit">' + escapeHtml(txt.title || '') + '</div>' +
             '<div class="mdesc">' + escapeHtml(txt.desc || '') + '</div>' +
             '<div class="mfoot">' +
-            '<div>' +
-            '<div class="mprice">' + escapeHtml(enquire) + '</div>' +
-            '<div class="mstars"><i class="fas fa-star"></i> <span style="color:#bbb;font-size:.7rem;">' + escapeHtml(txt.tag || '') + '</span></div>' +
-            '</div>' +
-            '<button type="button" class="madd" title="View Details"><i class="fas fa-plus"></i></button>' +
+            '<div class="mstars"><i class="fas fa-star"></i> <span class="mstars-tag">' + escapeHtml(txt.tag || '') + '</span></div>' +
             '</div></div></div>'
         );
     }
@@ -318,8 +303,18 @@
         site.heroBar = { items: items };
     }
 
+    function normalizeHero(site) {
+        var defaults = (CMS_DEFAULTS.site && CMS_DEFAULTS.site.hero) || {};
+        if (!site.hero) site.hero = clone(defaults);
+        if (!site.hero.image) site.hero.image = defaults.image || '';
+        ['en', 'vi', 'de'].forEach(function (lang) {
+            if (!site.hero[lang]) site.hero[lang] = clone(defaults[lang] || {});
+        });
+    }
+
     function normalizeSite(site) {
         if (!site) return;
+        normalizeHero(site);
         normalizeHeroBar(site);
     }
 
@@ -341,6 +336,30 @@
         }
     }
 
+    function renderHeroForm() {
+        if (!$('site-hero-title')) return;
+        var hero = state.site.hero || clone(CMS_DEFAULTS.site.hero || {});
+        setVal('site-hero-image', hero.image || '');
+        var preview = $('site-hero-imagePreview');
+        if (preview) preview.src = hero.image || '';
+        var pack = pickLang(hero, state.sourceLang);
+        setVal('site-hero-kicker', pack.kicker || '');
+        setVal('site-hero-title', pack.title || '');
+        setVal('site-hero-lead', pack.lead || '');
+        setVal('site-hero-ev', pack.ev || '');
+        setVal('site-hero-cat', pack.cat || '');
+        setVal('site-hero-bday', pack.bday || '');
+        setVal('site-hero-del', pack.del || '');
+        setVal('site-hero-btnServices', pack.btnServices || '');
+        setVal('site-hero-btnCatering', pack.btnCatering || '');
+    }
+
+    function renderHeroSection() {
+        renderHeroForm();
+        renderHeroBarValues();
+        renderHeroBarLabels();
+    }
+
     function renderSiteCommon() {
         var s = state.site;
         setVal('site-location', s.location);
@@ -354,15 +373,12 @@
         var meta = pickLang(s.meta, lang);
         setVal('site-meta-title', meta.title);
         setVal('site-meta-desc', meta.desc);
-        renderHeroBarValues();
-        renderHeroBarLabels();
     }
 
     function renderContentForms() {
         var lang = state.sourceLang;
 
-        renderHeroBarLabels();
-
+        renderHeroSection();
         renderSpecialForm();
 
         renderAboutImage();
@@ -388,7 +404,6 @@
     function renderServicesList() {
         var list = $('services-list');
         var lang = state.sourceLang;
-        var enquire = t('enquireLabel');
         var items = (state.services.items || []).slice().sort(function (a, b) {
             return (a.order || 0) - (b.order || 0);
         });
@@ -405,7 +420,7 @@
             wrap.className = 'col-sm-6 col-lg-4 mwrap admin-preview-wrap';
             wrap.setAttribute('data-id', item.id);
             wrap.innerHTML =
-                buildPublicServiceCardHtml(item, lang, enquire) +
+                buildPublicServiceCardHtml(item, lang) +
                 '<div class="admin-preview-actions">' +
                 '<button type="button" class="btn btn-sm btn-ghost js-edit-item"><i class="fas fa-pen"></i> ' + escapeHtml(t('editBtn')) + '</button>' +
                 '<button type="button" class="btn btn-sm btn-danger js-del-item"><i class="fas fa-trash"></i></button>' +
@@ -468,6 +483,7 @@
 
     function renderAll() {
         applyAdminUi();
+        renderHeroSection();
         renderSiteCommon();
         renderContentForms();
     }
@@ -486,49 +502,75 @@
         state.site.zalo = val('site-zalo');
         state.site.facebook = val('site-facebook');
         state.site.sourceLang = state.sourceLang;
+    }
 
-        if ($('site-hero-0-value')) {
-            var lang = state.sourceLang;
-            var prevItems = (state.site.heroBar && state.site.heroBar.items) || defaultHeroBarItems();
-            var items = [];
-            for (var i = 0; i < HERO_BAR_COUNT; i++) {
-                var prev = prevItems[i] || {};
-                var item = {
-                    value: val('site-hero-' + i + '-value'),
-                    en: clone(prev.en || {}),
-                    vi: clone(prev.vi || {}),
-                    de: clone(prev.de || {})
-                };
-                item[lang] = { label: val('site-hero-' + i + '-label') };
-                items.push(item);
-            }
-            state.site.heroBar = { items: items };
+    function collectHero() {
+        if (!$('site-hero-title')) return;
+        var heroLang = state.sourceLang;
+        state.site.hero = state.site.hero || clone(CMS_DEFAULTS.site.hero || {});
+        state.site.hero.image = val('site-hero-image');
+        state.site.hero[heroLang] = {
+            kicker: val('site-hero-kicker'),
+            title: val('site-hero-title'),
+            lead: val('site-hero-lead'),
+            ev: val('site-hero-ev'),
+            cat: val('site-hero-cat'),
+            bday: val('site-hero-bday'),
+            del: val('site-hero-del'),
+            btnServices: val('site-hero-btnServices'),
+            btnCatering: val('site-hero-btnCatering')
+        };
+
+        if (!$('site-hero-0-value')) return;
+        var lang = state.sourceLang;
+        var prevItems = (state.site.heroBar && state.site.heroBar.items) || defaultHeroBarItems();
+        var items = [];
+        for (var i = 0; i < HERO_BAR_COUNT; i++) {
+            var prev = prevItems[i] || {};
+            var item = {
+                value: val('site-hero-' + i + '-value'),
+                en: clone(prev.en || {}),
+                vi: clone(prev.vi || {}),
+                de: clone(prev.de || {})
+            };
+            item[lang] = { label: val('site-hero-' + i + '-label') };
+            items.push(item);
         }
+        state.site.heroBar = { items: items };
     }
 
     function collectIntoSourceLang() {
         var lang = state.sourceLang;
-        if ($('site-location')) collectSiteCommon();
+        var section = state.currentSection;
 
-        if ($('site-meta-title')) {
-            state.site.meta = state.site.meta || {};
-            state.site.meta[lang] = {
-                title: val('site-meta-title'),
-                desc: val('site-meta-desc')
-            };
+        if (section === 'site') {
+            collectSiteCommon();
+            if ($('site-meta-title')) {
+                state.site.meta = state.site.meta || {};
+                state.site.meta[lang] = {
+                    title: val('site-meta-title'),
+                    desc: val('site-meta-desc')
+                };
+            }
         }
 
-        state.about = state.about || {};
-        state.about[lang] = {};
-        ABOUT_KEYS.forEach(function (key) {
-            state.about[lang][key] = val('about-' + key);
-        });
-
-        if ($('about-image')) {
-            state.about.image = val('about-image');
+        if (section === 'hero') {
+            collectHero();
         }
 
-        if ($('special-tag')) {
+        if (section === 'about') {
+            state.about = state.about || {};
+            state.about[lang] = {};
+            ABOUT_KEYS.forEach(function (key) {
+                state.about[lang][key] = val('about-' + key);
+            });
+
+            if ($('about-image')) {
+                state.about.image = val('about-image');
+            }
+        }
+
+        if (section === 'special' && $('special-tag')) {
             state.special = state.special || clone(CMS_DEFAULTS.special);
             state.special.image = val('special-image');
             state.special[lang] = {
@@ -569,18 +611,33 @@
         });
     }
 
+    function expandHeroFromSource() {
+        var src = state.lang;
+        var heroSrc = pickLang(state.site.hero, src);
+        var prevHero = clone(state.site.hero || {});
+        return AdminTranslate.expandLangPack(heroSrc, HERO_KEYS, src, { previousPack: prevHero })
+            .then(function (heroPack) {
+                var image = state.site.hero && state.site.hero.image;
+                state.site.hero = heroPack;
+                state.site.hero.image = image != null ? image : (CMS_DEFAULTS.site.hero && CMS_DEFAULTS.site.hero.image);
+            });
+    }
+
     function expandSiteFromSource() {
         var src = state.lang;
         var metaSrc = pickLang(state.site.meta, src);
         var prevMeta = clone((state.site && state.site.meta) || {});
-        return expandHeroBarFromSource()
-            .then(function () {
-                return AdminTranslate.expandLangPack(metaSrc, META_KEYS, src, { previousPack: prevMeta });
-            })
+        return AdminTranslate.expandLangPack(metaSrc, META_KEYS, src, { previousPack: prevMeta })
             .then(function (metaPack) {
                 state.site.meta = metaPack;
                 state.site.sourceLang = src;
             });
+    }
+
+    function expandHeroSection() {
+        return expandHeroFromSource().then(function () {
+            return expandHeroBarFromSource();
+        });
     }
 
     function expandAboutFromSource() {
@@ -608,6 +665,7 @@
     }
 
     function expandSection(section) {
+        if (section === 'hero') return expandHeroSection();
         if (section === 'site') return expandSiteFromSource();
         if (section === 'about') return expandAboutFromSource();
         if (section === 'special') return expandSpecialFromSource();
@@ -677,7 +735,7 @@
     }
 
     function writeSection(section) {
-        if (section === 'site') {
+        if (section === 'hero' || section === 'site') {
             state.site.sourceLang = state.lang;
             return db.collection('content').doc('site').set(state.site);
         }
@@ -906,7 +964,6 @@
                 promise = AdminTranslate.expandLangPack(text, SERVICE_TEXT_KEYS, src, {
                     previousPack: { en: prevSvc.en, vi: prevSvc.vi, de: prevSvc.de }
                 }).then(function (pack) {
-                    mergeServiceLangPack(pack, prevSvc);
                     var idx = state.services.items.findIndex(function (x) { return x.id === prevSvc.id; });
                     state.services.items[idx] = {
                         id: prevSvc.id,
@@ -927,7 +984,6 @@
                     n++;
                 }
                 promise = AdminTranslate.expandLangPack(text, SERVICE_TEXT_KEYS, src).then(function (pack) {
-                    mergeServiceLangPack(pack, null);
                     state.services.items.push({
                         id: id,
                         order: state.services.items.length,
@@ -1092,6 +1148,7 @@
             AdminUsers.init({
                 t: t,
                 toast: toast,
+                getDb: function () { return db; },
                 getCurrentUser: function () { return firebase.auth().currentUser; }
             });
         }

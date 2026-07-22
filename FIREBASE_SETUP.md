@@ -120,45 +120,53 @@ npx firebase-tools deploy
 
 Trong Authentication → Settings → **Authorized domains**, thêm domain production.
 
-## 9. Cloud Functions — quản lý tài khoản admin
+## 9. Quản lý tài khoản admin (Firestore — **không cần Blaze**)
 
-Tạo / xóa admin và đổi mật khẩu admin khác cần **Firebase Admin SDK** (chạy trên Cloud Functions). Đổi mật khẩu **của chính bạn** hoạt động ngay trên trình duyệt (không cần Functions).
+Danh sách admin lưu trong Firestore collection **`admins`**. CMS có thể **thêm / sửa / xóa** admin trực tiếp — **không cần Cloud Functions**, không cần nâng cấp Blaze.
 
-### Yêu cầu
+| Thao tác | Cách hoạt động |
+|----------|----------------|
+| **Thêm admin** | Ghi Firestore + tạo login Firebase Auth (email/mật khẩu) |
+| **Sửa email** | Cập nhật document trong `admins` |
+| **Xóa admin** | Xóa document trong `admins` (mất quyền vào CMS) |
+| **Reset mật khẩu user khác** | Gửi email reset (Firebase Auth) |
+| **Đổi mật khẩu của bạn** | Ngay trên CMS |
 
-- Gói **Blaze** (pay-as-you-go) — Cloud Functions bắt buộc Blaze; mức free tier thường đủ cho CMS nhỏ.
-- [Firebase CLI](https://firebase.google.com/docs/cli): `npm install -g firebase-tools`
+Lần đầu vào tab **Tài khoản**, nếu collection `admins` trống, tài khoản đang đăng nhập được tự thêm làm admin.
 
-### Deploy
+### Publish Firestore rules (bắt buộc — 1 lần)
 
-Trong thư mục `sarab/`:
+Vào [Firebase Console](https://console.firebase.google.com) → project **german-flavors-hanoi** → **Firestore Database** → **Rules**.
 
-```bash
-cd sarab
-firebase login
-firebase use german-flavors-hanoi
-cd functions && npm install && cd ..
-firebase deploy --only functions
+Dán **toàn bộ** nội dung sau → **Publish**:
+
+```
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /content/{docId} {
+      allow read: if true;
+      allow write: if request.auth != null;
+    }
+    match /admins/{adminId} {
+      allow read: if request.auth != null;
+      allow write: if request.auth != null;
+    }
+  }
+}
 ```
 
-Functions deploy tại region **`asia-southeast1`**:
+Nếu thấy lỗi *Missing or insufficient permissions* trên tab Tài khoản → rules chưa có block `admins` hoặc chưa Publish.
 
-| Function | Mục đích |
-|----------|----------|
-| `listAdminUsers` | Liệt kê tài khoản admin |
-| `createAdminUser` | Tạo admin mới (email + mật khẩu) |
-| `updateAdminPassword` | Đặt mật khẩu mới cho admin |
-| `deleteAdminUser` | Xóa tài khoản admin |
+Hoặc deploy từ terminal (thư mục `sarab/`):
 
-Chỉ user **đã đăng nhập CMS** mới gọi được các function trên.
+```bash
+firebase deploy --only firestore:rules
+```
 
-### Kiểm tra
+### Cloud Functions (tùy chọn)
 
-1. Đăng nhập `/admin/index.html`
-2. Sidebar → **Tài khoản**
-3. Thử **Thêm tài khoản admin** hoặc **Đổi mật khẩu**
-
-Nếu thấy lỗi *Account management requires Cloud Functions* → chưa deploy functions hoặc deploy thất bại.
+Thư mục `functions/` vẫn có sẵn nếu sau này bạn muốn dùng Admin SDK trên server — **không bắt buộc** cho CMS hiện tại.
 
 ## Cấu trúc dữ liệu Firestore
 
@@ -170,7 +178,8 @@ content/
   services      → { items: [...] }
   testimonials  → { items: [...] }
 
-Tiêu đề mục (Our Services, Testimonials…) cố định trong code/i18n, không quản lý qua CMS.
+admins/
+  {email_id}    → { email, uid, active, createdAt, addedBy } — danh sách admin CMS
 ```
 
 ## Lưu ý

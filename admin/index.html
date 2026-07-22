@@ -27,7 +27,8 @@
           <span data-i18n="brandSub">Content Manager</span>
         </div>
       </div>
-      <button type="button" class="nav-btn active" data-section="site"><i class="fas fa-globe"></i> <span data-i18n="navSite">Website info</span></button>
+      <button type="button" class="nav-btn active" data-section="hero"><i class="fas fa-image"></i> <span data-i18n="navHero">Hero banner</span></button>
+      <button type="button" class="nav-btn" data-section="site"><i class="fas fa-globe"></i> <span data-i18n="navSite">Website info</span></button>
       <button type="button" class="nav-btn" data-section="about"><i class="fas fa-info-circle"></i> <span data-i18n="navAbout">About Us</span></button>
       <button type="button" class="nav-btn" data-section="special"><i class="fas fa-calendar-check"></i> <span data-i18n="navSpecial">Catering</span></button>
       <button type="button" class="nav-btn" data-section="services"><i class="fas fa-concierge-bell"></i> <span data-i18n="navServices">Our Services</span></button>
@@ -42,7 +43,7 @@
     <main class="main">
       <div class="topbar">
         <div class="topbar-intro">
-          <h2 id="pageTitle" data-i18n="titles.site">Website info</h2>
+          <h2 id="pageTitle" data-i18n="titles.hero">Hero banner</h2>
           <p class="hint" id="userEmail"></p>
         </div>
         <div class="actions">
@@ -63,37 +64,63 @@
 
       <div id="saveAlert" class="alert"></div>
 
-      <section class="section-pane active" id="sec-site">
+      <section class="section-pane active" id="sec-hero">
         <div class="panel panel-compact">
-          <h3 data-i18n="siteCommonTitle">Website info</h3>
+          <h3 data-i18n="heroBannerTitle">Hero banner</h3>
+          <p class="hint" style="margin-bottom:12px;" data-i18n="heroBannerHint">Main banner at the top of the homepage. Write once — other languages auto-translate when you save.</p>
+          <div class="field image-field" style="margin-bottom:14px;">
+            <label data-i18n="heroBannerImage">Background image</label>
+            <div class="image-field-row">
+              <input id="site-hero-image" type="text" placeholder="https://res.cloudinary.com/..." data-preview="site-hero-imagePreview"/>
+              <button type="button" class="btn btn-sm btn-ghost js-cloudinary-upload" data-input="site-hero-image" data-preview="site-hero-imagePreview">
+                <i class="fas fa-cloud-upload-alt"></i> <span data-i18n="cloudinaryUpload">Upload image</span>
+              </button>
+            </div>
+            <img id="site-hero-imagePreview" class="preview-img" alt=""/>
+            <p class="hint" data-i18n="cloudinaryHint">Upload to Cloudinary or paste an image URL. Save to store the link in the database.</p>
+          </div>
+          <div class="field">
+            <label data-i18n="heroBannerKicker">Kicker line</label>
+            <input id="site-hero-kicker" type="text" placeholder="German Flavors Hanoi"/>
+          </div>
+          <div class="field">
+            <label data-i18n="heroBannerTitleLabel">Headline</label>
+            <textarea id="site-hero-title" rows="3"></textarea>
+            <p class="hint" data-i18n="heroBannerTitleHint">HTML allowed: use &lt;br/&gt; for line breaks and &lt;span class=&quot;hl&quot;&gt; for highlight.</p>
+          </div>
+          <div class="field">
+            <label data-i18n="heroBannerLead">Lead text</label>
+            <textarea id="site-hero-lead" rows="3"></textarea>
+          </div>
           <div class="grid-2">
             <div class="field">
-              <label data-i18n="location">Location</label>
-              <input id="site-location" type="text"/>
+              <label data-i18n="heroBannerEv">Tag: Events</label>
+              <input id="site-hero-ev" type="text"/>
             </div>
             <div class="field">
-              <label data-i18n="facebook">Facebook URL</label>
-              <input id="site-facebook" type="url"/>
+              <label data-i18n="heroBannerCat">Tag: Catering</label>
+              <input id="site-hero-cat" type="text"/>
             </div>
             <div class="field">
-              <label data-i18n="phoneBjoernSite">Bjoern (GER/ENG)</label>
-              <input id="site-phoneBjoern" type="text" placeholder="+84 93 888 6514"/>
+              <label data-i18n="heroBannerBday">Tag: Birthdays</label>
+              <input id="site-hero-bday" type="text"/>
             </div>
             <div class="field">
-              <label data-i18n="phoneThuySite">Thuy (VIE/ENG)</label>
-              <input id="site-phoneThuy" type="text"/>
+              <label data-i18n="heroBannerDel">Tag: Delivery</label>
+              <input id="site-hero-del" type="text"/>
             </div>
             <div class="field">
-              <label data-i18n="whatsapp">WhatsApp (number, no +)</label>
-              <input id="site-whatsapp" type="text" placeholder="84938886514"/>
+              <label data-i18n="heroBannerBtnServices">Button: Our Services</label>
+              <input id="site-hero-btnServices" type="text"/>
             </div>
             <div class="field">
-              <label data-i18n="zalo">Zalo (number, no +)</label>
-              <input id="site-zalo" type="text" placeholder="84938886514"/>
+              <label data-i18n="heroBannerBtnCatering">Button: Book Catering</label>
+              <input id="site-hero-btnCatering" type="text"/>
             </div>
           </div>
 
           <h4 class="panel-sub" data-i18n="heroBarTitle">Hero stats bar</h4>
+          <p class="hint" style="margin-bottom:12px;" data-i18n="heroBarHint">Four stats shown below the hero banner on the homepage.</p>
           <div class="hero-bar-admin">
             <div class="hero-stat-block">
               <div class="field">
@@ -130,10 +157,42 @@
                 <label data-i18n="heroBarValue">Value</label>
                 <input id="site-hero-3-value" type="text" placeholder="GER · VIE · ENG"/>
               </div>
-              <div class="field">
+              <div class="field field-last">
                 <label data-i18n="heroBarLabel">Label</label>
                 <input id="site-hero-3-label" type="text"/>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-pane" id="sec-site">
+        <div class="panel panel-compact">
+          <h3 data-i18n="siteCommonTitle">Website info</h3>
+          <div class="grid-2">
+            <div class="field">
+              <label data-i18n="location">Location</label>
+              <input id="site-location" type="text"/>
+            </div>
+            <div class="field">
+              <label data-i18n="facebook">Facebook URL</label>
+              <input id="site-facebook" type="url"/>
+            </div>
+            <div class="field">
+              <label data-i18n="phoneBjoernSite">Bjoern (GER/ENG)</label>
+              <input id="site-phoneBjoern" type="text" placeholder="+84 93 888 6514"/>
+            </div>
+            <div class="field">
+              <label data-i18n="phoneThuySite">Thuy (VIE/ENG)</label>
+              <input id="site-phoneThuy" type="text"/>
+            </div>
+            <div class="field">
+              <label data-i18n="whatsapp">WhatsApp (number, no +)</label>
+              <input id="site-whatsapp" type="text" placeholder="84938886514"/>
+            </div>
+            <div class="field">
+              <label data-i18n="zalo">Zalo (number, no +)</label>
+              <input id="site-zalo" type="text" placeholder="84938886514"/>
             </div>
           </div>
 
@@ -224,11 +283,18 @@
       </section>
 
       <section class="section-pane" id="sec-accounts">
-        <div id="accountsAlert" class="alert" style="display:none;"></div>
+        <div id="accountsAlert" class="alert"></div>
 
         <div class="panel panel-accounts">
-          <h3 data-i18n="usersListTitle">Admin accounts</h3>
-          <p class="hint accounts-hint" data-i18n="usersListHint">All admin login accounts. You can reset another admin&apos;s password or remove their access.</p>
+          <div class="accounts-panel-head">
+            <div>
+              <h3 data-i18n="usersListTitle">Admin accounts</h3>
+              <p class="hint accounts-hint" data-i18n="usersListHint">All admin login accounts. You can edit or remove other admins.</p>
+            </div>
+            <button type="button" class="btn btn-sm btn-ghost" id="accountsRefreshBtn">
+              <i class="fas fa-sync"></i> <span data-i18n="usersRefresh">Refresh</span>
+            </button>
+          </div>
           <div id="accountsList" class="admin-users-list"></div>
         </div>
       </section>
@@ -245,7 +311,7 @@
         <button type="button" class="modal-x" data-own-modal-close aria-label="Close"><i class="fas fa-times"></i></button>
       </div>
       <p class="hint" style="margin-bottom:12px;" data-i18n="usersOwnPwdHint">Enter your current password, then choose a new one (min. 6 characters).</p>
-      <div id="ownPwdModalAlert" class="alert alert-err" style="display:none;"></div>
+      <div id="ownPwdModalAlert" class="alert alert-err"></div>
       <div class="modal-body" autocomplete="off">
         <div class="field">
           <label data-i18n="usersCurrentPwd">Current password</label>
@@ -275,7 +341,7 @@
         <button type="button" class="modal-x" data-add-admin-modal-close aria-label="Close"><i class="fas fa-times"></i></button>
       </div>
       <p class="hint" style="margin-bottom:12px;" data-i18n="usersCreateHint">Create another admin login with email and password.</p>
-      <div id="addAdminModalAlert" class="alert alert-err" style="display:none;"></div>
+      <div id="addAdminModalAlert" class="alert alert-err"></div>
       <div class="modal-body" autocomplete="off">
         <div class="field">
           <label data-i18n="usersEmail">Email</label>
@@ -297,27 +363,24 @@
     </div>
   </div>
 
-  <div id="userPwdModal" class="modal" hidden>
-    <div class="modal-backdrop" data-user-modal-close></div>
-    <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="userPwdModalTitle">
+  <div id="editUserModal" class="modal" hidden>
+    <div class="modal-backdrop" data-edit-user-modal-close></div>
+    <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="editUserModalTitle">
       <div class="modal-head">
-        <h3 id="userPwdModalTitle">Change password</h3>
-        <button type="button" class="modal-x" data-user-modal-close aria-label="Close"><i class="fas fa-times"></i></button>
+        <h3 id="editUserModalTitle" data-i18n="usersEditTitle">Edit account</h3>
+        <button type="button" class="modal-x" data-edit-user-modal-close aria-label="Close"><i class="fas fa-times"></i></button>
       </div>
-      <div id="userPwdModalAlert" class="alert alert-err" style="display:none;"></div>
-      <div class="modal-body">
-        <div class="field">
-          <label data-i18n="usersNewPwd">New password</label>
-          <input id="userPwdNew" class="js-no-autofill" type="password" autocomplete="off" readonly/>
-        </div>
+      <p class="hint" style="margin-bottom:12px;" data-i18n="usersEditHint">Change the admin email in the list. Use &quot;Send reset email&quot; to reset another user&apos;s password.</p>
+      <div id="editUserModalAlert" class="alert alert-err"></div>
+      <div class="modal-body" autocomplete="off">
         <div class="field field-last">
-          <label data-i18n="usersConfirmPwd">Confirm password</label>
-          <input id="userPwdConfirm" class="js-no-autofill" type="password" autocomplete="off" readonly/>
+          <label data-i18n="usersEmail">Email</label>
+          <input id="editUserEmail" type="email" autocomplete="off"/>
         </div>
       </div>
       <div class="modal-foot">
-        <button type="button" class="btn btn-ghost" data-user-modal-close data-i18n="modalCancel">Cancel</button>
-        <button type="button" class="btn" id="userPwdSaveBtn"><i class="fas fa-save"></i> <span data-i18n="usersUpdatePwd">Update password</span></button>
+        <button type="button" class="btn btn-ghost" data-edit-user-modal-close data-i18n="modalCancel">Cancel</button>
+        <button type="button" class="btn" id="editUserSaveBtn"><i class="fas fa-save"></i> <span data-i18n="usersSaveEdit">Save changes</span></button>
       </div>
     </div>
   </div>
@@ -342,7 +405,6 @@
   <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-functions-compat.js"></script>
   <script src="../js/firebase-config.js"></script>
   <script src="../js/cloudinary-config.js"></script>
   <script src="../js/cms-defaults.js"></script>

@@ -1223,10 +1223,11 @@ section[id] {
   font-family: "Source Sans 3", sans-serif;
 }
 .mdesc {
-  font-size: 0.78rem;
-  color: #aaa;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #666;
   margin-bottom: 13px;
-  line-height: 1.5;
+  line-height: 1.55;
 }
 .mfoot {
   display: flex;
@@ -1247,8 +1248,19 @@ section[id] {
   margin-left: 5px;
 }
 .mstars {
-  font-size: 0.73rem;
-  color: var(--accent-gold);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.8rem;
+}
+.mstars .fa-star {
+  color: #f5b301;
+  font-size: 0.85rem;
+}
+.mstars-tag {
+  color: #1a1a1a;
+  font-weight: 700;
+  font-size: 0.8rem;
 }
 /* FIX 4 â€” Plus button opens detail popup */
 .madd {

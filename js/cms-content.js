@@ -30,6 +30,10 @@
                 I18N_DATA[lang].meta = deepMerge(I18N_DATA[lang].meta || {}, data.site.meta[lang]);
             }
 
+            if (data.site && data.site.hero && data.site.hero[lang]) {
+                I18N_DATA[lang].hero = deepMerge(I18N_DATA[lang].hero || {}, data.site.hero[lang]);
+            }
+
             if (data.site && data.site.heroBar && data.site.heroBar.items) {
                 I18N_DATA[lang].hero = I18N_DATA[lang].hero || {};
                 var statKeys = ['stat1', 'stat2', 'stat3', 'stat4'];
@@ -108,9 +112,16 @@
         if (aboutImg) aboutImg.src = url;
     }
 
+    function applyHeroBanner(site) {
+        if (!site || !site.hero || !site.hero.image) return;
+        var img = document.getElementById('hero-bg-image') || document.querySelector('#hero .hero-bg img');
+        if (img) img.src = site.hero.image;
+    }
+
     function applySiteInfo(site) {
         if (!site) return;
 
+        applyHeroBanner(site);
         applyHeroBar(site);
 
         document.querySelectorAll('.bname').forEach(function (el) {
@@ -186,8 +197,6 @@
         var items = services.items.slice().sort(function (a, b) {
             return (a.order || 0) - (b.order || 0);
         });
-        var enquire = (window.I18N && I18N.t('menu.enquire')) || 'Enquire';
-
         grid.innerHTML = items.map(function (item, i) {
             var t = item[lang] || item.en || {};
             var delay = i ? ' data-aos-delay="' + (i * 80) + '"' : '';
@@ -196,12 +205,7 @@
                 '<div class="mcard"' +
                 ' data-img="' + esc(item.image || '') + '"' +
                 ' data-title="' + esc(t.title || '') + '"' +
-                ' data-cat="' + esc(t.cat || '') + '"' +
-                ' data-price="' + esc(enquire) + '" data-old=""' +
-                ' data-rating="5.0" data-reviews="—"' +
-                ' data-cal="—" data-time="—"' +
-                ' data-desc="' + esc(t.dataDesc || '') + '"' +
-                ' data-tags="' + esc(t.tags || '') + '">' +
+                ' data-cat="' + esc(t.cat || '') + '">' +
                 '<div class="mimg">' +
                 '<img src="' + esc(item.image || '') + '" alt="' + esc(t.title || '') + '"/>' +
                 '<div class="mbdg">' + esc(t.badge || '') + '</div>' +
@@ -212,10 +216,7 @@
                 '<div class="mtit">' + esc(t.title || '') + '</div>' +
                 '<div class="mdesc">' + esc(t.desc || '') + '</div>' +
                 '<div class="mfoot">' +
-                '<div>' +
-                '<div class="mprice">' + esc(enquire) + '</div>' +
-                '<div class="mstars"><i class="fas fa-star"></i> <span style="color:#bbb;font-size:.7rem;">' + esc(t.tag || '') + '</span></div>' +
-                '</div>' +
+                '<div class="mstars"><i class="fas fa-star"></i> <span class="mstars-tag">' + esc(t.tag || '') + '</span></div>' +
                 '</div></div></div></div>'
             );
         }).join('');

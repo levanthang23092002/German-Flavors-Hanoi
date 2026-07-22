@@ -88,6 +88,40 @@ exports.updateAdminPassword = functions.region(REGION).https.onCall(async (data,
     }
 });
 
+exports.updateAdminUser = functions.region(REGION).https.onCall(async (data, context) => {
+    assertAuth(context);
+    const uid = data && data.uid;
+    if (!uid || typeof uid !== 'string') {
+        throw new functions.https.HttpsError('invalid-argument', 'User ID required.');
+    }
+
+    const updates = {};
+    if (data && data.email) {
+        updates.email = validateEmail(data.email);
+    }
+    if (data && data.password) {
+        validatePassword(data.password);
+        updates.password = data.password;
+    }
+    if (!Object.keys(updates).length) {
+        throw new functions.https.HttpsError('invalid-argument', 'Email or password required.');
+    }
+
+    try {
+        await admin.auth().updateUser(uid, updates);
+        const user = await admin.auth().getUser(uid);
+        return mapUser(user);
+    } catch (err) {
+        if (err.code === 'auth/user-not-found') {
+            throw new functions.https.HttpsError('not-found', 'User not found.');
+        }
+        if (err.code === 'auth/email-already-exists') {
+            throw new functions.https.HttpsError('already-exists', 'Email already in use.');
+        }
+        throw new functions.https.HttpsError('internal', err.message || 'Could not update user.');
+    }
+});
+
 exports.deleteAdminUser = functions.region(REGION).https.onCall(async (data, context) => {
     assertAuth(context);
     const uid = data && data.uid;

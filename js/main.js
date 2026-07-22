@@ -172,17 +172,6 @@ document.querySelectorAll('.catcard').forEach(function(card) {
 });
 
 
-var menuPop = document.getElementById('menuPop');
-
-// Service detail popup disabled — cards are display-only
-function closeMenuPop() {
-    if (!menuPop) return;
-    menuPop.classList.remove('open');
-    document.body.style.overflow = '';
-}
-window.openMenuPop = function() { /* disabled */ };
-window.closeMenuPop = closeMenuPop;
-
 document.querySelectorAll('.mhrt').forEach(function(btn) {
     btn.addEventListener('click', function(e) {
         e.stopPropagation();
@@ -239,8 +228,6 @@ if (inquiryType) {
 
 window.onI18nApplied = function() {
     toggleInquiryFields();
-    var mpLbl = document.getElementById('mpInquiryLbl');
-    if (mpLbl && window.I18N) mpLbl.textContent = I18N.t('menu.inquiry');
 };
 
 function setResBtnLoading(loading) {
@@ -434,7 +421,6 @@ if (contactForm) {
 document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') {
         closeSearch();
-        if (menuPop) closeMenuPop();
         if (typeof $.magnificPopup !== 'undefined') $.magnificPopup.close();
     }
 });

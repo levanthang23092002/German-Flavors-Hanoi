@@ -43,7 +43,9 @@
   <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
   <script src="js/admin-password-toggle.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
   <script src="../js/firebase-config.js"></script>
+  <script src="js/admin-users.js"></script>
   <script>
     if (window.AdminPasswordToggle) AdminPasswordToggle.init(document);
     (function () {
@@ -63,6 +65,14 @@
       }
       warnEl.classList.remove('show');
 
+      var db = firebase.firestore();
+      if (window.AdminUsers) {
+        AdminUsers.init({
+          getDb: function () { return db; },
+          getCurrentUser: function () { return firebase.auth().currentUser; }
+        });
+      }
+
       firebase.auth().onAuthStateChanged(function (user) {
         if (user) location.replace('index.html');
       });
@@ -75,11 +85,20 @@
         var email = document.getElementById('email').value.trim();
         var password = document.getElementById('password').value;
         firebase.auth().signInWithEmailAndPassword(email, password)
+          .then(function (cred) {
+            if (window.AdminUsers && AdminUsers.ensureAdminAccess) {
+              return AdminUsers.ensureAdminAccess(cred.user);
+            }
+          })
           .then(function () {
+            if (!firebase.auth().currentUser) {
+              throw { code: 'not-admin' };
+            }
             location.replace('index.html');
           })
           .catch(function (err) {
             var map = {
+              'not-admin': 'Tài khoản này không có quyền admin.',
               'auth/invalid-email': 'Email không hợp lệ.',
               'auth/user-disabled': 'Tài khoản đã bị khóa.',
               'auth/user-not-found': 'Sai email hoặc mật khẩu.',
