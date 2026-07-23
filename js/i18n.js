@@ -1,6 +1,6 @@
 var I18N_LANG = localStorage.getItem('gf-lang') || 'en';
 var SITE_ORIGIN = 'https://germanflavorshanoi.com';
-var DEFAULT_OG_IMAGE = SITE_ORIGIN + '/img/german/catering.jpg';
+var DEFAULT_OG_IMAGE = SITE_ORIGIN + '/img/favicon.png';
 
 var I18N_DATA = {
     en: {

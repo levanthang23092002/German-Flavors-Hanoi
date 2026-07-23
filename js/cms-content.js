@@ -203,7 +203,7 @@
             applySocialMeta({
                 title: metaPack && metaPack.shareTitle ? metaPack.shareTitle : undefined,
                 desc: metaPack && metaPack.shareDesc ? metaPack.shareDesc : (metaPack && metaPack.desc),
-                image: site.ogImage || (site.hero && site.hero.image) || undefined
+                image: site.ogImage || 'img/favicon.png'
             });
         }
     }
