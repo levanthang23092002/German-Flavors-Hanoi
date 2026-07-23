@@ -246,7 +246,49 @@
     function renderProducts(products) {
         if (!products || !products.items) return;
         renderCatalogGrid('pgrid', products.items);
+        renderFormProductPicker(products);
     }
+
+    function productPickerLabel(item, lang) {
+        var pack = item[lang] || item.en || {};
+        return pack.title || item.id || '';
+    }
+
+    function renderFormProductPicker(products) {
+        var list = document.getElementById('menuMultiList');
+        if (!list) return;
+
+        var lang = (window.I18N && I18N.getLang()) || localStorage.getItem('gf-lang') || 'en';
+        var selected = {};
+        list.querySelectorAll('input[name="menu_item"]:checked').forEach(function(cb) {
+            selected[cb.value] = true;
+        });
+
+        var items = (products && products.items) ? products.items.slice().sort(function(a, b) {
+            return (a.order || 0) - (b.order || 0);
+        }) : [];
+
+        if (!items.length) {
+            var emptyMsg = (window.I18N && I18N.t('reservation.menuMultiEmpty')) || 'No products yet — describe in your message';
+            list.innerHTML = '<p class="menu-multi-empty">' + esc(emptyMsg) + '</p>';
+        } else {
+            list.innerHTML = items.map(function(item) {
+                var label = productPickerLabel(item, lang);
+                var checked = selected[item.id] ? ' checked' : '';
+                return (
+                    '<label class="menu-multi-opt">' +
+                    '<input type="checkbox" name="menu_item" value="' + esc(item.id) + '"' + checked + '/>' +
+                    '<span>' + esc(label) + '</span>' +
+                    '</label>'
+                );
+            }).join('');
+        }
+
+        if (typeof window.updateMenuMultiSummary === 'function') window.updateMenuMultiSummary();
+        if (typeof window.bindMenuMultiEvents === 'function') window.bindMenuMultiEvents();
+    }
+
+    window.renderFormProductPicker = renderFormProductPicker;
 
     function bindServiceCards() {
         document.querySelectorAll('.mcard').forEach(function (card) {
@@ -391,7 +433,9 @@
         // Services/testimonials text updated via I18N for fixed cards;
         // if dynamically rendered, refresh cards from CMS data for current lang
         if (CMS.data.services) renderServices(CMS.data.services);
-        if (CMS.data.products) renderProducts(CMS.data.products);
+        if (CMS.data.products) {
+            renderProducts(CMS.data.products);
+        }
         if (CMS.data.testimonials) renderTestimonials(CMS.data.testimonials);
         if (CMS.data.site) applySiteInfo(CMS.data.site);
         if (CMS.data.about || CMS.data.site) applyAboutImage(CMS.data.about, CMS.data.site);

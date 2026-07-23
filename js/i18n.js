@@ -88,23 +88,52 @@ var I18N_DATA = {
         },
         reservation: {
             lbl: 'Get In Touch', title: 'Catering, Orders & <span>Delivery</span>',
-            intro: 'Book catering for your event (10–300 guests), order authentic German products, or arrange home delivery across Hanoi.',
+            intro: 'Ask about prices, products, stock, catering or delivery — we will reply by phone or WhatsApp.',
             talk: 'Contact Us', talkSub: 'Scan the QR code to call or message us on WhatsApp / Zalo.',
             location: 'Location', delivery: 'Delivery', deliveryVal: 'Available across Hanoi',
             facebookLbl: 'Facebook', facebook: 'German Flavors Hanoi',
-            inquiryType: 'Service *', eventDate: 'Event Date *', fullName: 'Full Name *', phone: 'Phone Number *',
-            email: 'Email Address *', guests: 'Number of Guests *', msgEvent: 'Event Details & Menu Requests',
-            msgProducts: 'Product Request *', msgDelivery: 'Delivery Details *',
-            msgGeneral: 'Your Message *', placeholderName: 'Your name', placeholderPhone: '+84 ...',
-            placeholderEmail: 'you@email.com', placeholderEvent: 'Tell us about your event, dietary needs, preferred dishes...',
-            placeholderProducts: 'Which products would you like? Sausages, cold cuts, quantities...',
-            placeholderDelivery: 'What would you like delivered? Your area in Hanoi, preferred date/time...',
-            placeholderGeneral: 'Write your message here...', submit: 'Submit Request', submitting: 'Submitting...',
+            purpose: 'What do you need help with? *',
+            purposeHint: 'Pick the closest option — explain details in your message below.',
+            purposeChoose: '— Please select —',
+            purposeOpts: {
+                quote: 'Get a price quote',
+                availability: 'Check stock / availability',
+                advice: 'Help me choose products',
+                catering: 'Book catering for an event',
+                order: 'Order products & home delivery',
+                other: 'Other question'
+            },
+            eventDate: 'Event date *', preferredDate: 'When do you need it? (optional)',
+            fullName: 'Full Name *', phone: 'Phone / WhatsApp / Zalo *',
+            email: 'Email (optional)', guests: 'Number of guests *',
+            district: 'Area in Hanoi *', districtOptional: 'Area in Hanoi (optional)',
+            menuPickCatering: 'Select dishes *',
+            menuPickOrder: 'Select products *',
+            menuPickQuote: 'Products to quote *',
+            menuPickAvailability: 'Products to check *',
+            menuChoose: '— Select products —',
+            menuSelectedOne: '1 item selected',
+            menuSelectedMany: '{n} items selected',
+            menuMultiEmpty: 'No products yet — describe in your message',
+            errorNoMenu: 'Please select at least one product.',
+            msgLabel: 'Your message *',
+            msgNotesCatering: 'Additional notes (optional)',
+            msgNotesOrder: 'Quantities & notes *',
+            msgNotesQuote: 'Quantity & details (optional)',
+            msgNotesAvailability: 'When needed & notes (optional)',
+            placeholderName: 'Your name', placeholderPhone: '+84 ...', placeholderEmail: 'you@email.com',
+            placeholderDistrict: 'e.g. Cau Giay, Tay Ho, Hoang Mai...',
+            placeholderQuote: 'Quantity, delivery area if any, other details...',
+            placeholderAvailability: 'When do you need them, quantity if known...',
+            placeholderAdvice: 'Who is it for, how many people, any preferences? We will suggest suitable products.',
+            placeholderEvent: 'Event type, dietary needs, budget, special requests...',
+            placeholderOrder: 'Quantities per item, delivery notes, preferred time...',
+            placeholderOther: 'Write your question here...',
+            submit: 'Send message', submitting: 'Sending...',
             success: 'Request received! We\'ll get back to you as soon as possible.',
             error: 'Something went wrong. Please try again or contact us by phone.',
             errorFile: 'Please open this site through a web server (http://localhost), not as a local file, to submit the form.',
             errorSetup: 'Email is not set up yet. Get a free Access Key at web3forms.com (use bjoern@germanflavorshanoi.com) and paste it into js/form-config.js.',
-            opts: { catering: 'Catering & Events', products: 'Authentic German Products', delivery: 'Home Delivery' },
             guestOpts: ['10 – 20 guests', '21 – 50 guests', '51 – 100 guests', '101 – 200 guests', '201 – 300 guests', '300+ guests']
         },
         search: {
@@ -213,23 +242,52 @@ var I18N_DATA = {
         },
         reservation: {
             lbl: 'Liên hệ', title: 'Catering, đặt hàng & <span>giao tận nhà</span>',
-            intro: 'Đặt catering cho sự kiện (10–300 khách), đặt sản phẩm Đức chính gốc hoặc sắp xếp giao hàng tận nhà trên toàn Hà Nội.',
+            intro: 'Hỏi giá, sản phẩm, còn hàng, catering hoặc giao tận nhà — chúng tôi sẽ phản hồi qua điện thoại hoặc Zalo.',
             talk: 'Liên hệ', talkSub: 'Quét mã QR để gọi hoặc nhắn tin qua WhatsApp / Zalo.',
             location: 'Địa điểm', delivery: 'Giao hàng', deliveryVal: 'Giao hàng toàn Hà Nội',
             facebookLbl: 'Facebook', facebook: 'German Flavors Hanoi',
-            inquiryType: 'Dịch vụ *', eventDate: 'Ngày sự kiện *', fullName: 'Họ và tên *', phone: 'Số điện thoại *',
-            email: 'Email *', guests: 'Số khách *', msgEvent: 'Chi tiết sự kiện & yêu cầu thực đơn',
-            msgProducts: 'Yêu cầu sản phẩm *', msgDelivery: 'Chi tiết giao hàng *',
-            msgGeneral: 'Tin nhắn của bạn *', placeholderName: 'Họ và tên', placeholderPhone: '+84 ...',
-            placeholderEmail: 'email@example.com', placeholderEvent: 'Cho chúng tôi biết về sự kiện, nhu cầu ăn kiêng, món ưa thích...',
-            placeholderProducts: 'Bạn muốn sản phẩm gì? Xúc xích, giò lạnh, số lượng...',
-            placeholderDelivery: 'Bạn muốn giao gì? Khu vực tại Hà Nội, ngày/giờ mong muốn...',
-            placeholderGeneral: 'Viết tin nhắn của bạn...', submit: 'Gửi yêu cầu', submitting: 'Đang gửi...',
+            purpose: 'Bạn cần hỗ trợ gì? *',
+            purposeHint: 'Chọn mục gần đúng nhất — mô tả chi tiết ở phần tin nhắn bên dưới.',
+            purposeChoose: '— Vui lòng chọn —',
+            purposeOpts: {
+                quote: 'Hỏi giá / báo giá',
+                availability: 'Hỏi còn hàng không',
+                advice: 'Tư vấn chọn sản phẩm',
+                catering: 'Đặt catering sự kiện',
+                order: 'Đặt hàng & giao tận nhà',
+                other: 'Câu hỏi khác'
+            },
+            eventDate: 'Ngày sự kiện *', preferredDate: 'Khi nào cần? (tuỳ chọn)',
+            fullName: 'Họ và tên *', phone: 'SĐT / WhatsApp / Zalo *',
+            email: 'Email (tuỳ chọn)', guests: 'Số khách *',
+            district: 'Khu vực tại Hà Nội *', districtOptional: 'Khu vực tại Hà Nội (tuỳ chọn)',
+            menuPickCatering: 'Chọn món *',
+            menuPickOrder: 'Chọn sản phẩm *',
+            menuPickQuote: 'Sản phẩm cần báo giá *',
+            menuPickAvailability: 'Sản phẩm cần kiểm tra *',
+            menuChoose: '— Chọn sản phẩm —',
+            menuSelectedOne: 'Đã chọn 1 món',
+            menuSelectedMany: 'Đã chọn {n} món',
+            menuMultiEmpty: 'Chưa có sản phẩm — mô tả trong tin nhắn',
+            errorNoMenu: 'Vui lòng chọn ít nhất một sản phẩm.',
+            msgLabel: 'Tin nhắn của bạn *',
+            msgNotesCatering: 'Ghi chú thêm (tuỳ chọn)',
+            msgNotesOrder: 'Số lượng & ghi chú *',
+            msgNotesQuote: 'Số lượng & chi tiết (tuỳ chọn)',
+            msgNotesAvailability: 'Cần khi nào & ghi chú (tuỳ chọn)',
+            placeholderName: 'Họ và tên', placeholderPhone: '+84 ...', placeholderEmail: 'email@example.com',
+            placeholderDistrict: 'VD: Cầu Giấy, Tây Hồ, Hoàng Mai...',
+            placeholderQuote: 'Số lượng, khu vực giao nếu có, chi tiết khác...',
+            placeholderAvailability: 'Cần khi nào, số lượng nếu biết...',
+            placeholderAdvice: 'Cho ai, bao nhiêu người, thích vị gì? Chúng tôi sẽ gợi ý sản phẩm phù hợp.',
+            placeholderEvent: 'Loại sự kiện, ăn kiêng, ngân sách, yêu cầu đặc biệt...',
+            placeholderOrder: 'Số lượng từng món, ghi chú giao hàng, giờ mong muốn...',
+            placeholderOther: 'Viết câu hỏi của bạn...',
+            submit: 'Gửi tin nhắn', submitting: 'Đang gửi...',
             success: 'Đã nhận yêu cầu! Chúng tôi sẽ liên hệ lại sớm nhất.',
             error: 'Có lỗi xảy ra. Vui lòng thử lại hoặc liên hệ qua điện thoại.',
             errorFile: 'Vui lòng mở trang qua web server (http://localhost), không mở trực tiếp file HTML, để gửi form.',
             errorSetup: 'Chưa cấu hình email. Vào web3forms.com (dùng bjoern@germanflavorshanoi.com) lấy Access Key và dán vào js/form-config.js.',
-            opts: { catering: 'Catering & Sự kiện', products: 'Sản phẩm Đức chính gốc', delivery: 'Giao hàng tận nhà' },
             guestOpts: ['10 – 20 khách', '21 – 50 khách', '51 – 100 khách', '101 – 200 khách', '201 – 300 khách', '300+ khách']
         },
         search: {
@@ -338,23 +396,52 @@ var I18N_DATA = {
         },
         reservation: {
             lbl: 'Kontakt', title: 'Catering, Bestellung & <span>Lieferung</span>',
-            intro: 'Buchen Sie Catering für Ihr Event (10–300 Gäste), bestellen Sie authentische deutsche Produkte oder vereinbaren Sie die Lieferung nach Hause in ganz Hanoi.',
+            intro: 'Fragen Sie zu Preisen, Produkten, Verfügbarkeit, Catering oder Lieferung — wir antworten per Telefon oder WhatsApp.',
             talk: 'Kontakt', talkSub: 'QR-Code scannen, um anzurufen oder per WhatsApp / Zalo zu schreiben.',
             location: 'Standort', delivery: 'Lieferung', deliveryVal: 'Lieferung in ganz Hanoi',
             facebookLbl: 'Facebook', facebook: 'German Flavors Hanoi',
-            inquiryType: 'Leistung *', eventDate: 'Veranstaltungsdatum *', fullName: 'Vollständiger Name *', phone: 'Telefonnummer *',
-            email: 'E-Mail-Adresse *', guests: 'Anzahl der Gäste *', msgEvent: 'Veranstaltungsdetails & Menüwünsche',
-            msgProducts: 'Produktanfrage *', msgDelivery: 'Lieferdetails *',
-            msgGeneral: 'Ihre Nachricht *', placeholderName: 'Ihr Name', placeholderPhone: '+84 ...',
-            placeholderEmail: 'ihre@email.de', placeholderEvent: 'Erzählen Sie uns von Ihrer Veranstaltung, Ernährungswünschen, bevorzugten Gerichten...',
-            placeholderProducts: 'Welche Produkte wünschen Sie? Würste, Aufschnitt, Mengen...',
-            placeholderDelivery: 'Was soll geliefert werden? Ihr Stadtteil in Hanoi, gewünschtes Datum/Uhrzeit...',
-            placeholderGeneral: 'Schreiben Sie Ihre Nachricht...', submit: 'Anfrage senden', submitting: 'Wird gesendet...',
+            purpose: 'Wobei können wir helfen? *',
+            purposeHint: 'Wählen Sie die passendste Option — Details unten in der Nachricht.',
+            purposeChoose: '— Bitte wählen —',
+            purposeOpts: {
+                quote: 'Preis / Angebot anfragen',
+                availability: 'Verfügbarkeit prüfen',
+                advice: 'Beratung bei der Produktwahl',
+                catering: 'Catering für ein Event buchen',
+                order: 'Bestellung & Lieferung nach Hause',
+                other: 'Andere Frage'
+            },
+            eventDate: 'Veranstaltungsdatum *', preferredDate: 'Wann benötigt? (optional)',
+            fullName: 'Vollständiger Name *', phone: 'Telefon / WhatsApp / Zalo *',
+            email: 'E-Mail (optional)', guests: 'Anzahl der Gäste *',
+            district: 'Stadtteil in Hanoi *', districtOptional: 'Stadtteil in Hanoi (optional)',
+            menuPickCatering: 'Gerichte wählen *',
+            menuPickOrder: 'Produkte wählen *',
+            menuPickQuote: 'Produkte für Angebot *',
+            menuPickAvailability: 'Produkte prüfen *',
+            menuChoose: '— Produkte wählen —',
+            menuSelectedOne: '1 Artikel gewählt',
+            menuSelectedMany: '{n} Artikel gewählt',
+            menuMultiEmpty: 'Noch keine Produkte — in der Nachricht beschreiben',
+            errorNoMenu: 'Bitte mindestens ein Produkt wählen.',
+            msgLabel: 'Ihre Nachricht *',
+            msgNotesCatering: 'Zusätzliche Hinweise (optional)',
+            msgNotesOrder: 'Mengen & Hinweise *',
+            msgNotesQuote: 'Menge & Details (optional)',
+            msgNotesAvailability: 'Wann benötigt & Hinweise (optional)',
+            placeholderName: 'Ihr Name', placeholderPhone: '+84 ...', placeholderEmail: 'ihre@email.de',
+            placeholderDistrict: 'z. B. Cau Giay, Tay Ho, Hoang Mai...',
+            placeholderQuote: 'Menge, Liefergebiet falls relevant, weitere Details...',
+            placeholderAvailability: 'Wann benötigt, Menge falls bekannt...',
+            placeholderAdvice: 'Für wen, wie viele Personen, Vorlieben? Wir schlagen passende Produkte vor.',
+            placeholderEvent: 'Art der Veranstaltung, Ernährung, Budget, Sonderwünsche...',
+            placeholderOrder: 'Mengen pro Artikel, Lieferhinweise, Wunschzeit...',
+            placeholderOther: 'Schreiben Sie Ihre Frage...',
+            submit: 'Nachricht senden', submitting: 'Wird gesendet...',
             success: 'Anfrage erhalten! Wir melden uns so schnell wie möglich.',
             error: 'Etwas ist schiefgelaufen. Bitte versuchen Sie es erneut oder rufen Sie uns an.',
             errorFile: 'Bitte öffnen Sie die Seite über einen Webserver (http://localhost), nicht als lokale Datei.',
             errorSetup: 'E-Mail noch nicht eingerichtet. Holen Sie einen Access Key bei web3forms.com und tragen Sie ihn in js/form-config.js ein.',
-            opts: { catering: 'Catering & Events', products: 'Authentische deutsche Produkte', delivery: 'Lieferung nach Hause' },
             guestOpts: ['10 – 20 Gäste', '21 – 50 Gäste', '51 – 100 Gäste', '101 – 200 Gäste', '201 – 300 Gäste', '300+ Gäste']
         },
         search: {
@@ -470,19 +557,25 @@ function applyI18n() {
         if (rl) rl.textContent = te.role;
     });
 
-    var inquiryType = document.getElementById('inquiryType');
-    if (inquiryType) {
+    var purposeSel = document.getElementById('inquiryPurpose');
+    if (purposeSel && lang.reservation.purposeOpts) {
         var r = lang.reservation;
-        var optKeys = ['catering', 'products', 'delivery'];
-        inquiryType.querySelectorAll('option').forEach(function(opt, i) {
-            if (r.opts[optKeys[i]]) opt.textContent = r.opts[optKeys[i]];
+        purposeSel.querySelectorAll('option[data-purpose]').forEach(function(opt) {
+            var key = opt.getAttribute('data-purpose');
+            if (r.purposeOpts[key]) opt.textContent = r.purposeOpts[key];
         });
+        var emptyOpt = purposeSel.querySelector('option[value=""]');
+        if (emptyOpt && r.purposeChoose) emptyOpt.textContent = r.purposeChoose;
         var guestSel = document.getElementById('guestCount');
-        if (guestSel) {
+        if (guestSel && r.guestOpts) {
             guestSel.querySelectorAll('option').forEach(function(opt, i) {
                 if (r.guestOpts[i]) opt.textContent = r.guestOpts[i];
             });
         }
+    }
+    if (typeof window.updateMenuMultiSummary === 'function') window.updateMenuMultiSummary();
+    if (window.CMS_CONTENT && window.CMS_CONTENT.data && window.CMS_CONTENT.data.products && typeof window.renderFormProductPicker === 'function') {
+        window.renderFormProductPicker(window.CMS_CONTENT.data.products);
     }
 
     document.querySelectorAll('.sovcat').forEach(function(el, i) {

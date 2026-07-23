@@ -419,7 +419,7 @@
                <span class="slbl" data-i18n="reservation.lbl">Get In Touch</span>
                <h2 class="stitle" data-i18n-html="reservation.title">Catering, Orders &amp; <span>Delivery</span></h2>
                <div class="sline"></div>
-               <p class="sdesc mx-auto" style="max-width:600px;" data-i18n="reservation.intro">Book catering for your event (10–300 guests), order authentic German products, or arrange home delivery across Hanoi.</p>
+               <p class="sdesc mx-auto" style="max-width:600px;" data-i18n="reservation.intro">Ask about prices, products, stock, catering or delivery — we will reply by phone or WhatsApp.</p>
             </div>
             <div class="row g-4 align-items-start">
                <div class="col-lg-4" data-aos="fade-right">
@@ -461,22 +461,37 @@
                   <div class="fcard">
                      <form id="contactForm" class="row g-3" novalidate>
                         <input type="checkbox" name="botcheck" id="botcheck" class="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true"/>
-                        <div class="col-sm-6" id="inquiryTypeCol">
-                           <label class="flbl" data-i18n="reservation.inquiryType">Service *</label>
-                           <select class="fctrl" id="inquiryType" required>
-                              <option value="catering" selected>Catering &amp; Events</option>
-                              <option value="products">Authentic German Products</option>
-                              <option value="delivery">Home Delivery</option>
+                        <div class="col-12">
+                           <label class="flbl" for="inquiryPurpose" data-i18n="reservation.purpose">What do you need help with? *</label>
+                           <p class="form-purpose-hint" data-i18n="reservation.purposeHint">Pick the closest option — explain details in your message below.</p>
+                           <select class="fctrl" id="inquiryPurpose" required>
+                              <option value="" disabled selected data-purpose="">— Please select —</option>
+                              <option value="quote" data-purpose="quote">Get a price quote</option>
+                              <option value="availability" data-purpose="availability">Check stock / availability</option>
+                              <option value="advice" data-purpose="advice">Help me choose products</option>
+                              <option value="catering" data-purpose="catering">Book catering for an event</option>
+                              <option value="order" data-purpose="order">Order products &amp; home delivery</option>
+                              <option value="other" data-purpose="other">Other question</option>
                            </select>
                         </div>
-                        <div class="col-sm-6" id="cateringDate">
-                           <label class="flbl" data-i18n="reservation.eventDate">Event Date *</label><input type="date" class="fctrl" id="eventDate" name="event_date"/>
+                        <div class="col-sm-6">
+                           <label class="flbl" data-i18n="reservation.fullName">Full Name *</label>
+                           <input type="text" class="fctrl" id="fullName" name="name" required autocomplete="name" data-i18n-placeholder="reservation.placeholderName" placeholder="Your name"/>
                         </div>
-                        <div class="col-sm-6"><label class="flbl" data-i18n="reservation.fullName">Full Name *</label><input type="text" class="fctrl" id="fullName" name="name" required data-i18n-placeholder="reservation.placeholderName" placeholder="Your name"/></div>
-                        <div class="col-sm-6"><label class="flbl" data-i18n="reservation.phone">Phone Number *</label><input type="tel" class="fctrl" id="phone" name="phone" required data-i18n-placeholder="reservation.placeholderPhone" placeholder="+84 ..."/></div>
-                        <div class="col-sm-6"><label class="flbl" data-i18n="reservation.email">Email Address *</label><input type="email" class="fctrl" id="email" name="email" required data-i18n-placeholder="reservation.placeholderEmail" placeholder="you@email.com"/></div>
-                        <div class="col-sm-6" id="cateringGuests">
-                           <label class="flbl" data-i18n="reservation.guests">Number of Guests *</label>
+                        <div class="col-sm-6">
+                           <label class="flbl" data-i18n="reservation.phone">Phone / WhatsApp / Zalo *</label>
+                           <input type="tel" class="fctrl" id="phone" name="phone" required autocomplete="tel" data-i18n-placeholder="reservation.placeholderPhone" placeholder="+84 ..."/>
+                        </div>
+                        <div class="col-12">
+                           <label class="flbl" data-i18n="reservation.email">Email (optional)</label>
+                           <input type="email" class="fctrl" id="email" name="email" autocomplete="email" data-i18n-placeholder="reservation.placeholderEmail" placeholder="you@email.com"/>
+                        </div>
+                        <div class="col-sm-6 form-field-hidden" id="fieldEventDate">
+                           <label class="flbl" id="eventDateLabel" data-i18n="reservation.eventDate">Event date *</label>
+                           <input type="date" class="fctrl" id="eventDate" name="event_date"/>
+                        </div>
+                        <div class="col-sm-6 form-field-hidden" id="fieldGuests">
+                           <label class="flbl" data-i18n="reservation.guests">Number of guests *</label>
                            <select class="fctrl" id="guestCount" name="guests">
                               <option>10 – 20 guests</option>
                               <option>21 – 50 guests</option>
@@ -486,11 +501,32 @@
                               <option>300+ guests</option>
                            </select>
                         </div>
-                        <div class="col-12">
-                           <label class="flbl" id="msgLabel">Event Details &amp; Menu Requests</label>
-                           <textarea class="fctrl" id="msgField" name="message" rows="4" required data-i18n-placeholder="reservation.placeholderEvent" placeholder="Tell us about your event, dietary needs, preferred dishes..."></textarea>
+                        <div class="col-sm-6 form-field-hidden" id="fieldPreferredDate">
+                           <label class="flbl" data-i18n="reservation.preferredDate">When do you need it? (optional)</label>
+                           <input type="date" class="fctrl" id="preferredDate" name="preferred_date"/>
                         </div>
-                        <div class="col-12"><button type="submit" class="btn-red w-100 justify-content-center" id="resBtn"><i class="fas fa-paper-plane"></i><span data-i18n="reservation.submit">Submit Request</span></button></div>
+                        <div class="col-sm-6 form-field-hidden" id="fieldDistrict">
+                           <label class="flbl" id="districtLabel" data-i18n="reservation.district">Area in Hanoi *</label>
+                           <input type="text" class="fctrl" id="district" name="district" data-i18n-placeholder="reservation.placeholderDistrict" placeholder="e.g. Cau Giay, Tay Ho, Hoang Mai..."/>
+                        </div>
+                        <div class="col-sm-6 form-field-hidden" id="fieldMenuItems">
+                           <label class="flbl" id="menuPickLabel" for="menuMultiBtn" data-i18n="reservation.menuPickCatering">Select dishes *</label>
+                           <div class="menu-multi" id="menuMulti">
+                              <button type="button" class="fctrl menu-multi-btn" id="menuMultiBtn" aria-expanded="false" aria-haspopup="listbox">
+                                 <span id="menuMultiSummary" data-i18n="reservation.menuChoose">— Select products —</span>
+                                 <i class="fas fa-chevron-down menu-multi-caret" aria-hidden="true"></i>
+                              </button>
+                              <div class="menu-multi-panel" id="menuMultiPanel" hidden>
+                                 <div class="menu-multi-list" id="menuMultiList" role="listbox" aria-multiselectable="true"></div>
+                              </div>
+                           </div>
+                           <p class="form-check-err" id="menuCheckErr" hidden data-i18n="reservation.errorNoMenu">Please select at least one product.</p>
+                        </div>
+                        <div class="col-12">
+                           <label class="flbl" id="msgLabel" data-i18n="reservation.msgLabel">Your message *</label>
+                           <textarea class="fctrl" id="msgField" name="message" rows="4" required data-i18n-placeholder="reservation.placeholderQuote" placeholder="e.g. Price for catering ~50 guests, or 2 kg Bratwurst delivered to Cau Giay..."></textarea>
+                        </div>
+                        <div class="col-12"><button type="submit" class="btn-red w-100 justify-content-center" id="resBtn"><i class="fas fa-paper-plane"></i><span data-i18n="reservation.submit">Send message</span></button></div>
                      </form>
                      <div class="errmsg" id="resErr" style="display:none;">
                         <i class="fas fa-exclamation-circle"></i>

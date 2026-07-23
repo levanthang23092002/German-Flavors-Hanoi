@@ -183,12 +183,24 @@ document.querySelectorAll('.mhrt').forEach(function(btn) {
 });
 
 var contactForm = document.getElementById('contactForm');
-var inquiryType = document.getElementById('inquiryType');
-var inquiryTypeCol = document.getElementById('inquiryTypeCol');
-var cateringGuests = document.getElementById('cateringGuests');
-var cateringDate = document.getElementById('cateringDate');
+var inquiryPurpose = document.getElementById('inquiryPurpose');
+var fieldEventDate = document.getElementById('fieldEventDate');
+var fieldGuests = document.getElementById('fieldGuests');
+var fieldPreferredDate = document.getElementById('fieldPreferredDate');
+var fieldDistrict = document.getElementById('fieldDistrict');
+var fieldMenuItems = document.getElementById('fieldMenuItems');
+var menuPickLabel = document.getElementById('menuPickLabel');
+var menuMultiBtn = document.getElementById('menuMultiBtn');
+var menuMultiPanel = document.getElementById('menuMultiPanel');
+var menuMultiSummary = document.getElementById('menuMultiSummary');
+var menuMultiList = document.getElementById('menuMultiList');
+var menuCheckErr = document.getElementById('menuCheckErr');
+var eventDateLabel = document.getElementById('eventDateLabel');
+var districtLabel = document.getElementById('districtLabel');
 var eventDate = document.getElementById('eventDate');
+var preferredDate = document.getElementById('preferredDate');
 var guestCount = document.getElementById('guestCount');
+var district = document.getElementById('district');
 var fullName = document.getElementById('fullName');
 var phone = document.getElementById('phone');
 var email = document.getElementById('email');
@@ -198,36 +210,191 @@ var resBtn = document.getElementById('resBtn');
 var resOk = document.getElementById('resOk');
 var resErr = document.getElementById('resErr');
 
-function toggleInquiryFields() {
-    if (!inquiryType) return;
-    var type = inquiryType.options[inquiryType.selectedIndex].value;
-    var isCatering = type === 'catering';
-    if (inquiryTypeCol) inquiryTypeCol.className = isCatering ? 'col-sm-6' : 'col-12';
-    if (cateringGuests) cateringGuests.style.display = isCatering ? '' : 'none';
-    if (cateringDate) cateringDate.style.display = isCatering ? '' : 'none';
+var PURPOSE_PLACEHOLDERS = {
+    quote: 'placeholderQuote',
+    availability: 'placeholderAvailability',
+    advice: 'placeholderAdvice',
+    catering: 'placeholderEvent',
+    order: 'placeholderOrder',
+    other: 'placeholderOther'
+};
+
+function setFormFieldVisible(el, show) {
+    if (!el) return;
+    el.classList.toggle('form-field-hidden', !show);
+}
+
+function setDateMin(input) {
+    if (!input) return;
+    var today = new Date();
+    var y = today.getFullYear();
+    var m = String(today.getMonth() + 1).padStart(2, '0');
+    var d = String(today.getDate()).padStart(2, '0');
+    input.min = y + '-' + m + '-' + d;
+}
+
+function getPurposeValue() {
+    return inquiryPurpose ? inquiryPurpose.value : '';
+}
+
+function purposeNeedsMenu(purpose) {
+    return purpose === 'catering' || purpose === 'order' || purpose === 'quote' || purpose === 'availability';
+}
+
+function getMenuPickLabelKey(purpose) {
+    if (purpose === 'catering') return 'reservation.menuPickCatering';
+    if (purpose === 'order') return 'reservation.menuPickOrder';
+    if (purpose === 'quote') return 'reservation.menuPickQuote';
+    if (purpose === 'availability') return 'reservation.menuPickAvailability';
+    return 'reservation.menuPickOrder';
+}
+
+function getSelectedMenuItems() {
+    var items = [];
+    if (!menuMultiList) return items;
+    menuMultiList.querySelectorAll('input[name="menu_item"]:checked').forEach(function(cb) {
+        var span = cb.parentElement && cb.parentElement.querySelector('span');
+        items.push({
+            value: cb.value,
+            label: span ? span.textContent.trim() : cb.value
+        });
+    });
+    return items;
+}
+
+function closeMenuMultiPanel() {
+    if (!menuMultiPanel || !menuMultiBtn) return;
+    menuMultiPanel.hidden = true;
+    menuMultiBtn.setAttribute('aria-expanded', 'false');
+}
+
+function openMenuMultiPanel() {
+    if (!menuMultiPanel || !menuMultiBtn) return;
+    menuMultiPanel.hidden = false;
+    menuMultiBtn.setAttribute('aria-expanded', 'true');
+}
+
+function clearMenuSelection() {
+    if (!menuMultiList) return;
+    menuMultiList.querySelectorAll('input[name="menu_item"]').forEach(function(cb) {
+        cb.checked = false;
+    });
+    updateMenuMultiSummary();
+    closeMenuMultiPanel();
+    if (menuCheckErr) menuCheckErr.hidden = true;
+}
+
+function updateMenuMultiSummary() {
+    if (!menuMultiSummary) return;
+    var count = getSelectedMenuItems().length;
+    if (!count) {
+        menuMultiSummary.textContent = window.I18N ? I18N.t('reservation.menuChoose') : '— Select products —';
+        return;
+    }
+    if (count === 1) {
+        menuMultiSummary.textContent = window.I18N ? I18N.t('reservation.menuSelectedOne') : '1 item selected';
+        return;
+    }
+    var tpl = window.I18N ? I18N.t('reservation.menuSelectedMany') : '{n} items selected';
+    menuMultiSummary.textContent = tpl.replace('{n}', String(count));
+}
+
+function bindMenuMultiEvents() {
+    if (!menuMultiBtn || menuMultiBtn.dataset.bound === '1') return;
+    menuMultiBtn.dataset.bound = '1';
+
+    menuMultiBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        if (menuMultiPanel && menuMultiPanel.hidden) openMenuMultiPanel();
+        else closeMenuMultiPanel();
+    });
+
+    if (menuMultiList) {
+        menuMultiList.addEventListener('change', function() {
+            updateMenuMultiSummary();
+            if (menuCheckErr && getSelectedMenuItems().length) menuCheckErr.hidden = true;
+        });
+    }
+
+    document.addEventListener('click', function(e) {
+        var wrap = document.getElementById('menuMulti');
+        if (wrap && !wrap.contains(e.target)) closeMenuMultiPanel();
+    });
+
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') closeMenuMultiPanel();
+    });
+}
+
+window.bindMenuMultiEvents = bindMenuMultiEvents;
+window.updateMenuMultiSummary = updateMenuMultiSummary;
+
+function togglePurposeFields() {
+    var purpose = getPurposeValue();
+    var isCatering = purpose === 'catering';
+    var isOrder = purpose === 'order';
+    var isQuote = purpose === 'quote';
+    var isAvailability = purpose === 'availability';
+    var needsDistrict = isCatering || isOrder;
+    var needsMenu = purposeNeedsMenu(purpose);
+
+    setFormFieldVisible(fieldEventDate, isCatering);
+    setFormFieldVisible(fieldGuests, isCatering);
+    setFormFieldVisible(fieldPreferredDate, isAvailability || isOrder || isQuote);
+    setFormFieldVisible(fieldDistrict, needsDistrict);
+    setFormFieldVisible(fieldMenuItems, needsMenu);
+
+    if (fieldPreferredDate) {
+        fieldPreferredDate.classList.remove('col-12', 'col-sm-6');
+        fieldPreferredDate.classList.add(isOrder ? 'col-12' : 'col-sm-6');
+    }
+
     if (eventDate) eventDate.required = isCatering;
     if (guestCount) guestCount.required = isCatering;
-    if (msgLabel && window.I18N) {
-        var msgKey = type === 'catering' ? 'reservation.msgEvent'
-            : type === 'products' ? 'reservation.msgProducts'
-            : 'reservation.msgDelivery';
-        msgLabel.textContent = I18N.t(msgKey);
+    if (district) district.required = needsDistrict;
+    if (!needsMenu) clearMenuSelection();
+    if (preferredDate) preferredDate.required = false;
+    if (msgField) msgField.required = isOrder || purpose === 'advice' || purpose === 'other';
+
+    if (districtLabel && window.I18N) {
+        districtLabel.textContent = I18N.t('reservation.district');
     }
-    if (msgField && window.I18N) {
-        var phKey = type === 'catering' ? 'reservation.placeholderEvent'
-            : type === 'products' ? 'reservation.placeholderProducts'
-            : 'reservation.placeholderDelivery';
-        msgField.placeholder = I18N.t(phKey);
+    if (menuPickLabel && window.I18N) {
+        menuPickLabel.textContent = I18N.t(getMenuPickLabelKey(purpose));
+    }
+    if (msgLabel && window.I18N) {
+        if (isCatering) {
+            msgLabel.textContent = I18N.t('reservation.msgNotesCatering');
+        } else if (isOrder) {
+            msgLabel.textContent = I18N.t('reservation.msgNotesOrder');
+        } else if (isQuote) {
+            msgLabel.textContent = I18N.t('reservation.msgNotesQuote');
+        } else if (isAvailability) {
+            msgLabel.textContent = I18N.t('reservation.msgNotesAvailability');
+        } else {
+            msgLabel.textContent = I18N.t('reservation.msgLabel');
+        }
+    }
+
+    if (msgField && window.I18N && PURPOSE_PLACEHOLDERS[purpose]) {
+        msgField.placeholder = I18N.t('reservation.' + PURPOSE_PLACEHOLDERS[purpose]);
     }
 }
 
-if (inquiryType) {
-    inquiryType.addEventListener('change', toggleInquiryFields);
-    toggleInquiryFields();
+setDateMin(eventDate);
+setDateMin(preferredDate);
+bindMenuMultiEvents();
+updateMenuMultiSummary();
+
+if (inquiryPurpose) {
+    inquiryPurpose.addEventListener('change', togglePurposeFields);
+    togglePurposeFields();
 }
 
 window.onI18nApplied = function() {
-    toggleInquiryFields();
+    togglePurposeFields();
+    updateMenuMultiSummary();
 };
 
 function setResBtnLoading(loading) {
@@ -236,7 +403,7 @@ function setResBtnLoading(loading) {
     if (loading) {
         resBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> ' + (window.I18N ? I18N.t('reservation.submitting') : 'Submitting...');
     } else {
-        resBtn.innerHTML = '<i class="fas fa-paper-plane"></i><span data-i18n="reservation.submit">' + (window.I18N ? I18N.t('reservation.submit') : 'Submit Request') + '</span>';
+        resBtn.innerHTML = '<i class="fas fa-paper-plane"></i><span data-i18n="reservation.submit">' + (window.I18N ? I18N.t('reservation.submit') : 'Send message') + '</span>';
     }
 }
 
@@ -282,14 +449,21 @@ function buildEmailSubject(data) {
 }
 
 function buildMessageBody(data) {
-    var lines = ['Service: ' + data.inquiryType];
+    var lines = ['Purpose: ' + data.inquiryType];
+    if (data.district) lines.push('Area: ' + data.district);
+    if (data.menuItems && data.menuItems.length) {
+        lines.push('Dishes/Products: ' + data.menuItems.map(function(i) { return i.label; }).join(', '));
+    }
     if (data.isCatering) {
         lines.push('Event Date: ' + formatEmailDate(data.eventDate));
         lines.push('Guests: ' + data.guests);
+    } else if (data.preferredDate) {
+        lines.push('Preferred Date: ' + formatEmailDate(data.preferredDate));
     }
     lines.push('Phone: ' + data.phone);
+    if (data.emailProvided) lines.push('Email: ' + data.customerEmail);
     lines.push('');
-    lines.push(data.message);
+    if (data.message) lines.push(data.message);
     return lines.join('\n');
 }
 
@@ -310,13 +484,19 @@ function buildWeb3FormsBody(accessKey, data) {
         replyto: data.email,
         botcheck: '',
         message: buildMessageBody(data),
-        Service: data.inquiryType,
+        Purpose: data.inquiryType,
         Phone: data.phone
     };
 
+    if (data.district) body['Area'] = data.district;
+    if (data.menuItems && data.menuItems.length) {
+        body['Dishes/Products'] = data.menuItems.map(function(i) { return i.label; }).join(', ');
+    }
     if (data.isCatering) {
         body['Event Date'] = formatEmailDate(data.eventDate);
         body['Number of Guests'] = data.guests;
+    } else if (data.preferredDate) {
+        body['Preferred Date'] = formatEmailDate(data.preferredDate);
     }
 
     return body;
@@ -325,6 +505,18 @@ function buildWeb3FormsBody(accessKey, data) {
 if (contactForm) {
     contactForm.addEventListener('submit', function(e) {
         e.preventDefault();
+
+        var purpose = getPurposeValue();
+        var isCatering = purpose === 'catering';
+        var isOrder = purpose === 'order';
+        var needsMenu = purposeNeedsMenu(purpose);
+
+        if (needsMenu && !getSelectedMenuItems().length) {
+            if (menuCheckErr) menuCheckErr.hidden = false;
+            if (fieldMenuItems) fieldMenuItems.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            return;
+        }
+        if (menuCheckErr) menuCheckErr.hidden = true;
 
         if (!contactForm.checkValidity()) {
             contactForm.reportValidity();
@@ -345,30 +537,39 @@ if (contactForm) {
             return;
         }
 
-        var inquiryValue = inquiryType.options[inquiryType.selectedIndex].value;
-        var isCatering = inquiryValue === 'catering';
-        var inquiryLabel = inquiryType.options[inquiryType.selectedIndex].textContent.trim();
+        var purposeLabel = inquiryPurpose.options[inquiryPurpose.selectedIndex].textContent.trim();
         var nameVal = fullName.value.trim();
         var emailVal = email.value.trim();
         var phoneVal = phone.value.trim();
         var msgVal = msgField.value.trim();
-        var guestsVal = isCatering
+        var districtVal = district ? district.value.trim() : '';
+        var notifyEmail = (window.FORM_CONFIG && FORM_CONFIG.NOTIFY_EMAIL) || 'bjoern@germanflavorshanoi.com';
+        var guestsVal = isCatering && guestCount
             ? guestCount.options[guestCount.selectedIndex].textContent.trim()
             : '';
+        var menuItems = getSelectedMenuItems();
 
         var emailData = {
-            inquiryType: inquiryLabel,
-            inquiryValue: inquiryValue,
+            inquiryType: purposeLabel,
+            purpose: purpose,
             name: nameVal,
-            email: emailVal,
+            email: emailVal || notifyEmail,
+            customerEmail: emailVal,
+            emailProvided: !!emailVal,
             phone: phoneVal,
             message: msgVal,
+            district: districtVal,
+            menuItems: menuItems,
             isCatering: isCatering,
-            eventDate: isCatering ? eventDate.value : '',
+            isOrder: isOrder,
+            eventDate: isCatering && eventDate ? eventDate.value : '',
+            preferredDate: preferredDate ? preferredDate.value : '',
             guests: guestsVal
         };
 
         var body = buildWeb3FormsBody(accessKey, emailData);
+        body.email = emailVal || notifyEmail;
+        body.replyto = emailVal || notifyEmail;
 
         setResBtnLoading(true);
         if (resOk) resOk.style.display = 'none';
@@ -393,7 +594,7 @@ if (contactForm) {
             var data = result.data;
             if (result.ok && data && data.success) {
                 contactForm.reset();
-                toggleInquiryFields();
+                togglePurposeFields();
                 showFormFeedback('ok');
                 return;
             }
