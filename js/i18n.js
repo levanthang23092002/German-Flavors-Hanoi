@@ -510,10 +510,9 @@ function setSocialMetaTag(name, content, isProperty) {
 
 function applySocialMeta(opts) {
     opts = opts || {};
-    var lang = I18N_DATA[I18N_LANG] || I18N_DATA.en;
-    var meta = (lang && lang.meta) || {};
-    var title = opts.title || meta.shareTitle || meta.title || document.title;
-    var desc = opts.desc || meta.shareDesc || meta.desc || '';
+    var shareMeta = (I18N_DATA.en && I18N_DATA.en.meta) || {};
+    var title = opts.title || shareMeta.shareTitle || shareMeta.title || document.title;
+    var desc = opts.desc || shareMeta.shareDesc || shareMeta.desc || '';
     var image = opts.image ? toAbsoluteSiteUrl(opts.image) : DEFAULT_OG_IMAGE;
     var locale = I18N_LANG === 'vi' ? 'vi_VN' : (I18N_LANG === 'de' ? 'de_DE' : 'en_US');
 
