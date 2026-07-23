@@ -1,6 +1,9 @@
 var I18N_LANG = localStorage.getItem('gf-lang') || 'en';
 var SITE_ORIGIN = 'https://germanflavorshanoi.com';
-var DEFAULT_OG_IMAGE = SITE_ORIGIN + '/img/favicon.png';
+var DEFAULT_OG_IMAGE = SITE_ORIGIN + '/img/og-share.jpg';
+var DEFAULT_OG_IMAGE_WIDTH = '1200';
+var DEFAULT_OG_IMAGE_HEIGHT = '630';
+var DEFAULT_OG_IMAGE_TYPE = 'image/jpeg';
 
 var I18N_DATA = {
     en: {
@@ -518,11 +521,22 @@ function applySocialMeta(opts) {
     setSocialMetaTag('og:description', desc, true);
     setSocialMetaTag('og:image', image, true);
     setSocialMetaTag('og:image:secure_url', image, true);
+    setSocialMetaTag('og:image:type', opts.imageType || DEFAULT_OG_IMAGE_TYPE, true);
+    setSocialMetaTag('og:image:width', opts.imageWidth || DEFAULT_OG_IMAGE_WIDTH, true);
+    setSocialMetaTag('og:image:height', opts.imageHeight || DEFAULT_OG_IMAGE_HEIGHT, true);
     setSocialMetaTag('og:url', SITE_ORIGIN + '/', true);
     setSocialMetaTag('og:locale', locale, true);
+    setSocialMetaTag('twitter:url', SITE_ORIGIN + '/', false);
     setSocialMetaTag('twitter:title', title, false);
     setSocialMetaTag('twitter:description', desc, false);
     setSocialMetaTag('twitter:image', image, false);
+    setSocialMetaTag('itemprop:name', title, false);
+    setSocialMetaTag('itemprop:description', desc, false);
+    setSocialMetaTag('itemprop:image', image, false);
+    var metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc && desc) metaDesc.setAttribute('content', desc);
+    var imageSrc = document.querySelector('link[rel="image_src"]');
+    if (imageSrc) imageSrc.setAttribute('href', image);
 }
 
 window.applySocialMeta = applySocialMeta;
