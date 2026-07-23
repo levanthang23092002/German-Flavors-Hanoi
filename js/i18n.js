@@ -27,8 +27,12 @@ var I18N_DATA = {
         },
         menu: {
             lbl: 'Our Services', title: 'What We <span>Offer</span>', btn: 'Get in Touch',
-            intro: 'Catering for events, authentic German products, and home delivery across Hanoi.',
+            intro: 'Catering for events and home delivery across Hanoi.',
             enquire: 'Enquire', viewDetails: 'View Details', enquireNow: 'Enquire Now', inquiry: 'inquiry', thankYou: 'Thank you!'
+        },
+        products: {
+            lbl: 'Our Products', title: 'Authentic <span>German Products</span>',
+            intro: 'Sausages, cold cuts, Leberkäse, mustard, sauerkraut and traditional German specialties.'
         },
         cards: {
             catering: { cat: 'Catering', title: 'Catering & Events', desc: 'Full German catering for celebrations, Oktoberfest & gatherings — 10–300 guests', badge: 'Main Service', tag: '10–300 guests' },
@@ -148,8 +152,12 @@ var I18N_DATA = {
         },
         menu: {
             lbl: 'Dịch vụ của chúng tôi', title: 'Chúng tôi <span>Cung cấp</span>', btn: 'Liên hệ ngay',
-            intro: 'Catering sự kiện, sản phẩm Đức chính gốc và giao hàng tận nhà trên toàn Hà Nội.',
+            intro: 'Catering sự kiện và giao hàng tận nhà trên toàn Hà Nội.',
             enquire: 'Liên hệ', viewDetails: 'Xem chi tiết', enquireNow: 'Liên hệ ngay', inquiry: 'yêu cầu', thankYou: 'Cảm ơn!'
+        },
+        products: {
+            lbl: 'Sản phẩm của chúng tôi', title: 'Sản phẩm <span>Đức chính gốc</span>',
+            intro: 'Xúc xích, giò lạnh, Leberkäse, mù tạt, dưa cải và đặc sản Đức truyền thống.'
         },
         cards: {
             catering: { cat: 'Catering', title: 'Catering & Sự kiện', desc: 'Catering Đức trọn gói cho lễ hội, Oktoberfest & tụ họp — 10–300 khách', badge: 'Dịch vụ chính', tag: '10–300 khách' },
@@ -269,8 +277,12 @@ var I18N_DATA = {
         },
         menu: {
             lbl: 'Unsere Leistungen', title: 'Was wir <span>anbieten</span>', btn: 'Kontakt aufnehmen',
-            intro: 'Catering für Veranstaltungen, authentische deutsche Produkte und Lieferung nach Hause in ganz Hanoi.',
+            intro: 'Catering für Veranstaltungen und Lieferung nach Hause in ganz Hanoi.',
             enquire: 'Anfragen', viewDetails: 'Details ansehen', enquireNow: 'Jetzt anfragen', inquiry: 'Anfrage', thankYou: 'Danke!'
+        },
+        products: {
+            lbl: 'Unsere Produkte', title: 'Authentische <span>deutsche Produkte</span>',
+            intro: 'Würste, Aufschnitt, Leberkäse, Senf, Sauerkraut und traditionelle deutsche Spezialitäten.'
         },
         cards: {
             catering: { cat: 'Catering', title: 'Catering & Events', desc: 'Deutsches Full-Service-Catering für Feiern, Oktoberfest & Veranstaltungen — 10–300 Gäste', badge: 'Hauptleistung', tag: '10–300 Gäste' },

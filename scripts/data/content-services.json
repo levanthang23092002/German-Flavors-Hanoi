@@ -1,0 +1,82 @@
+{
+  "items": [
+    {
+      "vi": {
+        "cat": "Catering",
+        "desc": "Catering Đức trọn gói cho lễ hội, Oktoberfest & tụ họp — 10–300 khách",
+        "title": "Catering & Sự kiện",
+        "tag": "10–300 khách",
+        "badge": "Dịch vụ chính"
+      },
+      "de": {
+        "cat": "Catering",
+        "desc": "Vollständiges deutsches Catering für Feiern, Oktoberfest & Treffen — 10–300 Gäste",
+        "title": "Catering & Events",
+        "tag": "10–300 Gäste",
+        "badge": "Hauptservice"
+      },
+      "id": "catering",
+      "image": "img/german/offer-catering-events.jpg",
+      "en": {
+        "cat": "Catering",
+        "desc": "Full German catering for celebrations, Oktoberfest & gatherings — 10–300 guests",
+        "badge": "Main Service",
+        "tag": "10–300 guests",
+        "title": "Catering & Events"
+      },
+      "order": 0
+    },
+    {
+      "order": 1,
+      "en": {
+        "cat": "Products",
+        "desc": "Sausages, cold cuts, Leberkäse, mustard, sauerkraut & traditional specialties",
+        "title": "Authentic German Products",
+        "tag": "Original German",
+        "badge": "Original German"
+      },
+      "image": "img/german/offer-german-products.jpg",
+      "id": "products",
+      "de": {
+        "title": "Authentische deutsche Produkte",
+        "badge": "Original Deutsch",
+        "tag": "Original Deutsch",
+        "cat": "Produkte",
+        "desc": "Würste, Aufschnitt, Leberkäse, Senf, Sauerkraut & traditionelle Spezialitäten"
+      },
+      "vi": {
+        "tag": "Đức chính gốc",
+        "badge": "Đức chính gốc",
+        "title": "Sản phẩm Đức chính gốc",
+        "cat": "Sản phẩm",
+        "desc": "Xúc xích, giò lạnh, Leberkäse, mù tạt, dưa cải & đặc sản truyền thống"
+      }
+    },
+    {
+      "vi": {
+        "cat": "Giao hàng",
+        "desc": "Đồ deli Đức & món ăn sẵn — giao trên toàn Hà Nội",
+        "title": "Giao hàng tận nhà",
+        "tag": "Toàn Hà Nội",
+        "badge": "Giao hàng"
+      },
+      "id": "delivery",
+      "de": {
+        "cat": "Lieferung",
+        "desc": "Deutsche Delikatessen & Fertiggerichte — geliefert in ganz Hanoi",
+        "title": "Hauslieferung",
+        "tag": "Ganz Hanoi",
+        "badge": "Lieferung"
+      },
+      "image": "img/german/offer-home-delivery.jpg",
+      "en": {
+        "cat": "Delivery",
+        "desc": "German delicatessen & ready-made meals — delivered across Hanoi",
+        "title": "Home Delivery",
+        "tag": "Across Hanoi",
+        "badge": "Delivery"
+      },
+      "order": 2
+    }
+  ]
+}

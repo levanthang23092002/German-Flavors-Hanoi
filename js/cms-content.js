@@ -66,6 +66,15 @@
                 });
             }
 
+            if (data.products && data.products.items) {
+                I18N_DATA[lang].cards = I18N_DATA[lang].cards || {};
+                data.products.items.forEach(function (item) {
+                    if (item[lang]) {
+                        I18N_DATA[lang].cards[item.id] = deepMerge({}, item[lang]);
+                    }
+                });
+            }
+
             if (data.testimonials && data.testimonials.items) {
                 I18N_DATA[lang].testimonials = I18N_DATA[lang].testimonials || {};
                 I18N_DATA[lang].testimonials.items = data.testimonials.items.map(function (item) {
@@ -189,25 +198,29 @@
         }
     }
 
-    function renderServices(services) {
-        var grid = document.getElementById('mgrid');
-        if (!grid || !services || !services.items || !services.items.length) return;
+    function renderCatalogGrid(gridId, items) {
+        var grid = document.getElementById(gridId);
+        if (!grid || !items || !items.length) return;
 
         var lang = (window.I18N && I18N.getLang()) || localStorage.getItem('gf-lang') || 'en';
-        var items = services.items.slice().sort(function (a, b) {
+        var sorted = items.slice().sort(function (a, b) {
             return (a.order || 0) - (b.order || 0);
         });
-        grid.innerHTML = items.map(function (item, i) {
+
+        grid.innerHTML = sorted.map(function (item, i) {
             var t = item[lang] || item.en || {};
             var delay = i ? ' data-aos-delay="' + (i * 80) + '"' : '';
+            var imgUrl = (item.image || '').trim();
+            var imgHtml = imgUrl
+                ? '<img src="' + esc(imgUrl) + '" alt="' + esc(t.title || '') + '"/>'
+                : '<div class="mimg-empty" aria-hidden="true"><i class="fas fa-image"></i></div>';
             return (
                 '<div class="col-sm-6 col-lg-4 mwrap" data-c="' + esc(item.id) + '" data-aos="fade-up"' + delay + '>' +
                 '<div class="mcard"' +
                 ' data-img="' + esc(item.image || '') + '"' +
                 ' data-title="' + esc(t.title || '') + '"' +
                 ' data-cat="' + esc(t.cat || '') + '">' +
-                '<div class="mimg">' +
-                '<img src="' + esc(item.image || '') + '" alt="' + esc(t.title || '') + '"/>' +
+                '<div class="mimg">' + imgHtml +
                 '<div class="mbdg">' + esc(t.badge || '') + '</div>' +
                 '<div class="mhrt"><i class="far fa-heart"></i></div>' +
                 '</div>' +
@@ -223,6 +236,16 @@
 
         bindServiceCards();
         if (typeof AOS !== 'undefined') AOS.refresh();
+    }
+
+    function renderServices(services) {
+        if (!services || !services.items) return;
+        renderCatalogGrid('mgrid', services.items);
+    }
+
+    function renderProducts(products) {
+        if (!products || !products.items) return;
+        renderCatalogGrid('pgrid', products.items);
     }
 
     function bindServiceCards() {
@@ -290,6 +313,12 @@
     }
 
     function applyAll(data) {
+        var migrated = typeof migrateProductsFromServices === 'function'
+            ? migrateProductsFromServices(data.services, data.products, CMS_DEFAULTS)
+            : { services: data.services, products: data.products };
+        data.services = migrated.services;
+        data.products = migrated.products;
+
         CMS.data = data;
         CMS.loaded = true;
         mergeIntoI18n(data);
@@ -297,6 +326,7 @@
         applyAboutImage(data.about, data.site);
         applySpecial(data.special);
         renderServices(data.services);
+        renderProducts(data.products);
         renderTestimonials(data.testimonials);
         if (window.I18N && typeof I18N.apply === 'function') {
             I18N.apply();
@@ -315,15 +345,17 @@
                 db.collection('content').doc('about').get(),
                 db.collection('content').doc('special').get(),
                 db.collection('content').doc('services').get(),
+                db.collection('content').doc('products').get(),
                 db.collection('content').doc('testimonials').get()
             ]).then(function (snaps) {
                 var site = snaps[0].exists ? snaps[0].data() : null;
                 var about = snaps[1].exists ? snaps[1].data() : null;
                 var special = snaps[2].exists ? snaps[2].data() : null;
                 var services = snaps[3].exists ? snaps[3].data() : null;
-                var testimonials = snaps[4].exists ? snaps[4].data() : null;
+                var products = snaps[4].exists ? snaps[4].data() : null;
+                var testimonials = snaps[5].exists ? snaps[5].data() : null;
 
-                if (!site && !about && !special && !services && !testimonials) {
+                if (!site && !about && !special && !services && !products && !testimonials) {
                     reject(new Error('No CMS content yet'));
                     return;
                 }
@@ -333,6 +365,7 @@
                     about: about || (typeof CMS_DEFAULTS !== 'undefined' ? CMS_DEFAULTS.about : {}),
                     special: special || (typeof CMS_DEFAULTS !== 'undefined' ? CMS_DEFAULTS.special : {}),
                     services: services || (typeof CMS_DEFAULTS !== 'undefined' ? CMS_DEFAULTS.services : { items: [] }),
+                    products: products || (typeof CMS_DEFAULTS !== 'undefined' ? CMS_DEFAULTS.products : { items: [] }),
                     testimonials: testimonials || (typeof CMS_DEFAULTS !== 'undefined' ? CMS_DEFAULTS.testimonials : { items: [] })
                 });
             }).catch(reject);
@@ -358,6 +391,7 @@
         // Services/testimonials text updated via I18N for fixed cards;
         // if dynamically rendered, refresh cards from CMS data for current lang
         if (CMS.data.services) renderServices(CMS.data.services);
+        if (CMS.data.products) renderProducts(CMS.data.products);
         if (CMS.data.testimonials) renderTestimonials(CMS.data.testimonials);
         if (CMS.data.site) applySiteInfo(CMS.data.site);
         if (CMS.data.about || CMS.data.site) applyAboutImage(CMS.data.about, CMS.data.site);

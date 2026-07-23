@@ -1101,6 +1101,9 @@ section[id] {
 #menu {
   background: var(--light);
 }
+#products {
+  background: #fff;
+}
 /* FIX 3 â€” Filter buttons */
 .filtbtn {
   border: 1px solid var(--border);
@@ -1161,6 +1164,16 @@ section[id] {
   height: 100%;
   object-fit: cover;
   transition: 0.5s;
+}
+.mimg-empty {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(145deg, var(--cream2), #ece6dc);
+  color: #bbb;
+  font-size: 2.2rem;
 }
 .mcard:hover .mimg img {
   transform: scale(1.09);
@@ -1228,6 +1241,7 @@ section[id] {
   color: #666;
   margin-bottom: 13px;
   line-height: 1.55;
+  white-space: pre-line;
 }
 .mfoot {
   display: flex;

@@ -20,6 +20,7 @@
         about: null,
         special: null,
         services: null,
+        products: null,
         testimonials: null,
         // One language for both admin UI + content you are typing
         lang: localStorage.getItem('gf-admin-lang') || localStorage.getItem('gf-content-lang') || 'vi',
@@ -136,6 +137,8 @@
         if (reloadBtn) reloadBtn.innerHTML = '<i class="fas fa-sync"></i> <span>' + t('reload') + '</span>';
         var addSvc = $('addServiceBtn');
         if (addSvc) addSvc.innerHTML = '<i class="fas fa-plus"></i> <span>' + t('addService') + '</span>';
+        var addProd = $('addProductBtn');
+        if (addProd) addProd.innerHTML = '<i class="fas fa-plus"></i> <span>' + t('addProduct') + '</span>';
         var addTes = $('addTestimonialBtn');
         if (addTes) addTes.innerHTML = '<i class="fas fa-plus"></i> <span>' + t('addTestimonial') + '</span>';
         var accountsPwdBtn = $('accountsUpdatePwdBtn');
@@ -148,6 +151,7 @@
         var saveBtn = $('saveBtn');
         if (!saveBtn) return;
         var hideActions = state.currentSection === 'services' ||
+            state.currentSection === 'products' ||
             state.currentSection === 'testimonials' ||
             state.currentSection === 'accounts';
         saveBtn.style.display = hideActions ? 'none' : '';
@@ -190,13 +194,16 @@
     /** Same markup as cms-content.js renderServices (visible card only) */
     function buildPublicServiceCardHtml(item, lang) {
         var txt = pickLang(item, lang);
+        var imgUrl = (item.image || '').trim();
+        var imgHtml = imgUrl
+            ? '<img src="' + escapeAttr(imgUrl) + '" alt="' + escapeAttr(txt.title || '') + '"/>'
+            : '<div class="mimg-empty" aria-hidden="true"><i class="fas fa-image"></i></div>';
         return (
             '<div class="mcard"' +
             ' data-img="' + escapeAttr(item.image || '') + '"' +
             ' data-title="' + escapeAttr(txt.title || '') + '"' +
             ' data-cat="' + escapeAttr(txt.cat || '') + '">' +
-            '<div class="mimg">' +
-            '<img src="' + escapeAttr(item.image || '') + '" alt="' + escapeAttr(txt.title || '') + '"/>' +
+            '<div class="mimg">' + imgHtml +
             '<div class="mbdg">' + escapeHtml(txt.badge || '') + '</div>' +
             '<div class="mhrt"><i class="far fa-heart"></i></div>' +
             '</div>' +
@@ -225,6 +232,10 @@
         );
     }
 
+    function isCatalogType(type) {
+        return type === 'service' || type === 'product';
+    }
+
     function bindPreviewActions(wrap, type, itemId) {
         var editBtn = wrap.querySelector('.js-edit-item');
         var delBtn = wrap.querySelector('.js-del-item');
@@ -236,6 +247,7 @@
         if (delBtn) {
             delBtn.addEventListener('click', function () {
                 if (type === 'service') deleteServiceItem(itemId);
+                else if (type === 'product') deleteProductItem(itemId);
                 else deleteTestimonialItem(itemId);
             });
         }
@@ -243,6 +255,10 @@
 
     function findServiceItem(id) {
         return (state.services.items || []).filter(function (x) { return x.id === id; })[0] || null;
+    }
+
+    function findProductItem(id) {
+        return (state.products.items || []).filter(function (x) { return x.id === id; })[0] || null;
     }
 
     function findTestimonialItem(id) {
@@ -398,6 +414,7 @@
         }).join('');
 
         renderServicesList();
+        renderProductsList();
         renderTestimonialsList();
     }
 
@@ -426,6 +443,36 @@
                 '<button type="button" class="btn btn-sm btn-danger js-del-item"><i class="fas fa-trash"></i></button>' +
                 '</div>';
             bindPreviewActions(wrap, 'service', item.id);
+            list.appendChild(wrap);
+        });
+    }
+
+    function renderProductsList() {
+        var list = $('products-list');
+        if (!list) return;
+        var lang = state.sourceLang;
+        var items = (state.products.items || []).slice().sort(function (a, b) {
+            return (a.order || 0) - (b.order || 0);
+        });
+        list.innerHTML = '';
+        list.className = 'site-preview row g-4 justify-content-center';
+
+        if (!items.length) {
+            list.innerHTML = '<p class="preview-empty">' + escapeHtml(t('addProduct')) + '</p>';
+            return;
+        }
+
+        items.forEach(function (item) {
+            var wrap = document.createElement('div');
+            wrap.className = 'col-sm-6 col-lg-4 mwrap admin-preview-wrap';
+            wrap.setAttribute('data-id', item.id);
+            wrap.innerHTML =
+                buildPublicServiceCardHtml(item, lang) +
+                '<div class="admin-preview-actions">' +
+                '<button type="button" class="btn btn-sm btn-ghost js-edit-item"><i class="fas fa-pen"></i> ' + escapeHtml(t('editBtn')) + '</button>' +
+                '<button type="button" class="btn btn-sm btn-danger js-del-item"><i class="fas fa-trash"></i></button>' +
+                '</div>';
+            bindPreviewActions(wrap, 'product', item.id);
             list.appendChild(wrap);
         });
     }
@@ -672,8 +719,29 @@
         return Promise.resolve();
     }
 
+    function migrateProductsFromServices(services, products) {
+        if (typeof window.migrateProductsFromServices === 'function') {
+            return window.migrateProductsFromServices(services, products, CMS_DEFAULTS);
+        }
+        return {
+            services: services || { items: [] },
+            products: products || { items: [] }
+        };
+    }
+
     function normalizeServices(data) {
+        if (typeof normalizeCatalog === 'function') {
+            return normalizeCatalog(data, CMS_DEFAULTS.services);
+        }
         if (!data) return clone(CMS_DEFAULTS.services);
+        return { items: data.items || [] };
+    }
+
+    function normalizeProducts(data) {
+        if (typeof normalizeCatalog === 'function') {
+            return normalizeCatalog(data, CMS_DEFAULTS.products);
+        }
+        if (!data) return clone(CMS_DEFAULTS.products);
         return { items: data.items || [] };
     }
 
@@ -714,6 +782,7 @@
             db.collection('content').doc('about').get(),
             db.collection('content').doc('special').get(),
             db.collection('content').doc('services').get(),
+            db.collection('content').doc('products').get(),
             db.collection('content').doc('testimonials').get()
         ]).then(function (snaps) {
             state.site = snaps[0].exists ? snaps[0].data() : clone(CMS_DEFAULTS.site);
@@ -723,8 +792,13 @@
                 state.about.image = state.site.aboutImage;
             }
             state.special = normalizeSpecial(snaps[2].exists ? snaps[2].data() : null);
-            state.services = normalizeServices(snaps[3].exists ? snaps[3].data() : null);
-            state.testimonials = normalizeTestimonials(snaps[4].exists ? snaps[4].data() : null);
+            var migrated = migrateProductsFromServices(
+                normalizeServices(snaps[3].exists ? snaps[3].data() : null),
+                normalizeProducts(snaps[4].exists ? snaps[4].data() : null)
+            );
+            state.services = migrated.services;
+            state.products = migrated.products;
+            state.testimonials = normalizeTestimonials(snaps[5].exists ? snaps[5].data() : null);
             if (state.site.sourceLang && LANGS.some(function (l) { return l.code === state.site.sourceLang; })) {
                 state.lang = state.site.sourceLang;
                 localStorage.setItem('gf-admin-lang', state.lang);
@@ -748,6 +822,9 @@
         if (section === 'services') {
             return db.collection('content').doc('services').set(state.services);
         }
+        if (section === 'products') {
+            return db.collection('content').doc('products').set(state.products);
+        }
         if (section === 'testimonials') {
             return db.collection('content').doc('testimonials').set(state.testimonials);
         }
@@ -761,13 +838,14 @@
             db.collection('content').doc('about').set(state.about),
             db.collection('content').doc('special').set(state.special),
             db.collection('content').doc('services').set(state.services),
+            db.collection('content').doc('products').set(state.products),
             db.collection('content').doc('testimonials').set(state.testimonials)
         ]);
     }
 
     function saveContent() {
         var section = state.currentSection;
-        if (section === 'services' || section === 'testimonials') return Promise.resolve();
+        if (section === 'services' || section === 'products' || section === 'testimonials') return Promise.resolve();
         collectIntoSourceLang();
         var btn = $('saveBtn');
         btn.disabled = true;
@@ -831,7 +909,7 @@
         var lang = state.sourceLang;
         var txt = item ? pickLang(item, lang) : {};
         var html = '';
-        if (type === 'service') {
+        if (type === 'service' || type === 'product') {
             html = buildImageFieldHtml({
                 id: 'm-svc-image',
                 label: t('serviceFields.image') + ' *',
@@ -870,16 +948,24 @@
         var isEdit = state.modalMode === 'edit';
 
         if (isEdit) {
-            var item = type === 'service' ? findServiceItem(itemId) : findTestimonialItem(itemId);
+            var item = type === 'service' ? findServiceItem(itemId)
+                : type === 'product' ? findProductItem(itemId)
+                : findTestimonialItem(itemId);
             if (!item) return;
-            $('modalTitle').textContent = type === 'service' ? t('modalEditService') : t('modalEditTestimonial');
+            $('modalTitle').textContent = type === 'service' ? t('modalEditService')
+                : type === 'product' ? t('modalEditProduct')
+                : t('modalEditTestimonial');
             $('modalBody').innerHTML = buildModalFormHtml(type, item);
         } else {
-            $('modalTitle').textContent = type === 'service' ? t('modalAddService') : t('modalAddTestimonial');
+            $('modalTitle').textContent = type === 'service' ? t('modalAddService')
+                : type === 'product' ? t('modalAddProduct')
+                : t('modalAddTestimonial');
             $('modalBody').innerHTML = buildModalFormHtml(type, null);
         }
 
-        $('modalHint').textContent = (type === 'service' ? t('serviceModalHint') : t('modalAutoTranslateHint'))
+        $('modalHint').textContent = (isCatalogType(type)
+            ? (type === 'product' ? t('productModalHint') : t('serviceModalHint'))
+            : t('modalAutoTranslateHint'))
             .replace('{lang}', srcLabel);
         $('modalSaveLabel').textContent = isEdit ? t('modalUpdate') : t('modalSave');
         $('modalCancelBtn').textContent = t('modalCancel');
@@ -902,6 +988,19 @@
             });
     }
 
+    function deleteProductItem(id) {
+        if (!confirm(t('confirmDeleteProduct'))) return;
+        state.products.items = (state.products.items || []).filter(function (x) { return x.id !== id; });
+        db.collection('content').doc('products').set(state.products)
+            .then(function () {
+                renderProductsList();
+                toast(t('deletedProduct'));
+            })
+            .catch(function (err) {
+                showAlert('err', t('saveFail') + (err.message || err));
+            });
+    }
+
     function deleteTestimonialItem(id) {
         if (!confirm(t('confirmDeleteTestimonial'))) return;
         state.testimonials.items = (state.testimonials.items || []).filter(function (x) { return x.id !== id; });
@@ -918,7 +1017,7 @@
     function validateModal() {
         var ok = true;
         var ids;
-        if (state.modalType === 'service') {
+        if (state.modalType === 'service' || state.modalType === 'product') {
             ids = ['m-svc-image'].concat(SERVICE_TEXT_KEYS.map(function (k) { return 'm-svc-' + k; }));
         } else {
             ids = ['m-tes-rating'].concat(TESTIMONIAL_TEXT_KEYS.map(function (k) { return 'm-tes-' + k; }));
@@ -948,51 +1047,54 @@
         if (window.AdminTranslate && AdminTranslate.clearCache) AdminTranslate.clearCache();
 
         var promise;
-        if (state.modalType === 'service') {
+        if (isCatalogType(state.modalType)) {
+            var catalog = state.modalType === 'product' ? state.products : state.services;
+            var docName = state.modalType === 'product' ? 'products' : 'services';
+            var findItem = state.modalType === 'product' ? findProductItem : findServiceItem;
             var text = {};
             SERVICE_TEXT_KEYS.forEach(function (k) { text[k] = val('m-svc-' + k).trim(); });
             var image = val('m-svc-image').trim();
 
             if (isEdit) {
-                var prevSvc = findServiceItem(state.modalItemId);
-                if (!prevSvc) {
+                var prevItem = findItem(state.modalItemId);
+                if (!prevItem) {
                     closeModal();
                     btn.disabled = false;
                     btn.innerHTML = '<i class="fas fa-save"></i> <span id="modalSaveLabel">' + t('modalUpdate') + '</span>';
                     return;
                 }
                 promise = AdminTranslate.expandLangPack(text, SERVICE_TEXT_KEYS, src, {
-                    previousPack: { en: prevSvc.en, vi: prevSvc.vi, de: prevSvc.de }
+                    previousPack: { en: prevItem.en, vi: prevItem.vi, de: prevItem.de }
                 }).then(function (pack) {
-                    var idx = state.services.items.findIndex(function (x) { return x.id === prevSvc.id; });
-                    state.services.items[idx] = {
-                        id: prevSvc.id,
-                        order: prevSvc.order,
+                    var idx = catalog.items.findIndex(function (x) { return x.id === prevItem.id; });
+                    catalog.items[idx] = {
+                        id: prevItem.id,
+                        order: prevItem.order,
                         image: image,
                         en: pack.en,
                         vi: pack.vi,
                         de: pack.de
                     };
-                    return db.collection('content').doc('services').set(state.services);
+                    return db.collection('content').doc(docName).set(catalog);
                 });
             } else {
                 var baseId = slugify(text.title);
                 var id = baseId;
                 var n = 2;
-                while ((state.services.items || []).some(function (x) { return x.id === id; })) {
+                while ((catalog.items || []).some(function (x) { return x.id === id; })) {
                     id = baseId + '-' + n;
                     n++;
                 }
                 promise = AdminTranslate.expandLangPack(text, SERVICE_TEXT_KEYS, src).then(function (pack) {
-                    state.services.items.push({
+                    catalog.items.push({
                         id: id,
-                        order: state.services.items.length,
+                        order: catalog.items.length,
                         image: image,
                         en: pack.en,
                         vi: pack.vi,
                         de: pack.de
                     });
-                    return db.collection('content').doc('services').set(state.services);
+                    return db.collection('content').doc(docName).set(catalog);
                 });
             }
         } else {
@@ -1043,13 +1145,16 @@
             .then(function () {
                 closeModal();
                 renderServicesList();
+                renderProductsList();
                 renderTestimonialsList();
                 showAlert('ok', successMsg);
                 toast(successMsg);
             })
             .catch(function (err) {
-                if (state.modalType === 'service' && !isEdit) state.services.items.pop();
-                else if (state.modalType === 'testimonial' && !isEdit) state.testimonials.items.pop();
+                if (isCatalogType(state.modalType) && !isEdit) {
+                    var rollback = state.modalType === 'product' ? state.products : state.services;
+                    rollback.items.pop();
+                } else if (state.modalType === 'testimonial' && !isEdit) state.testimonials.items.pop();
                 $('modalAlert').textContent = t('saveFail') + (err.message || err);
                 $('modalAlert').classList.add('show');
             })
@@ -1124,6 +1229,7 @@
             loadContent().then(function () { toast(t('reloaded')); });
         });
         $('addServiceBtn').addEventListener('click', function () { openItemModal('service', 'add'); });
+        $('addProductBtn').addEventListener('click', function () { openItemModal('product', 'add'); });
         $('addTestimonialBtn').addEventListener('click', function () { openItemModal('testimonial', 'add'); });
         $('modalSaveBtn').addEventListener('click', saveModalItem);
         document.querySelectorAll('[data-modal-close]').forEach(function (el) {
@@ -1178,6 +1284,7 @@
                     state.about = clone(CMS_DEFAULTS.about);
                     state.special = clone(CMS_DEFAULTS.special);
                     state.services = clone(CMS_DEFAULTS.services);
+                    state.products = clone(CMS_DEFAULTS.products);
                     state.testimonials = clone(CMS_DEFAULTS.testimonials);
                     renderAll();
                 });

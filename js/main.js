@@ -4,7 +4,7 @@ AOS.init({
     offset: 55
 });
 
-var NAV_SECTIONS = ['hero', 'about', 'menu', 'testimonials', 'reservation'];
+var NAV_SECTIONS = ['hero', 'about', 'menu', 'products', 'testimonials', 'reservation'];
 
 function getNavOffset() {
     var nav = document.getElementById('nav');

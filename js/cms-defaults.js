@@ -225,6 +225,36 @@ var CMS_DEFAULTS = {
             }
         ]
     },
+    products: {
+        items: [
+            {
+                id: 'products',
+                image: 'img/german/offer-german-products.jpg',
+                order: 0,
+                en: {
+                    cat: 'Products',
+                    title: 'Authentic German Products',
+                    desc: 'Sausages, cold cuts, Leberkäse, mustard, sauerkraut & traditional specialties',
+                    badge: 'Original German',
+                    tag: 'Original German'
+                },
+                vi: {
+                    cat: 'Sản phẩm',
+                    title: 'Sản phẩm Đức chính gốc',
+                    desc: 'Xúc xích, giò lạnh, Leberkäse, mù tạt, dưa cải & đặc sản truyền thống',
+                    badge: 'Đức chính gốc',
+                    tag: 'Đức chính gốc'
+                },
+                de: {
+                    cat: 'Produkte',
+                    title: 'Authentische deutsche Produkte',
+                    desc: 'Würste, Aufschnitt, Leberkäse, Senf, Sauerkraut & traditionelle Spezialitäten',
+                    badge: 'Original Deutsch',
+                    tag: 'Original Deutsch'
+                }
+            }
+        ]
+    },
     testimonials: {
         items: [
             {

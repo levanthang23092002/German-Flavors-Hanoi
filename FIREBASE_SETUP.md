@@ -84,7 +84,7 @@ Chỉ cần **Auth + Firestore** (Spark / free). Với ảnh:
 2. Vào **http://localhost:8765/admin/login.html**
 3. Đăng nhập bằng user vừa tạo
 4. Bấm **Nạp dữ liệu mẫu** ở sidebar → xác nhận
-5. Kiểm tra Firestore có collection `content` với 5 document: `site`, `about`, `special`, `services`, `testimonials`
+5. Kiểm tra Firestore có collection `content` với 6 document: `site`, `about`, `special`, `services`, `products`, `testimonials`
 
 ## 7. Sử dụng CMS
 
@@ -99,6 +99,7 @@ Các mục quản lý:
 - **Thông tin website** – brand, SĐT, Zalo/WhatsApp/Facebook, ảnh About, meta SEO
 - **About Us** – toàn bộ nội dung (EN / VI / DE)
 - **Our Services** – tiêu đề + danh sách dịch vụ (thêm/xóa/sửa)
+- **Products** – tiêu đề + danh sách sản phẩm (thêm/xóa/sửa)
 - **Testimonials** – tiêu đề + đánh giá khách (thêm/xóa/sửa)
 - **Tài khoản** – đổi mật khẩu của bạn, tạo admin mới, đặt lại mật khẩu / xóa admin khác
 
@@ -175,7 +176,8 @@ content/
   site          → brand, phones, social, meta SEO, hero stats
   about         → { image, en, vi, de } (ảnh + p1–p5, quote) — không gồm tiêu đề mục
   special       → banner Catering { image, en, vi, de } (tag, title, desc, btn)
-  services      → { items: [...] }
+  services      → { items: [...] } — cùng schema với products (xem js/cms-catalog.js)
+  products      → { items: [...] } — id, image, order, en, vi, de (badge, cat, title, desc, tag)
   testimonials  → { items: [...] }
 
 admins/
