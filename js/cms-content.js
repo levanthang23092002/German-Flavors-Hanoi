@@ -196,9 +196,21 @@
         if (copySpan && site.brandName) {
             copySpan.textContent = site.brandName + (site.brandSub ? ' ' + site.brandSub : '');
         }
+
+        if (window.applySocialMeta) {
+            var lang = (window.I18N && I18N.getLang()) || localStorage.getItem('gf-lang') || 'en';
+            var metaPack = site.meta && site.meta[lang] ? site.meta[lang] : null;
+            applySocialMeta({
+                title: metaPack && metaPack.shareTitle ? metaPack.shareTitle : undefined,
+                desc: metaPack && metaPack.shareDesc ? metaPack.shareDesc : (metaPack && metaPack.desc),
+                image: site.ogImage || (site.hero && site.hero.image) || undefined
+            });
+        }
     }
 
-    function renderCatalogGrid(gridId, items) {
+    function renderCatalogGrid(gridId, items, opts) {
+        opts = opts || {};
+        var showStar = opts.showStar !== false;
         var grid = document.getElementById(gridId);
         if (!grid || !items || !items.length) return;
 
@@ -214,6 +226,12 @@
             var imgHtml = imgUrl
                 ? '<img src="' + esc(imgUrl) + '" alt="' + esc(t.title || '') + '"/>'
                 : '<div class="mimg-empty" aria-hidden="true"><i class="fas fa-image"></i></div>';
+            var footHtml = '';
+            if (t.tag) {
+                footHtml = showStar
+                    ? '<div class="mfoot"><div class="mstars"><i class="fas fa-star"></i> <span class="mstars-tag">' + esc(t.tag) + '</span></div></div>'
+                    : '<div class="mfoot"><span class="mstars-tag">' + esc(t.tag) + '</span></div>';
+            }
             return (
                 '<div class="col-sm-6 col-lg-4 mwrap" data-c="' + esc(item.id) + '" data-aos="fade-up"' + delay + '>' +
                 '<div class="mcard"' +
@@ -228,9 +246,8 @@
                 '<div class="mcat">' + esc(t.cat || '') + '</div>' +
                 '<div class="mtit">' + esc(t.title || '') + '</div>' +
                 '<div class="mdesc">' + esc(t.desc || '') + '</div>' +
-                '<div class="mfoot">' +
-                '<div class="mstars"><i class="fas fa-star"></i> <span class="mstars-tag">' + esc(t.tag || '') + '</span></div>' +
-                '</div></div></div></div>'
+                footHtml +
+                '</div></div></div>'
             );
         }).join('');
 
@@ -245,7 +262,7 @@
 
     function renderProducts(products) {
         if (!products || !products.items) return;
-        renderCatalogGrid('pgrid', products.items);
+        renderCatalogGrid('pgrid', products.items, { showStar: false });
         renderFormProductPicker(products);
     }
 

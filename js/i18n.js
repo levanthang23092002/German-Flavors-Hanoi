@@ -1,8 +1,15 @@
 var I18N_LANG = localStorage.getItem('gf-lang') || 'en';
+var SITE_ORIGIN = 'https://germanflavorshanoi.com';
+var DEFAULT_OG_IMAGE = SITE_ORIGIN + '/img/german/catering.jpg';
 
 var I18N_DATA = {
     en: {
-        meta: { title: 'German Flavors Hanoi – Bringing the Taste of Germany to Hanoi', desc: 'German Flavors Hanoi – Authentic German meats, sausages, cold cuts, delicatessen products, and catering services in Hanoi, Vietnam.' },
+        meta: {
+            title: 'German Flavors Hanoi – Bringing the Taste of Germany to Hanoi',
+            desc: 'German Flavors Hanoi – Authentic German meats, sausages, cold cuts, delicatessen products, and catering services in Hanoi, Vietnam.',
+            shareTitle: 'German Flavors Hanoi | Authentic German Food & Catering',
+            shareDesc: 'Authentic German meats, sausages & deli. Event catering 10–300 guests. Delivery across Hanoi.'
+        },
         nav: { home: 'Home', about: 'About', services: 'Services', products: 'Products', reviews: 'Reviews', contact: 'Contact', search: 'Search' },
         topbar: { delivery: 'Delivery Available' },
         hero: {
@@ -156,7 +163,12 @@ var I18N_DATA = {
         }
     },
     vi: {
-        meta: { title: 'German Flavors Hanoi – Hương vị Đức tại Hà Nội', desc: 'German Flavors Hanoi – Thịt, xúc xích, giò lạnh và đồ deli Đức chính gốc cùng dịch vụ catering tại Hà Nội, Việt Nam.' },
+        meta: {
+            title: 'German Flavors Hanoi – Hương vị Đức tại Hà Nội',
+            desc: 'German Flavors Hanoi – Thịt, xúc xích, giò lạnh và đồ deli Đức chính gốc cùng dịch vụ catering tại Hà Nội, Việt Nam.',
+            shareTitle: 'German Flavors Hanoi | Ẩm thực Đức & Catering Hà Nội',
+            shareDesc: 'Thịt, xúc xích & đồ deli Đức chính gốc. Catering sự kiện 10–300 khách. Giao hàng toàn Hà Nội.'
+        },
         nav: { home: 'Trang chủ', about: 'Giới thiệu', services: 'Dịch vụ', products: 'Sản phẩm', reviews: 'Đánh giá', contact: 'Liên hệ', search: 'Tìm kiếm' },
         topbar: { delivery: 'Giao hàng tận nơi' },
         hero: {
@@ -310,7 +322,12 @@ var I18N_DATA = {
         }
     },
     de: {
-        meta: { title: 'German Flavors Hanoi – Deutscher Geschmack in Hanoi', desc: 'German Flavors Hanoi – Authentische deutsche Fleisch-, Wurst- und Feinkostprodukte sowie Catering-Services in Hanoi, Vietnam.' },
+        meta: {
+            title: 'German Flavors Hanoi – Deutscher Geschmack in Hanoi',
+            desc: 'German Flavors Hanoi – Authentische deutsche Fleisch-, Wurst- und Feinkostprodukte sowie Catering-Services in Hanoi, Vietnam.',
+            shareTitle: 'German Flavors Hanoi | Deutsches Essen & Catering',
+            shareDesc: 'Authentisches deutsches Fleisch, Würste & Deli. Event-Catering 10–300 Gäste. Lieferung in Hanoi.'
+        },
         nav: { home: 'Start', about: 'Über uns', services: 'Leistungen', products: 'Produkte', reviews: 'Bewertungen', contact: 'Kontakt', search: 'Suche' },
         topbar: { delivery: 'Lieferung verfügbar' },
         hero: {
@@ -475,6 +492,42 @@ function t(path) {
     return val || '';
 }
 
+function toAbsoluteSiteUrl(path) {
+    if (!path) return '';
+    if (/^https?:\/\//i.test(path)) return path;
+    return SITE_ORIGIN + '/' + String(path).replace(/^\.?\//, '');
+}
+
+function setSocialMetaTag(name, content, isProperty) {
+    if (content == null) return;
+    var attr = isProperty ? 'property' : 'name';
+    var el = document.querySelector('meta[' + attr + '="' + name + '"]');
+    if (el) el.setAttribute('content', content);
+}
+
+function applySocialMeta(opts) {
+    opts = opts || {};
+    var lang = I18N_DATA[I18N_LANG] || I18N_DATA.en;
+    var meta = (lang && lang.meta) || {};
+    var title = opts.title || meta.shareTitle || meta.title || document.title;
+    var desc = opts.desc || meta.shareDesc || meta.desc || '';
+    var image = opts.image ? toAbsoluteSiteUrl(opts.image) : DEFAULT_OG_IMAGE;
+    var locale = I18N_LANG === 'vi' ? 'vi_VN' : (I18N_LANG === 'de' ? 'de_DE' : 'en_US');
+
+    setSocialMetaTag('og:title', title, true);
+    setSocialMetaTag('og:description', desc, true);
+    setSocialMetaTag('og:image', image, true);
+    setSocialMetaTag('og:image:secure_url', image, true);
+    setSocialMetaTag('og:url', SITE_ORIGIN + '/', true);
+    setSocialMetaTag('og:locale', locale, true);
+    setSocialMetaTag('twitter:title', title, false);
+    setSocialMetaTag('twitter:description', desc, false);
+    setSocialMetaTag('twitter:image', image, false);
+}
+
+window.applySocialMeta = applySocialMeta;
+window.toAbsoluteSiteUrl = toAbsoluteSiteUrl;
+
 function applyI18n() {
     var lang = I18N_DATA[I18N_LANG];
     if (!lang) { I18N_LANG = 'en'; lang = I18N_DATA.en; }
@@ -483,6 +536,7 @@ function applyI18n() {
     document.title = lang.meta.title;
     var metaDesc = document.querySelector('meta[name="description"]');
     if (metaDesc) metaDesc.setAttribute('content', lang.meta.desc);
+    applySocialMeta();
 
     document.querySelectorAll('[data-i18n]').forEach(function(el) {
         var key = el.getAttribute('data-i18n');

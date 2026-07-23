@@ -191,13 +191,21 @@
         return html;
     }
 
-    /** Same markup as cms-content.js renderServices (visible card only) */
-    function buildPublicServiceCardHtml(item, lang) {
+    /** Same markup as cms-content.js catalog cards (visible card only) */
+    function buildPublicServiceCardHtml(item, lang, opts) {
+        opts = opts || {};
+        var showStar = opts.showStar !== false;
         var txt = pickLang(item, lang);
         var imgUrl = (item.image || '').trim();
         var imgHtml = imgUrl
             ? '<img src="' + escapeAttr(imgUrl) + '" alt="' + escapeAttr(txt.title || '') + '"/>'
             : '<div class="mimg-empty" aria-hidden="true"><i class="fas fa-image"></i></div>';
+        var footHtml = '';
+        if (txt.tag) {
+            footHtml = showStar
+                ? '<div class="mfoot"><div class="mstars"><i class="fas fa-star"></i> <span class="mstars-tag">' + escapeHtml(txt.tag || '') + '</span></div></div>'
+                : '<div class="mfoot"><span class="mstars-tag">' + escapeHtml(txt.tag || '') + '</span></div>';
+        }
         return (
             '<div class="mcard"' +
             ' data-img="' + escapeAttr(item.image || '') + '"' +
@@ -211,9 +219,8 @@
             '<div class="mcat">' + escapeHtml(txt.cat || '') + '</div>' +
             '<div class="mtit">' + escapeHtml(txt.title || '') + '</div>' +
             '<div class="mdesc">' + escapeHtml(txt.desc || '') + '</div>' +
-            '<div class="mfoot">' +
-            '<div class="mstars"><i class="fas fa-star"></i> <span class="mstars-tag">' + escapeHtml(txt.tag || '') + '</span></div>' +
-            '</div></div></div>'
+            footHtml +
+            '</div></div>'
         );
     }
 
@@ -467,7 +474,7 @@
             wrap.className = 'col-sm-6 col-lg-4 mwrap admin-preview-wrap';
             wrap.setAttribute('data-id', item.id);
             wrap.innerHTML =
-                buildPublicServiceCardHtml(item, lang) +
+                buildPublicServiceCardHtml(item, lang, { showStar: false }) +
                 '<div class="admin-preview-actions">' +
                 '<button type="button" class="btn btn-sm btn-ghost js-edit-item"><i class="fas fa-pen"></i> ' + escapeHtml(t('editBtn')) + '</button>' +
                 '<button type="button" class="btn btn-sm btn-danger js-del-item"><i class="fas fa-trash"></i></button>' +

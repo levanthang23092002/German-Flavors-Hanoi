@@ -1104,6 +1104,42 @@ section[id] {
 #products {
   background: #fff;
 }
+#mgrid > .mwrap,
+#pgrid > .mwrap,
+#services-list > .mwrap,
+#products-list > .mwrap {
+  display: flex;
+}
+#mgrid .mcard,
+#pgrid .mcard,
+#services-list .mcard,
+#products-list .mcard {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  flex: 1;
+}
+#mgrid .mbody,
+#pgrid .mbody,
+#services-list .mbody,
+#products-list .mbody {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+#mgrid .mdesc,
+#pgrid .mdesc,
+#services-list .mdesc,
+#products-list .mdesc {
+  flex: 1;
+}
+#mgrid .mfoot,
+#pgrid .mfoot,
+#services-list .mfoot,
+#products-list .mfoot {
+  margin-top: auto;
+  padding-top: 13px;
+}
 /* FIX 3 â€” Filter buttons */
 .filtbtn {
   border: 1px solid var(--border);
@@ -1833,6 +1869,47 @@ section[id] {
 .tesrl {
   font-size: 0.73rem;
   color: #aaa;
+}
+.tesSwiper .swiper-wrapper {
+  align-items: stretch;
+}
+.tesSwiper .swiper-slide {
+  height: auto;
+  display: flex;
+  box-sizing: border-box;
+}
+.tesSwiper .tescard {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  width: 100%;
+  height: 100%;
+}
+.tesSwiper .testxt {
+  flex: 1;
+  margin-bottom: 0;
+}
+.tesSwiper .tesauth {
+  margin-top: auto;
+  padding-top: 18px;
+}
+.site-preview-testimonials > .admin-preview-wrap {
+  display: flex;
+  flex-direction: column;
+}
+.site-preview-testimonials .tescard {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  width: 100%;
+}
+.site-preview-testimonials .testxt {
+  flex: 1;
+  margin-bottom: 0;
+}
+.site-preview-testimonials .tesauth {
+  margin-top: auto;
+  padding-top: 18px;
 }
 
 /* ===================== RESERVATION â€” FIX 5 ===================== */
